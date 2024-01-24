@@ -1,6 +1,6 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/game.dart';
-import 'package:darkness_dungeon/util/dialogs.dart';
+import 'package:plastic_warriors/game.dart';
+import 'package:plastic_warriors/util/dialogs.dart';
 import 'package:flutter/material.dart';
 
 class GameController extends GameComponent {

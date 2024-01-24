@@ -1,16 +1,29 @@
 import 'dart:async' as async;
+import 'dart:math';
 
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/game.dart';
-import 'package:darkness_dungeon/util/custom_sprite_animation_widget.dart';
-import 'package:darkness_dungeon/util/enemy_sprite_sheet.dart';
-import 'package:darkness_dungeon/util/localization/strings_location.dart';
-import 'package:darkness_dungeon/util/player_sprite_sheet.dart';
-import 'package:darkness_dungeon/util/sounds.dart';
-import 'package:darkness_dungeon/widgets/custom_radio.dart';
+import 'package:plastic_warriors/game.dart';
+import 'package:plastic_warriors/settings/settings_screen.dart';
+import 'package:plastic_warriors/util/custom_sprite_animation_widget.dart';
+import 'package:plastic_warriors/util/enemy_sprite_sheet.dart';
+import 'package:plastic_warriors/util/localization/strings_location.dart';
+import 'package:plastic_warriors/util/player_sprite_sheet.dart';
+import 'package:plastic_warriors/util/sounds.dart';
+import 'package:plastic_warriors/widgets/custom_radio.dart';
 import 'package:flame_splash_screen/flame_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+
+import '../audio/audio_controller.dart';
+import '../audio/sounds.dart';
+import '../settings/settings.dart';
+import '../style/my_button.dart';
+import '../style/palette.dart';
+import '../style/responsive_screen.dart';
 
 class Menu extends StatefulWidget {
   @override
@@ -21,6 +34,7 @@ class _MenuState extends State<Menu> {
   bool showSplash = true;
   int currentPosition = 0;
   late async.Timer _timer;
+
   List<Future<SpriteAnimation>> sprites = [
     PlayerSpriteSheet.idleRight(),
     EnemySpriteSheet.goblinIdleRight(),
@@ -47,13 +61,20 @@ class _MenuState extends State<Menu> {
   Widget buildMenu() {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Center(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+                "assets/images/splash-screen-bg.jpg"), // Replace with your image path
+            fit: BoxFit.cover,
+          ),
+        ),
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(
-                "Darkness Dungeon",
+                "Plastic Warriors",
                 style: TextStyle(
                     color: Colors.white, fontFamily: 'Normal', fontSize: 30.0),
               ),
@@ -84,7 +105,7 @@ class _MenuState extends State<Menu> {
                   child: Text(
                     getString('play_cap'),
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.red,
                       fontFamily: 'Normal',
                       fontSize: 17.0,
                     ),
@@ -97,41 +118,33 @@ class _MenuState extends State<Menu> {
                   },
                 ),
               ),
+              _gap,
               SizedBox(
-                height: 20,
-              ),
-              DefectorRadio<bool>(
-                value: false,
-                label: 'Keyboard',
-                group: Game.useJoystick,
-                onChange: (value) {
-                  setState(() {
-                    Game.useJoystick = value;
-                  });
-                },
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              DefectorRadio<bool>(
-                value: true,
-                group: Game.useJoystick,
-                label: 'Joystick',
-                onChange: (value) {
-                  setState(() {
-                    Game.useJoystick = value;
-                  });
-                },
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              if (!Game.useJoystick)
-                SizedBox(
-                  height: 80,
-                  width: 200,
-                  child: Sprite.load('keyboard_tip.png').asWidget(),
+                width: 150,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    elevation: 3,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    minimumSize: Size(100, 40), //////// HERE
+                  ),
+                  child: Text(
+                    getString('settings_cap'),
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontFamily: 'Normal',
+                      fontSize: 17.0,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SettingsScreen()),
+                    );
+                  },
                 ),
+              ),
             ],
           ),
         ),
@@ -143,63 +156,11 @@ class _MenuState extends State<Menu> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Flexible(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Text(
-                      getString('powered_by'),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Normal',
-                          fontSize: 12.0),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        _launchURL('https://github.com/RafaelBarbosatec');
-                      },
-                      child: Text(
-                        'rafaelbarbosatec',
-                        style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          color: Colors.blue,
-                          fontFamily: 'Normal',
-                          fontSize: 12.0,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Flexible(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Text(
-                      getString('built_with'),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Normal',
-                          fontSize: 12.0),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        _launchURL(
-                            'https://github.com/RafaelBarbosatec/bonfire');
-                      },
-                      child: Text(
-                        'Bonfire',
-                        style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          color: Colors.blue,
-                          fontFamily: 'Normal',
-                          fontSize: 12.0,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              Text("Made with ❤️ by Malaysia",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Normal',
+                      fontSize: 15.0)),
             ],
           ),
         ),
@@ -238,4 +199,6 @@ class _MenuState extends State<Menu> {
       throw 'Could not launch $url';
     }
   }
+
+  static const _gap = SizedBox(height: 10);
 }

@@ -1,6 +1,6 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/main.dart';
-import 'package:darkness_dungeon/player/knight.dart';
+import 'package:plastic_warriors/main.dart';
+import 'package:plastic_warriors/player/knight.dart';
 
 class PotionLife extends GameDecoration with Sensor<Knight> {
   final Vector2 initPosition;

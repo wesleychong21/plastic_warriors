@@ -1,6 +1,6 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/interface/bar_life_component.dart';
-import 'package:darkness_dungeon/player/knight.dart';
+import 'package:plastic_warriors/interface/bar_life_component.dart';
+import 'package:plastic_warriors/player/knight.dart';
 
 class KnightInterface extends GameInterface {
   late Sprite key;

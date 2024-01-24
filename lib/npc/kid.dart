@@ -1,12 +1,12 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/enemies/boss.dart';
-import 'package:darkness_dungeon/util/custom_sprite_animation_widget.dart';
-import 'package:darkness_dungeon/util/dialogs.dart';
-import 'package:darkness_dungeon/util/functions.dart';
-import 'package:darkness_dungeon/util/localization/strings_location.dart';
-import 'package:darkness_dungeon/util/npc_sprite_sheet.dart';
-import 'package:darkness_dungeon/util/player_sprite_sheet.dart';
-import 'package:darkness_dungeon/util/sounds.dart';
+import 'package:plastic_warriors/enemies/boss.dart';
+import 'package:plastic_warriors/util/custom_sprite_animation_widget.dart';
+import 'package:plastic_warriors/util/dialogs.dart';
+import 'package:plastic_warriors/util/functions.dart';
+import 'package:plastic_warriors/util/localization/strings_location.dart';
+import 'package:plastic_warriors/util/npc_sprite_sheet.dart';
+import 'package:plastic_warriors/util/player_sprite_sheet.dart';
+import 'package:plastic_warriors/util/sounds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

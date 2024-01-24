@@ -1,4 +1,4 @@
-import 'package:darkness_dungeon/util/localization/my_localizations.dart';
+import 'package:plastic_warriors/util/localization/my_localizations.dart';
 
 class StringsLocation {
   static final StringsLocation _singleton = new StringsLocation._internal();

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:darkness_dungeon/util/localization/strings_location.dart';
+import 'package:plastic_warriors/util/localization/strings_location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -20,7 +20,7 @@ class MyLocalizations {
 
   Future<bool> load() async {
     String data = await rootBundle
-        .loadString('resources/lang/${this.locale.languageCode}.json');
+        .loadString('assets/lang/${this.locale.languageCode}.json');
     Map<String, dynamic> _result = json.decode(data);
 
     this._sentences = new Map();

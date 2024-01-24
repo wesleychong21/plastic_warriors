@@ -1,11 +1,11 @@
 import 'dart:async' as async;
 
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/main.dart';
-import 'package:darkness_dungeon/util/functions.dart';
-import 'package:darkness_dungeon/util/game_sprite_sheet.dart';
-import 'package:darkness_dungeon/util/player_sprite_sheet.dart';
-import 'package:darkness_dungeon/util/sounds.dart';
+import 'package:plastic_warriors/main.dart';
+import 'package:plastic_warriors/util/functions.dart';
+import 'package:plastic_warriors/util/game_sprite_sheet.dart';
+import 'package:plastic_warriors/util/player_sprite_sheet.dart';
+import 'package:plastic_warriors/util/sounds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -32,8 +32,9 @@ class Knight extends SimplePlayer with Lighting, BlockMovementCollision {
       ),
     );
     setupMovementByJoystick(
-      intencityEnabled: true,
-    );
+
+        // intencityEnabled: true,
+        );
   }
 
   @override

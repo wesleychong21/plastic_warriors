@@ -1,13 +1,14 @@
 import 'dart:async';
 
-import 'package:darkness_dungeon/util/localization/my_localizations.dart';
+import 'package:plastic_warriors/util/localization/my_localizations.dart';
 import 'package:flutter/material.dart';
 
 class MyLocalizationsDelegate extends LocalizationsDelegate<MyLocalizations> {
   const MyLocalizationsDelegate();
 
   @override
-  bool isSupported(Locale locale) => ['en', 'pt'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      ['en', 'zh', 'ms'].contains(locale.languageCode);
 
   @override
   Future<MyLocalizations> load(Locale locale) async {
@@ -33,6 +34,10 @@ class MyLocalizationsDelegate extends LocalizationsDelegate<MyLocalizations> {
   }
 
   static List<Locale> supportedLocales() {
-    return [const Locale('en', 'US'), const Locale('pt', 'BR')];
+    return [
+      const Locale('en', 'US'),
+      const Locale('zh', 'CN'),
+      const Locale('ms', 'MY')
+    ];
   }
 }

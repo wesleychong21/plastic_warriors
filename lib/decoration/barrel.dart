@@ -1,5 +1,5 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/main.dart';
+import 'package:plastic_warriors/main.dart';
 
 class Barrel extends GameDecoration {
   Barrel(Vector2 position)

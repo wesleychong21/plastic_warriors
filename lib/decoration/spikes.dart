@@ -1,7 +1,7 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/main.dart';
-import 'package:darkness_dungeon/player/knight.dart';
-import 'package:darkness_dungeon/util/game_sprite_sheet.dart';
+import 'package:plastic_warriors/main.dart';
+import 'package:plastic_warriors/player/knight.dart';
+import 'package:plastic_warriors/util/game_sprite_sheet.dart';
 
 class Spikes extends GameDecoration with Sensor<Knight> {
   final double damage;

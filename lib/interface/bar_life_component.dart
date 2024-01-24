@@ -1,5 +1,5 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/player/knight.dart';
+import 'package:plastic_warriors/player/knight.dart';
 import 'package:flutter/material.dart';
 
 class MyBarLifeComponent extends InterfaceComponent {

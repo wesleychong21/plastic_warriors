@@ -1,10 +1,10 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/main.dart';
-import 'package:darkness_dungeon/util/custom_sprite_animation_widget.dart';
-import 'package:darkness_dungeon/util/localization/strings_location.dart';
-import 'package:darkness_dungeon/util/npc_sprite_sheet.dart';
-import 'package:darkness_dungeon/util/player_sprite_sheet.dart';
-import 'package:darkness_dungeon/util/sounds.dart';
+import 'package:plastic_warriors/main.dart';
+import 'package:plastic_warriors/util/custom_sprite_animation_widget.dart';
+import 'package:plastic_warriors/util/localization/strings_location.dart';
+import 'package:plastic_warriors/util/npc_sprite_sheet.dart';
+import 'package:plastic_warriors/util/player_sprite_sheet.dart';
+import 'package:plastic_warriors/util/sounds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -68,9 +68,7 @@ class WizardNPC extends SimpleNpc {
       gameRef.context,
       [
         Say(
-          text: [
-            TextSpan(text: getString('talk_wizard_1')),
-          ],
+          text: [TextSpan(text: getString('talk_wizard_1'))],
           person: CustomSpriteAnimationWidget(
             animation: NpcSpriteSheet.wizardIdleLeft(),
           ),
