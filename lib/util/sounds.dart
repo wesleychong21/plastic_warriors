@@ -45,6 +45,11 @@ class Sounds {
     FlameAudio.bgm.play('battle_boss.mp3');
   }
 
+  static void playScene1Sound() async {
+    await FlameAudio.bgm.stop();
+    FlameAudio.bgm.play('scene1_bg.mp3', volume: 0.2);
+  }
+
   static void pauseBackgroundSound() {
     FlameAudio.bgm.pause();
   }

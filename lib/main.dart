@@ -109,6 +109,7 @@ class MyApp extends StatelessWidget {
           final palette = context.watch<Palette>();
 
           return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
             title: 'Plastic Warriors',
             theme: ThemeData.from(
               colorScheme: ColorScheme.fromSeed(
