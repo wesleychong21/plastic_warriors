@@ -41,7 +41,6 @@ flutter:
   assets:
     - assets/images/
     - assets/music/
-    - assets/sfx/
     - assets/
     - assets/images/emote/
     - assets/images/npc/
