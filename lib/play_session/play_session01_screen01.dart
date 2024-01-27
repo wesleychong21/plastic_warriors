@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flame/flame.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:plastic_warriors/util/sounds.dart';
+import 'package:plastic_warriors/play_session/play_session01_screen02.dart';
 
 class Play_Session01_Screen01 extends StatefulWidget {
   const Play_Session01_Screen01({Key? key}) : super(key: key);
@@ -48,6 +49,18 @@ class _GameState extends State<Play_Session01_Screen01> {
         setState(() {
           currentSlide = (currentSlide + 1) % slideImages.length;
         });
+
+        if (currentSlide == 4) {
+          Sounds.stopBackgroundSound();
+          // go to play_session01_screen02.dart
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Play_Session01_Screen02(),
+            ),
+          );
+        }
       },
       child: Scaffold(
         body: Center(

@@ -1,12 +1,12 @@
 import 'package:bonfire/bonfire.dart';
 
-class PlayerSpriteSheet {
+class PlayerSpriteSheetBackup {
   static Future<SpriteAnimation> idleRight() => SpriteAnimation.load(
-        'player/ari_idle.png',
+        'player/knight_idle.png',
         SpriteAnimationData.sequenced(
-          amount: 6,
+          amount: 4,
           stepTime: 0.1,
-          textureSize: Vector2(32, 32),
+          textureSize: Vector2(16, 16),
         ),
       );
 
@@ -47,44 +47,28 @@ class PlayerSpriteSheet {
   static SimpleDirectionAnimation playerAnimations() =>
       SimpleDirectionAnimation(
         idleLeft: SpriteAnimation.load(
-          'player/ari_idle.png',
+          'player/knight_idle_left.png',
           SpriteAnimationData.sequenced(
             amount: 6,
             stepTime: 0.1,
-            textureSize: Vector2(32, 32),
+            textureSize: Vector2(16, 16),
           ),
         ),
         idleRight: idleRight(),
         runLeft: SpriteAnimation.load(
-          'player/ari_run_left.png',
+          'player/knight_run_left.png',
           SpriteAnimationData.sequenced(
             amount: 6,
             stepTime: 0.1,
-            textureSize: Vector2(32, 32),
+            textureSize: Vector2(16, 16),
           ),
         ),
         runRight: SpriteAnimation.load(
-          'player/ari_run_right.png',
+          'player/knight_run.png',
           SpriteAnimationData.sequenced(
             amount: 6,
             stepTime: 0.1,
-            textureSize: Vector2(32, 32),
-          ),
-        ),
-        runUp: SpriteAnimation.load(
-          'player/ari_run_up.png',
-          SpriteAnimationData.sequenced(
-            amount: 6,
-            stepTime: 0.1,
-            textureSize: Vector2(32, 32),
-          ),
-        ),
-        runDown: SpriteAnimation.load(
-          'player/ari_run_down.png',
-          SpriteAnimationData.sequenced(
-            amount: 6,
-            stepTime: 0.1,
-            textureSize: Vector2(32, 32),
+            textureSize: Vector2(16, 16),
           ),
         ),
       );
