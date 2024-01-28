@@ -95,11 +95,12 @@ class Knight extends SimplePlayer with Lighting, BlockMovementCollision {
     }
 
     Sounds.attackPlayerMelee();
-    decrementStamina(15);
+    decrementStamina(0);
     this.simpleAttackMelee(
       damage: attack,
       animationRight: PlayerSpriteSheet.attackEffectRight(),
-      size: Vector2.all(tileSize),
+      size: Vector2.all(tileSize * 0.8),
+      centerOffset: Vector2(20, 5),
     );
   }
 
@@ -184,7 +185,7 @@ class Knight extends SimplePlayer with Lighting, BlockMovementCollision {
       damage,
       config: TextStyle(
         fontSize: valueByTileSize(5),
-        color: Colors.orange,
+        color: Colors.white10,
         fontFamily: 'Normal',
       ),
     );
