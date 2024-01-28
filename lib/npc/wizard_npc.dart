@@ -19,7 +19,7 @@ class WizardNPC extends SimpleNpc {
           ),
           position: position,
           size: Vector2(
-            tileSize * 0.8,
+            tileSize,
             tileSize,
           ),
         );
@@ -38,7 +38,7 @@ class WizardNPC extends SimpleNpc {
             _showIntroduction();
           }
         },
-        radiusVision: (2 * tileSize),
+        radiusVision: (3 * tileSize),
       );
     }
   }
@@ -68,21 +68,33 @@ class WizardNPC extends SimpleNpc {
       gameRef.context,
       [
         Say(
-          text: [TextSpan(text: getString('talk_wizard_1'))],
+          text: [
+            TextSpan(
+                text: getString('talk_wizard_1'),
+                style: TextStyle(fontSize: 20))
+          ],
           person: CustomSpriteAnimationWidget(
             animation: NpcSpriteSheet.wizardIdleLeft(),
           ),
           personSayDirection: PersonSayDirection.RIGHT,
         ),
         Say(
-          text: [TextSpan(text: getString('talk_player_1'))],
+          text: [
+            TextSpan(
+                text: getString('talk_player_1'),
+                style: TextStyle(fontSize: 24))
+          ],
           person: CustomSpriteAnimationWidget(
             animation: PlayerSpriteSheet.idleRight(),
           ),
           personSayDirection: PersonSayDirection.LEFT,
         ),
         Say(
-          text: [TextSpan(text: getString('talk_wizard_2'))],
+          text: [
+            TextSpan(
+                text: getString('talk_wizard_2'),
+                style: TextStyle(fontSize: 30))
+          ],
           person: CustomSpriteAnimationWidget(
             animation: NpcSpriteSheet.wizardIdleLeft(),
           ),
