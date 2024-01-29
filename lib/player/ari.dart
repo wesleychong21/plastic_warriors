@@ -5,15 +5,18 @@ import 'package:plastic_warriors/enemies/goblin.dart';
 import 'package:plastic_warriors/main.dart';
 import 'package:plastic_warriors/util/functions.dart';
 import 'package:plastic_warriors/util/game_sprite_sheet.dart';
+import 'package:plastic_warriors/player/weapons/vacuum_weapon.dart';
 import 'package:plastic_warriors/util/player_sprite_sheet.dart';
 import 'package:plastic_warriors/util/sounds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class Knight extends SimplePlayer with Lighting, BlockMovementCollision {
+class Ari extends SimplePlayer
+    with Lighting, BlockMovementCollision, MouseEventListener {
   double attack = 25;
   double stamina = 100;
   async.Timer? _timerStamina;
+  VacuumWeapon? gun;
   bool containKey = false;
   bool showObserveEnemy = false;
   // Add a timestamp for the last attack
@@ -22,7 +25,7 @@ class Knight extends SimplePlayer with Lighting, BlockMovementCollision {
   // Add a cooldown period for attacks (in seconds)
   double attackCooldown = 0.5; //  cooldown
 
-  Knight(Vector2 position)
+  Ari(Vector2 position)
       : super(
           animation: PlayerSpriteSheet.playerAnimations(),
           size: Vector2.all(tileSize),
@@ -55,6 +58,38 @@ class Knight extends SimplePlayer with Lighting, BlockMovementCollision {
       ),
     );
     return super.onLoad();
+  }
+
+  @override
+  void onMount() {
+    PlayerColor color = PlayerColor.values[0];
+    add(gun = VacuumWeapon(Vector2(28, 0), color));
+    super.onMount();
+  }
+
+  @override
+  void onMouseTap(MouseButton button) {}
+
+  @override
+  void onMouseScreenTapDown(int pointer, Vector2 position, MouseButton button) {
+    var angle = BonfireUtil.angleBetweenPoints(
+      gun?.absoluteCenter ?? absoluteCenter,
+      gameRef.screenToWorld(position),
+    );
+    if (gun?.reloading == false) {
+      gun?.execShoot(attack);
+    }
+    super.onMouseScreenTapDown(pointer, position, button);
+  }
+
+  @override
+  void onMouseHoverScreen(int pointer, Vector2 position) {
+    double angle = BonfireUtil.angleBetweenPoints(
+      gun?.absoluteCenter ?? absoluteCenter,
+      gameRef.screenToWorld(position),
+    );
+    gun?.changeAngle(angle);
+    super.onMouseHoverScreen(pointer, position);
   }
 
   @override
@@ -94,7 +129,7 @@ class Knight extends SimplePlayer with Lighting, BlockMovementCollision {
 
     Sounds.attackRange();
 
-    decrementStamina(10);
+    //decrementStamina(10);
 
     //get Direction by position of player and enemy
 
@@ -117,34 +152,6 @@ class Knight extends SimplePlayer with Lighting, BlockMovementCollision {
         color: Colors.deepOrangeAccent.withOpacity(0.4),
       ),
     );
-  }
-
-  Direction getDirectionByPosition(Vector2 targetPosition) {
-    Direction direction = Direction.right;
-    if (targetPosition.x < position.x) {
-      if (targetPosition.y < position.y) {
-        direction = Direction.upLeft;
-      } else if (targetPosition.y > position.y) {
-        direction = Direction.downLeft;
-      } else {
-        direction = Direction.left;
-      }
-    } else if (targetPosition.x > position.x) {
-      if (targetPosition.y < position.y) {
-        direction = Direction.upRight;
-      } else if (targetPosition.y > position.y) {
-        direction = Direction.downRight;
-      } else {
-        direction = Direction.right;
-      }
-    } else {
-      if (targetPosition.y < position.y) {
-        direction = Direction.up;
-      } else if (targetPosition.y > position.y) {
-        direction = Direction.down;
-      }
-    }
-    return direction;
   }
 
   @override
@@ -177,12 +184,7 @@ class Knight extends SimplePlayer with Lighting, BlockMovementCollision {
 
           //actionAttack();
 
-          Enemy closestEnemy = enemies.firstWhere(
-            (element) => element is Goblin,
-            orElse: () => enemies.first,
-          );
-
-          actionAttackRange(closestEnemy);
+          //actionAttackRange(enemies.firstWhere((element) => element is Goblin));
         }
       },
     );

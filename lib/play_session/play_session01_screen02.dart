@@ -12,7 +12,7 @@ import 'package:plastic_warriors/interface/knight_interface.dart';
 import 'package:plastic_warriors/main.dart';
 import 'package:plastic_warriors/npc/kid.dart';
 import 'package:plastic_warriors/npc/wizard_npc.dart';
-import 'package:plastic_warriors/player/knight.dart';
+import 'package:plastic_warriors/player/ari.dart';
 import 'package:plastic_warriors/util/sounds.dart';
 import 'package:plastic_warriors/widgets/game_controller.dart';
 import 'package:flutter/material.dart';
@@ -55,29 +55,13 @@ class _GameState extends State<Play_Session01_Screen02> {
         size: 100,
         isFixed: false,
       ),
-      actions: [
-        JoystickAction(
-          actionId: 0,
-          sprite: Sprite.load('joystick_atack.png'),
-          spritePressed: Sprite.load('joystick_atack_selected.png'),
-          size: 80,
-          margin: EdgeInsets.only(bottom: 50, right: 50),
-        ),
-        JoystickAction(
-          actionId: 1,
-          sprite: Sprite.load('joystick_atack_range.png'),
-          spritePressed: Sprite.load('joystick_atack_range_selected.png'),
-          size: 50,
-          margin: EdgeInsets.only(bottom: 50, right: 160),
-        )
-      ],
     );
 
     return Material(
       color: Colors.transparent,
       child: BonfireWidget(
         joystick: joystick,
-        player: Knight(
+        player: Ari(
           Vector2(2 * tileSize, 3 * tileSize),
         ),
         map: WorldMapByTiled(
