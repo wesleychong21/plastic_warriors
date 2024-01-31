@@ -11,7 +11,7 @@ import 'package:plastic_warriors/enemies/mini_boss.dart';
 import 'package:plastic_warriors/interface/knight_interface.dart';
 import 'package:plastic_warriors/main.dart';
 import 'package:plastic_warriors/npc/kid.dart';
-import 'package:plastic_warriors/npc/wizard_npc.dart';
+import 'package:plastic_warriors/npc/scientist_npc.dart';
 import 'package:plastic_warriors/player/knight.dart';
 import 'package:plastic_warriors/util/sounds.dart';
 import 'package:plastic_warriors/widgets/game_controller.dart';

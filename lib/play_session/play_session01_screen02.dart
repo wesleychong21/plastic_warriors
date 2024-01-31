@@ -11,7 +11,7 @@ import 'package:plastic_warriors/enemies/mini_boss.dart';
 import 'package:plastic_warriors/interface/knight_interface.dart';
 import 'package:plastic_warriors/main.dart';
 import 'package:plastic_warriors/npc/kid.dart';
-import 'package:plastic_warriors/npc/wizard_npc.dart';
+import 'package:plastic_warriors/npc/scientist_npc.dart';
 import 'package:plastic_warriors/player/ari.dart';
 import 'package:plastic_warriors/util/sounds.dart';
 import 'package:plastic_warriors/widgets/game_controller.dart';
@@ -65,21 +65,13 @@ class _GameState extends State<Play_Session01_Screen02> {
           Vector2(2 * tileSize, 3 * tileSize),
         ),
         map: WorldMapByTiled(
-          TiledReader.asset('tiled/map.json'),
+          TiledReader.asset('tiled/001.json'),
           forceTileSize: Vector2(tileSize, tileSize),
           objectsBuilder: {
-            'door': (p) => Door(p.position, p.size),
-            'torch': (p) => Torch(p.position),
-            'potion': (p) => PotionLife(p.position, 30),
-            'wizard': (p) => WizardNPC(p.position),
-            'spikes': (p) => Spikes(p.position),
-            'key': (p) => DoorKey(p.position),
-            'kid': (p) => Kid(p.position),
+            'scientist': (p) => ScientistNPC(p.position),
             'boss': (p) => Boss(p.position),
-            'goblin': (p) => Goblin(p.position),
+            'monsterBag': (p) => Goblin(p.position),
             'imp': (p) => Imp(p.position),
-            'mini_boss': (p) => MiniBoss(p.position),
-            'torch_empty': (p) => Torch(p.position, empty: true),
           },
         ),
         components: [GameController()],

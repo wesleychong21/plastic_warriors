@@ -8,9 +8,9 @@ import 'package:plastic_warriors/util/sounds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class WizardNPC extends SimpleNpc {
+class ScientistNPC extends SimpleNpc {
   bool _showConversation = false;
-  WizardNPC(
+  ScientistNPC(
     Vector2 position,
   ) : super(
           animation: SimpleDirectionAnimation(
