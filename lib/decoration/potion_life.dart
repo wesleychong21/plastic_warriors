@@ -1,8 +1,8 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/main.dart';
-import 'package:plastic_warriors/player/knight.dart';
+import 'package:plastic_warriors/player/ari.dart';
 
-class PotionLife extends GameDecoration with Sensor<Knight> {
+class PotionLife extends GameDecoration with Sensor<Ari> {
   final Vector2 initPosition;
   final double life;
 
@@ -16,7 +16,7 @@ class PotionLife extends GameDecoration with Sensor<Knight> {
         );
 
   @override
-  void onContact(Knight player) {
+  void onContact(Ari player) {
     if (!hasContact) {
       hasContact = true;
       _giveLife(player);

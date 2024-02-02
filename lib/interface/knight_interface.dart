@@ -1,6 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/interface/bar_life_component.dart';
-import 'package:plastic_warriors/player/knight.dart';
+import 'package:plastic_warriors/player/ari.dart';
 
 class KnightInterface extends GameInterface {
   late Sprite key;
@@ -21,7 +21,7 @@ class KnightInterface extends GameInterface {
   }
 
   void _drawKey(Canvas c) {
-    if (gameRef.player != null && (gameRef.player as Knight).containKey) {
+    if (gameRef.player != null && (gameRef.player as Ari).containKey) {
       key.renderRect(c, Rect.fromLTWH(150, 20, 35, 30));
     }
   }

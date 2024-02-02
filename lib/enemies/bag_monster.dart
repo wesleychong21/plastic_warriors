@@ -6,15 +6,15 @@ import 'package:plastic_warriors/util/game_sprite_sheet.dart';
 import 'package:plastic_warriors/util/sounds.dart';
 import 'package:flutter/material.dart';
 
-class Goblin extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
+class BagMonster extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
   final Vector2 initPosition;
   double attack = 25;
 
-  Goblin(this.initPosition)
+  BagMonster(this.initPosition)
       : super(
-          animation: EnemySpriteSheet.goblinAnimations(),
+          animation: EnemySpriteSheet.bagmonsterAnimations(),
           position: initPosition,
-          size: Vector2.all(tileSize * 0.8),
+          size: Vector2.all(tileSize * 1.0),
           speed: tileSize * 1.5,
           life: 120,
         );
@@ -35,11 +35,12 @@ class Goblin extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
   void update(double dt) {
     super.update(dt);
 
-    this.seeAndMoveToPlayer(
+    seeAndMoveToPlayer(
       closePlayer: (player) {
         execAttack();
       },
       radiusVision: tileSize * 4,
+      observed: () => Sounds.bagMonsterDiscoverPlayer(),
     );
   }
 

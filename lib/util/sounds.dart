@@ -24,6 +24,10 @@ class Sounds {
     FlameAudio.play('attack_enemy.mp3', volume: 0.4);
   }
 
+  static void bagMonsterDiscoverPlayer() {
+    FlameAudio.play('hehe.mp3', volume: 0.3);
+  }
+
   static void explosion() {
     FlameAudio.play('explosion.wav');
   }

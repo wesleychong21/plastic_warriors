@@ -1,11 +1,11 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/main.dart';
-import 'package:plastic_warriors/player/knight.dart';
+import 'package:plastic_warriors/player/ari.dart';
 import 'package:plastic_warriors/util/game_sprite_sheet.dart';
 
-class Spikes extends GameDecoration with Sensor<Knight> {
+class Spikes extends GameDecoration with Sensor<Ari> {
   final double damage;
-  Knight? player;
+  Ari? player;
 
   Spikes(Vector2 position, {this.damage = 0})
       : super.withAnimation(
@@ -15,7 +15,7 @@ class Spikes extends GameDecoration with Sensor<Knight> {
         );
 
   @override
-  void onContact(Knight collision) {
+  void onContact(Ari collision) {
     player = collision;
   }
 
@@ -31,7 +31,7 @@ class Spikes extends GameDecoration with Sensor<Knight> {
   int get priority => LayerPriority.getComponentPriority(1);
 
   @override
-  void onContactExit(Knight component) {
+  void onContactExit(Ari component) {
     player = null;
   }
 }

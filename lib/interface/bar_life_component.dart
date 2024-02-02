@@ -1,5 +1,5 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:plastic_warriors/player/knight.dart';
+import 'package:plastic_warriors/player/ari.dart';
 import 'package:flutter/material.dart';
 
 class MyBarLifeComponent extends InterfaceComponent {
@@ -25,8 +25,8 @@ class MyBarLifeComponent extends InterfaceComponent {
     if (this.gameRef.player != null) {
       life = this.gameRef.player!.life;
       maxLife = this.gameRef.player!.maxLife;
-      if (this.gameRef.player is Knight) {
-        stamina = (this.gameRef.player as Knight).stamina;
+      if (this.gameRef.player is Ari) {
+        stamina = (this.gameRef.player as Ari).stamina;
       }
     }
     super.update(t);

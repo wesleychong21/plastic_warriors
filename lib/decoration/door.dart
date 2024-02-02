@@ -1,5 +1,5 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:plastic_warriors/player/knight.dart';
+import 'package:plastic_warriors/player/ari.dart';
 import 'package:plastic_warriors/util/game_sprite_sheet.dart';
 import 'package:plastic_warriors/util/localization/strings_location.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,9 +27,9 @@ class Door extends GameDecoration {
   @override
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is Knight) {
+    if (other is Ari) {
       if (!open) {
-        Knight p = other;
+        Ari p = other;
         if (p.containKey == true) {
           open = true;
           p.containKey = false;

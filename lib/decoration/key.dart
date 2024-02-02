@@ -1,6 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/main.dart';
-import 'package:plastic_warriors/player/knight.dart';
+import 'package:plastic_warriors/player/ari.dart';
 
 class DoorKey extends GameDecoration with Sensor {
   DoorKey(Vector2 position)
@@ -12,7 +12,7 @@ class DoorKey extends GameDecoration with Sensor {
 
   @override
   void onContact(GameComponent collision) {
-    if (collision is Knight) {
+    if (collision is Ari) {
       collision.containKey = true;
       removeFromParent();
     }

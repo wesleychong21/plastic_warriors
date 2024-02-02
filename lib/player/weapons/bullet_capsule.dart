@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/player/ari.dart';
-import 'package:plastic_warriors/enemies/goblin.dart';
+import 'package:plastic_warriors/enemies/bag_monster.dart';
 import 'package:plastic_warriors/util/functions.dart';
 import 'package:plastic_warriors/util/player_sprite_sheet.dart';
 

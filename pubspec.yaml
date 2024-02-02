@@ -45,6 +45,7 @@ flutter:
     - assets/images/npc/
     - assets/images/enemy/
     - assets/images/enemy/goblin/
+    - assets/images/enemy/bag_monster/
     - assets/images/enemy/imp/
     - assets/images/enemy/mini_boss/
     - assets/images/enemy/boss/

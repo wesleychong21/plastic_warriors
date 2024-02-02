@@ -84,38 +84,38 @@ class EnemySpriteSheet {
         ),
       );
 
-  static SimpleDirectionAnimation goblinAnimations() =>
+  static SimpleDirectionAnimation bagmonsterAnimations() =>
       SimpleDirectionAnimation(
         idleLeft: SpriteAnimation.load(
-          'enemy/goblin/goblin_idle_left.png',
+          'enemy/bag_monster/bag_monster_idle.png',
           SpriteAnimationData.sequenced(
             amount: 6,
             stepTime: 0.1,
-            textureSize: Vector2(16, 16),
+            textureSize: Vector2(32, 32),
           ),
         ),
         idleRight: SpriteAnimation.load(
-          'enemy/goblin/goblin_idle.png',
+          'enemy/bag_monster/bag_monster_idle.png',
           SpriteAnimationData.sequenced(
             amount: 6,
             stepTime: 0.1,
-            textureSize: Vector2(16, 16),
+            textureSize: Vector2(32, 32),
           ),
         ),
         runLeft: SpriteAnimation.load(
-          'enemy/goblin/goblin_run_left.png',
+          'enemy/bag_monster/bag_monster_run.png',
           SpriteAnimationData.sequenced(
             amount: 6,
             stepTime: 0.1,
-            textureSize: Vector2(16, 16),
+            textureSize: Vector2(32, 32),
           ),
         ),
         runRight: SpriteAnimation.load(
-          'enemy/goblin/goblin_run_right.png',
+          'enemy/bag_monster/bag_monster_run.png',
           SpriteAnimationData.sequenced(
             amount: 6,
             stepTime: 0.1,
-            textureSize: Vector2(16, 16),
+            textureSize: Vector2(32, 32),
           ),
         ),
       );

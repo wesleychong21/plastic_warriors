@@ -5,7 +5,7 @@ import 'package:plastic_warriors/decoration/potion_life.dart';
 import 'package:plastic_warriors/decoration/spikes.dart';
 import 'package:plastic_warriors/decoration/torch.dart';
 import 'package:plastic_warriors/enemies/boss.dart';
-import 'package:plastic_warriors/enemies/goblin.dart';
+import 'package:plastic_warriors/enemies/bag_monster.dart';
 import 'package:plastic_warriors/enemies/imp.dart';
 import 'package:plastic_warriors/enemies/mini_boss.dart';
 import 'package:plastic_warriors/interface/knight_interface.dart';

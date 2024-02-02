@@ -1,7 +1,7 @@
 import 'dart:async' as async;
 
 import 'package:bonfire/bonfire.dart';
-import 'package:plastic_warriors/enemies/goblin.dart';
+import 'package:plastic_warriors/enemies/bag_monster.dart';
 import 'package:plastic_warriors/main.dart';
 import 'package:plastic_warriors/util/functions.dart';
 import 'package:plastic_warriors/util/game_sprite_sheet.dart';
