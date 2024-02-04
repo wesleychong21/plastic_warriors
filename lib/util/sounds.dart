@@ -25,7 +25,7 @@ class Sounds {
   }
 
   static void bagMonsterDiscoverPlayer() {
-    FlameAudio.play('hehe.mp3', volume: 0.3);
+    //FlameAudio.play('hehe.mp3', volume: 0.3);
   }
 
   static void explosion() {

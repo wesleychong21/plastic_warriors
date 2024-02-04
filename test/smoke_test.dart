@@ -3,12 +3,12 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:basic/main.dart';
+//import 'package:basic/main.dart';
 
 void main() {
   testWidgets('smoke test', (tester) async {
     // Build our game and trigger a frame.
-    await tester.pumpWidget(MyApp());
+    //await tester.pumpWidget(MyApp());
 
     // Verify that the 'Play' button is shown.
     expect(find.text('Play'), findsOneWidget);

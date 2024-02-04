@@ -12,7 +12,7 @@ class LoveStone1 extends GameDecoration {
   final Color flash = const Color(0xFF73eff7).withOpacity(0.5);
   final bool withScreenEffect;
   final AttackFromEnum attackFrom;
-  final PlayerColor color;
+
   final bool blockShootWithoutBullet;
   SpriteAnimation? _normalAnimation;
   SpriteAnimation? _reloadAnimation;
@@ -20,15 +20,14 @@ class LoveStone1 extends GameDecoration {
   bool reloading = false;
   double currentTimeReload = 0;
   LoveStone1(
-    Vector2 position,
-    this.color, {
+    Vector2 position, {
     this.withScreenEffect = true,
-    this.blockShootWithoutBullet = true,
+    this.blockShootWithoutBullet = false,
     this.attackFrom = AttackFromEnum.PLAYER_OR_ALLY,
   }) : super.withAnimation(
           animation: PlayerSpriteSheet.lovestone1(),
           position: position,
-          size: Vector2.all(32),
+          size: Vector2.all(16),
         );
 
   @override

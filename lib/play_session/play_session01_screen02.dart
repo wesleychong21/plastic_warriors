@@ -70,7 +70,7 @@ class _GameState extends State<Play_Session01_Screen02> {
           objectsBuilder: {
             'scientist': (p) => ScientistNPC(p.position),
             'boss': (p) => Boss(p.position),
-            'monsterBag': (p) => Goblin(p.position),
+            'monsterBag': (p) => BagMonster(p.position),
             'imp': (p) => Imp(p.position),
           },
         ),

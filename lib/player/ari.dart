@@ -20,7 +20,7 @@ class Ari extends SimplePlayer
   bool containKey = false;
   bool showObserveEnemy = false;
   // Add a timestamp for the last attack
-  double lastAttackTime = 0.0;
+  double lastAttackTime = 1.0;
 
   // Add a cooldown period for attacks (in seconds)
   double attackCooldown = 0.5; //  cooldown
@@ -55,16 +55,12 @@ class Ari extends SimplePlayer
 
   @override
   void onMount() {
-    PlayerColor color = PlayerColor.values[0];
     //add(gun = VacuumWeapon(Vector2(28, 0), color));
     super.onMount();
   }
 
   @override
-  void onMouseTap(MouseButton button) {}
-
-  @override
-  void onMouseScreenTapDown(int pointer, Vector2 position, MouseButton button) {
+  void onMouseTap(MouseButton button) {
     var angle = BonfireUtil.angleBetweenPoints(
       gun?.absoluteCenter ?? absoluteCenter,
       gameRef.screenToWorld(position),
@@ -72,7 +68,6 @@ class Ari extends SimplePlayer
     if (gun?.reloading == false) {
       gun?.execShoot(attack);
     }
-    super.onMouseScreenTapDown(pointer, position, button);
   }
 
   @override
@@ -80,11 +75,6 @@ class Ari extends SimplePlayer
     if (gun?.reloading == false) {
       gun?.execShoot(attack);
     }
-  }
-
-  @override
-  void onTapDownScreen(GestureEvent event) {
-    super.onTapDownScreen(event);
   }
 
   @override
@@ -190,6 +180,11 @@ class Ari extends SimplePlayer
           //actionAttack();
 
           //actionAttackRange(enemies.firstWhere((element) => element is Goblin));
+
+          //if class LoveStone1 is added to this player
+          if (gun?.reloading == false) {
+            gun?.execShoot(attack);
+          }
         }
       },
     );

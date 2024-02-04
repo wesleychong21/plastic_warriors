@@ -120,6 +120,16 @@ class EnemySpriteSheet {
         ),
       );
 
+  static Future<SpriteAnimation> bagMonsterTalkAnimation() =>
+      SpriteAnimation.load(
+        'enemy/bag_monster/bag_monster_idle.png',
+        SpriteAnimationData.sequenced(
+          amount: 6,
+          stepTime: 0.1,
+          textureSize: Vector2(32, 32),
+        ),
+      );
+
   static Future<SpriteAnimation> impIdleRight() => SpriteAnimation.load(
         'enemy/imp/imp_idle.png',
         SpriteAnimationData.sequenced(

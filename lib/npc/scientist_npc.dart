@@ -27,6 +27,7 @@ class ScientistNPC extends SimpleNpc {
   @override
   void update(double dt) {
     super.update(dt);
+    /*
     if (gameRef.player != null) {
       this.seeComponent(
         gameRef.player!,
@@ -41,6 +42,7 @@ class ScientistNPC extends SimpleNpc {
         radiusVision: (3 * tileSize),
       );
     }
+    */
   }
 
   void _showEmote({String emote = 'emote/emote_exclamacao.png'}) {

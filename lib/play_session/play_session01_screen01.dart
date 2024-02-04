@@ -11,11 +11,11 @@ import 'package:plastic_warriors/enemies/imp.dart';
 import 'package:plastic_warriors/enemies/mini_boss.dart';
 import 'package:plastic_warriors/interface/knight_interface.dart';
 import 'package:plastic_warriors/main.dart';
-import 'package:plastic_warriors/npc/kid.dart';
-import 'package:plastic_warriors/npc/scientist_npc.dart';
+
 import 'package:plastic_warriors/player/ari.dart';
 import 'package:plastic_warriors/util/sounds.dart';
 import 'package:plastic_warriors/widgets/game_controller.dart';
+import 'package:plastic_warriors/widgets/scene1_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -63,19 +63,18 @@ class _GameState extends State<Play_Session01_Screen01> {
       child: BonfireWidget(
         joystick: joystick,
         player: Ari(
-          Vector2(2 * tileSize, 3 * tileSize),
+          Vector2(2 * tileSize, 5 * tileSize),
         ),
         map: WorldMapByTiled(
           TiledReader.asset('tiled/map001b.json'),
           forceTileSize: Vector2(tileSize, tileSize),
           objectsBuilder: {
-            'scientist': (p) => ScientistNPC(p.position),
             'boss': (p) => Boss(p.position),
             'bagMonster': (p) => BagMonster(p.position),
             'imp': (p) => Imp(p.position),
           },
         ),
-        components: [GameController()],
+        components: [GameController(), Scene1Controller()],
         interface: KnightInterface(),
         backgroundColor: Colors.grey[900]!,
         cameraConfig: CameraConfig(
