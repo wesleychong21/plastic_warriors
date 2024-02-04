@@ -5,7 +5,7 @@ import 'package:plastic_warriors/enemies/bag_monster.dart';
 import 'package:plastic_warriors/main.dart';
 import 'package:plastic_warriors/util/functions.dart';
 import 'package:plastic_warriors/util/game_sprite_sheet.dart';
-import 'package:plastic_warriors/player/weapons/vacuum_weapon.dart';
+import 'package:plastic_warriors/player/weapons/lovestone1.dart';
 import 'package:plastic_warriors/util/player_sprite_sheet.dart';
 import 'package:plastic_warriors/util/sounds.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ class Ari extends SimplePlayer
   double attack = 25;
   double stamina = 100;
   async.Timer? _timerStamina;
-  VacuumWeapon? gun;
+  LoveStone1? gun;
   bool containKey = false;
   bool showObserveEnemy = false;
   // Add a timestamp for the last attack
@@ -33,13 +33,6 @@ class Ari extends SimplePlayer
           life: 200,
           speed: tileSize * 2.5,
         ) {
-    setupLighting(
-      LightingConfig(
-        radius: width * 1.5,
-        blurBorder: width,
-        color: Colors.deepOrangeAccent.withOpacity(0.2),
-      ),
-    );
     setupMovementByJoystick(
 
         // intencityEnabled: true,
@@ -63,7 +56,7 @@ class Ari extends SimplePlayer
   @override
   void onMount() {
     PlayerColor color = PlayerColor.values[0];
-    add(gun = VacuumWeapon(Vector2(28, 0), color));
+    //add(gun = VacuumWeapon(Vector2(28, 0), color));
     super.onMount();
   }
 

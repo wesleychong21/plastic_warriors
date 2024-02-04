@@ -6,11 +6,12 @@ import 'package:plastic_warriors/util/game_sprite_sheet.dart';
 import 'package:plastic_warriors/util/sounds.dart';
 import 'package:flutter/material.dart';
 
-class BagMonster extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
+class BagMonsterNPC extends SimpleEnemy
+    with BlockMovementCollision, UseLifeBar {
   final Vector2 initPosition;
   double attack = 25;
 
-  BagMonster(this.initPosition)
+  BagMonsterNPC(this.initPosition)
       : super(
           animation: EnemySpriteSheet.bagmonsterAnimations(),
           position: initPosition,

@@ -113,22 +113,21 @@ class PlayerSpriteSheet {
         ),
       );
 
-  static Future<SpriteAnimation> gun() => SpriteAnimation.load(
-        'player/gun.png',
+  static Future<SpriteAnimation> lovestone1() => SpriteAnimation.load(
+        'player/lovestone1.png',
         SpriteAnimationData.sequenced(
           amount: 1,
           stepTime: 0.1,
-          textureSize: Vector2.all(32),
+          textureSize: Vector2.all(16),
         ),
       );
 
-  static Future<SpriteAnimation> gunShot() => SpriteAnimation.load(
-        'player/gun.png',
+  static Future<SpriteAnimation> lovestone1Shooting() => SpriteAnimation.load(
+        'player/lovestone1_shooting.png',
         SpriteAnimationData.sequenced(
-          amount: 4,
+          amount: 2,
           stepTime: 0.1,
-          textureSize: Vector2.all(32),
-          texturePosition: Vector2(0, 64),
+          textureSize: Vector2.all(16),
         ),
       );
 

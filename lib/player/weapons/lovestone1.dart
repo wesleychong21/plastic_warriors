@@ -6,7 +6,7 @@ import 'package:plastic_warriors/player/weapons/bullet_capsule.dart';
 //import 'package:plastic_warriors/util/player_spritesheet.dart';
 import 'package:plastic_warriors/util/player_sprite_sheet.dart';
 
-class VacuumWeapon extends GameDecoration with ChangeNotifier {
+class LoveStone1 extends GameDecoration {
   double dt = 0;
   final double timeToReload = 5;
   final Color flash = const Color(0xFF73eff7).withOpacity(0.5);
@@ -19,14 +19,14 @@ class VacuumWeapon extends GameDecoration with ChangeNotifier {
   int _countBullet = 10;
   bool reloading = false;
   double currentTimeReload = 0;
-  VacuumWeapon(
+  LoveStone1(
     Vector2 position,
     this.color, {
     this.withScreenEffect = true,
     this.blockShootWithoutBullet = true,
     this.attackFrom = AttackFromEnum.PLAYER_OR_ALLY,
   }) : super.withAnimation(
-          animation: PlayerSpriteSheet.gun(),
+          animation: PlayerSpriteSheet.lovestone1(),
           position: position,
           size: Vector2.all(32),
         );
@@ -35,16 +35,6 @@ class VacuumWeapon extends GameDecoration with ChangeNotifier {
   void update(double dt) {
     this.dt = dt;
 
-    if ((parent as Movement).lastDirectionHorizontal != Direction.down) {
-      if (!isFlippedVertically) {
-        flipVertically();
-      }
-    } else {
-      if (isFlippedVertically) {
-        flipVertically();
-      }
-    }
-
     if (reloading) {
       currentTimeReload += dt;
       if (currentTimeReload >= timeToReload) {
@@ -52,7 +42,6 @@ class VacuumWeapon extends GameDecoration with ChangeNotifier {
         _countBullet = 10;
         setAnimation(_normalAnimation);
       }
-      notifyListeners();
     }
     super.update(dt);
   }
@@ -60,7 +49,7 @@ class VacuumWeapon extends GameDecoration with ChangeNotifier {
   @override
   Future<void> onLoad() async {
     _reloadAnimation = await PlayerSpriteSheet.gunReload();
-    _normalAnimation = await PlayerSpriteSheet.gun();
+    _normalAnimation = await PlayerSpriteSheet.lovestone1();
     anchor = Anchor.center;
     return super.onLoad();
   }
@@ -70,7 +59,7 @@ class VacuumWeapon extends GameDecoration with ChangeNotifier {
       return;
     }
     playSpriteAnimationOnce(
-      PlayerSpriteSheet.gunShot(),
+      PlayerSpriteSheet.lovestone1Shooting(),
     );
     simpleAttackRangeByAngle(
       animation: PlayerSpriteSheet.bullet,
@@ -85,14 +74,6 @@ class VacuumWeapon extends GameDecoration with ChangeNotifier {
       marginFromOrigin: -3,
       attackFrom: attackFrom,
     );
-    if (withScreenEffect) {
-      gameRef.camera.shake(
-        intensity: 1,
-        duration: const Duration(milliseconds: 200),
-      );
-      gameRef.colorFilter?.config.color = flash;
-      gameRef.colorFilter?.animateTo(Colors.transparent);
-    }
 
     gameRef.add(
       BulletCapsule(
@@ -106,7 +87,6 @@ class VacuumWeapon extends GameDecoration with ChangeNotifier {
       reloading = true;
       setAnimation(_reloadAnimation);
     }
-    notifyListeners();
   }
 
   double radAngle = 0;

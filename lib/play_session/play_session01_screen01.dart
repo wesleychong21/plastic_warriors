@@ -77,7 +77,6 @@ class _GameState extends State<Play_Session01_Screen01> {
         ),
         components: [GameController()],
         interface: KnightInterface(),
-        lightingColorGame: Colors.black.withOpacity(0.6),
         backgroundColor: Colors.grey[900]!,
         cameraConfig: CameraConfig(
           speed: 3,
