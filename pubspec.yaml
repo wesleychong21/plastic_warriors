@@ -53,6 +53,7 @@ flutter:
     - assets/images/items/
     - assets/images/tiled/
     - assets/audio/
+    - assets/lang/
     - assets/lang/en.json
     - assets/lang/zh.json
     - assets/lang/ms.json

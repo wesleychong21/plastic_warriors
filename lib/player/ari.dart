@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class Ari extends SimplePlayer
-    with Lighting, BlockMovementCollision, MouseEventListener, TapGesture {
+    with Lighting, BlockMovementCollision, MouseEventListener {
   double attack = 25;
   double stamina = 100;
   async.Timer? _timerStamina;
@@ -65,13 +65,6 @@ class Ari extends SimplePlayer
       gun?.absoluteCenter ?? absoluteCenter,
       gameRef.screenToWorld(position),
     );
-    if (gun?.reloading == false) {
-      gun?.execShoot(attack);
-    }
-  }
-
-  @override
-  void onTap() {
     if (gun?.reloading == false) {
       gun?.execShoot(attack);
     }

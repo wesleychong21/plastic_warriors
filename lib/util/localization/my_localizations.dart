@@ -19,12 +19,19 @@ class MyLocalizations {
   Map<String, String> _sentences = {};
 
   Future<bool> load() async {
-    String data = await rootBundle
-        .loadString('assets/lang/${this.locale.languageCode}.json');
-    Map<String, dynamic> _result = json.decode(data);
+    String data =
+        await rootBundle.loadString('assets/lang/${locale.languageCode}.json');
+
+    Map<String, dynamic>? _result = {};
+    try {
+      _result = json.decode(data);
+    } catch (e) {
+      print('Error decoding JSON: $e');
+    }
 
     this._sentences = new Map();
-    _result.forEach((String key, dynamic value) {
+
+    _result?.forEach((String key, dynamic value) {
       this._sentences[key] = value.toString();
     });
 

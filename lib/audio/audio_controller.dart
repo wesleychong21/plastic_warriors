@@ -98,7 +98,7 @@ class AudioController {
     _log.fine(() => '- Chosen filename: $filename');
 
     final currentPlayer = _sfxPlayers[_currentSfxPlayer];
-    currentPlayer.play(AssetSource('sfx/$filename'),
+    currentPlayer.play(AssetSource('audio/$filename'),
         volume: soundTypeToVolume(type));
     _currentSfxPlayer = (_currentSfxPlayer + 1) % _sfxPlayers.length;
   }
@@ -227,10 +227,12 @@ class AudioController {
     // This assumes there is only a limited number of sound effects in the game.
     // If there are hundreds of long sound effect files, it's better
     // to be more selective when preloading.
+    /*
     await AudioCache.instance.loadAll(SfxType.values
         .expand(soundTypeToFilename)
-        .map((path) => 'sfx/$path')
+        .map((path) => 'audio/$path')
         .toList());
+        */
   }
 
   void _soundsOnHandler() {
