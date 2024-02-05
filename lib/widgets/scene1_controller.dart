@@ -1,5 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/game.dart';
+import 'package:plastic_warriors/player/ari.dart';
 import 'package:plastic_warriors/player/weapons/lovestone1.dart';
 import 'package:plastic_warriors/util/dialogs.dart';
 import 'package:flutter/material.dart';
@@ -122,13 +123,20 @@ class Scene1Controller extends GameComponent {
       },
       onFinish: () {
         Sounds.interaction();
-        gameRef.player?.add(gun = LoveStone1(
-          Vector2(0, 0),
-        ));
+
+        _addLoveStone1();
       },
       logicalKeyboardKeysToNext: [
         LogicalKeyboardKey.space,
       ],
     );
+  }
+
+  void _addLoveStone1() {
+    if (gameRef.player != null) {
+      Ari ari = gameRef.player as Ari;
+      var stone1 = LoveStone1(Vector2(0, 16));
+      ari.gun = stone1;
+    }
   }
 }

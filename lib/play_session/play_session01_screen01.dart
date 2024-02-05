@@ -63,7 +63,7 @@ class _GameState extends State<Play_Session01_Screen01> {
       child: BonfireWidget(
         joystick: joystick,
         player: Ari(
-          Vector2(2 * tileSize, 5 * tileSize),
+          Vector2(3 * tileSize, 5 * tileSize),
         ),
         map: WorldMapByTiled(
           TiledReader.asset('tiled/map001b.json'),

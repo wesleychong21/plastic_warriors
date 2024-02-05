@@ -71,16 +71,6 @@ class Ari extends SimplePlayer
   }
 
   @override
-  void onMouseHoverScreen(int pointer, Vector2 position) {
-    double angle = BonfireUtil.angleBetweenPoints(
-      gun?.absoluteCenter ?? absoluteCenter,
-      gameRef.screenToWorld(position),
-    );
-    gun?.changeAngle(angle);
-    super.onMouseHoverScreen(pointer, position);
-  }
-
-  @override
   void die() {
     removeFromParent();
     gameRef.add(
@@ -175,13 +165,17 @@ class Ari extends SimplePlayer
           //actionAttackRange(enemies.firstWhere((element) => element is Goblin));
 
           //if class LoveStone1 is added to this player
-          if (gun?.reloading == false) {
-            gun?.execShoot(attack);
-          }
+          ariExecuteAttack();
         }
       },
     );
     super.update(dt);
+  }
+
+  void ariExecuteAttack() {
+    if (gun?.reloading == false) {
+      gun?.execShoot(attack);
+    }
   }
 
   @override
