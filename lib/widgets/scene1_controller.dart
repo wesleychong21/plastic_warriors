@@ -50,6 +50,10 @@ class Scene1Controller extends GameComponent {
   }
 
   void _showDialogGScene1Story1() {
+    if (gameRef.player != null) {
+      Ari ari = gameRef.player as Ari;
+      ari.showEmote();
+    }
     Sounds.interaction();
     TalkDialog.show(
       gameRef.context,
@@ -135,7 +139,7 @@ class Scene1Controller extends GameComponent {
   void _addLoveStone1() {
     if (gameRef.player != null) {
       Ari ari = gameRef.player as Ari;
-      var stone1 = LoveStone1(Vector2(0, 16));
+      var stone1 = LoveStone1(Vector2(14, -2));
       ari.gun = stone1;
       //mount the gun to the player
       ari.add(stone1);

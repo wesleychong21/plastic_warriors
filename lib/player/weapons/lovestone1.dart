@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:plastic_warriors/player/weapons/bullet_capsule.dart';
 //import 'package:plastic_warriors/util/player_spritesheet.dart';
 import 'package:plastic_warriors/util/player_sprite_sheet.dart';
+import 'package:plastic_warriors/util/sounds.dart';
 
 class LoveStone1 extends GameDecoration {
   double dt = 0;
-  final double timeToReload = 5;
+  final double timeToReload = 3;
   final Color flash = const Color(0xFF73eff7).withOpacity(0.5);
   final bool withScreenEffect;
   final AttackFromEnum attackFrom;
@@ -66,6 +67,9 @@ class LoveStone1 extends GameDecoration {
       angle: radAngle,
       damage: damage,
       speed: 300,
+      onDestroy: () {
+        Sounds.explosion();
+      },
       collision: RectangleHitbox(
         size: Vector2.all(16),
         position: Vector2.all(16) / 2,

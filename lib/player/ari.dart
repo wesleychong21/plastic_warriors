@@ -11,8 +11,7 @@ import 'package:plastic_warriors/util/sounds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class Ari extends SimplePlayer
-    with Lighting, BlockMovementCollision, MouseEventListener {
+class Ari extends SimplePlayer with Lighting, BlockMovementCollision {
   double attack = 25;
   double stamina = 100;
   async.Timer? _timerStamina;
@@ -20,7 +19,7 @@ class Ari extends SimplePlayer
   bool containKey = false;
   bool showObserveEnemy = false;
   // Add a timestamp for the last attack
-  double lastAttackTime = 1.0;
+  double lastAttackTime = 0;
 
   // Add a cooldown period for attacks (in seconds)
   double attackCooldown = 0.5; //  cooldown
@@ -58,17 +57,6 @@ class Ari extends SimplePlayer
     //add(gun = VacuumWeapon(Vector2(28, 0), color));
 
     super.onMount();
-  }
-
-  @override
-  void onMouseTap(MouseButton button) {
-    var angle = BonfireUtil.angleBetweenPoints(
-      gun?.absoluteCenter ?? absoluteCenter,
-      gameRef.screenToWorld(position),
-    );
-    if (gun?.reloading == false) {
-      gun?.execShoot(attack);
-    }
   }
 
   @override
@@ -137,19 +125,7 @@ class Ari extends SimplePlayer
   void update(double dt) {
     if (isDead) return;
     _verifyStamina();
-    /*
-    this.seeEnemy(
-      radiusVision: tileSize * 6,
-      notObserved: () {
-        showObserveEnemy = false;
-      },
-      observed: (enemies) {
-        if (showObserveEnemy) return;
-        showObserveEnemy = true;
-        _showEmote();
-      },
-    );
-    */
+
     lastAttackTime += dt;
     this.seeEnemy(
       radiusVision: tileSize * 3,
@@ -162,8 +138,11 @@ class Ari extends SimplePlayer
         //actionAttackRange(enemies.firstWhere((element) => element is Goblin));
 
         //if class LoveStone1 is added to this player
-        ariExecuteAttack(
-            enemies.firstWhere((element) => element is BagMonster));
+        if (lastAttackTime > attackCooldown) {
+          ariExecuteAttack(
+              enemies.firstWhere((element) => element is BagMonster));
+          lastAttackTime = 0.0;
+        }
       },
     );
     super.update(dt);
@@ -221,7 +200,7 @@ class Ari extends SimplePlayer
     super.receiveDamage(attacker, damage, id);
   }
 
-  void _showEmote({String emote = 'emote/emote_exclamacao.png'}) {
+  void showEmote({String emote = 'emote/emote_exclamacao.png'}) {
     gameRef.add(
       AnimatedFollowerGameObject(
         animation: SpriteAnimation.load(
