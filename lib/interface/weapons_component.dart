@@ -2,7 +2,7 @@ import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/player/ari.dart';
 import 'package:flutter/material.dart';
 
-class MyBarLifeComponent extends InterfaceComponent {
+class WeaponsComponent extends InterfaceComponent {
   double padding = 25;
   double widthBar = 120;
   double strokeWidth = 18;
@@ -10,7 +10,7 @@ class MyBarLifeComponent extends InterfaceComponent {
   double maxLife = 0;
   double life = 0;
 
-  MyBarLifeComponent()
+  WeaponsComponent()
       : super(
           id: 1,
           position: Vector2(20, 20),

@@ -2,13 +2,15 @@ import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/interface/bar_life_component.dart';
 import 'package:plastic_warriors/player/ari.dart';
 
-class KnightInterface extends GameInterface {
+class AriInterface extends GameInterface {
   late Sprite key;
 
   @override
   Future<void> onLoad() async {
     key = await Sprite.load('items/key_silver.png');
     add(MyBarLifeComponent());
+    //WESLEY TODO: add Weapon UI
+    
     return super.onLoad();
   }
 

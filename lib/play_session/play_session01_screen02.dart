@@ -8,7 +8,7 @@ import 'package:plastic_warriors/enemies/boss.dart';
 import 'package:plastic_warriors/enemies/bag_monster.dart';
 import 'package:plastic_warriors/enemies/imp.dart';
 import 'package:plastic_warriors/enemies/mini_boss.dart';
-import 'package:plastic_warriors/interface/knight_interface.dart';
+import 'package:plastic_warriors/interface/ari_interface.dart';
 import 'package:plastic_warriors/main.dart';
 import 'package:plastic_warriors/npc/kid.dart';
 import 'package:plastic_warriors/npc/scientist_npc.dart';
@@ -75,7 +75,7 @@ class _GameState extends State<Play_Session01_Screen02> {
           },
         ),
         components: [GameController()],
-        interface: KnightInterface(),
+        interface: AriInterface(),
         lightingColorGame: Colors.black.withOpacity(0.6),
         backgroundColor: Colors.grey[900]!,
         cameraConfig: CameraConfig(

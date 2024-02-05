@@ -8,7 +8,7 @@ import 'package:plastic_warriors/enemies/boss.dart';
 import 'package:plastic_warriors/enemies/bag_monster.dart';
 import 'package:plastic_warriors/enemies/imp.dart';
 import 'package:plastic_warriors/enemies/mini_boss.dart';
-import 'package:plastic_warriors/interface/knight_interface.dart';
+import 'package:plastic_warriors/interface/ari_interface.dart';
 import 'package:plastic_warriors/main.dart';
 import 'package:plastic_warriors/npc/kid.dart';
 import 'package:plastic_warriors/npc/scientist_npc.dart';
