@@ -137,6 +137,8 @@ class Scene1Controller extends GameComponent {
       Ari ari = gameRef.player as Ari;
       var stone1 = LoveStone1(Vector2(0, 16));
       ari.gun = stone1;
+      //mount the gun to the player
+      ari.add(stone1);
     }
   }
 }

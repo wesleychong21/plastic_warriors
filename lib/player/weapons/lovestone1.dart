@@ -92,7 +92,7 @@ class LoveStone1 extends GameDecoration {
 
   void changeAngle(double radAngle) {
     this.radAngle = radAngle;
-    angle = calculeNewAngle(radAngle);
+    //angle = calculeNewAngle(radAngle);
   }
 
   double calculeNewAngle(double radAngle) {

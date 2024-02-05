@@ -132,12 +132,11 @@ class PlayerSpriteSheet {
       );
 
   static Future<SpriteAnimation> gunReload() => SpriteAnimation.load(
-        'player/gun.png',
+        'player/lovetone1_reload.png',
         SpriteAnimationData.sequenced(
           amount: 5,
           stepTime: 0.1,
-          textureSize: Vector2.all(32),
-          texturePosition: Vector2(0, 32),
+          textureSize: Vector2.all(16),
         ),
       );
 

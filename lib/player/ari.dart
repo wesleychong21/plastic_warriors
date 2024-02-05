@@ -56,6 +56,7 @@ class Ari extends SimplePlayer
   @override
   void onMount() {
     //add(gun = VacuumWeapon(Vector2(28, 0), color));
+
     super.onMount();
   }
 
@@ -151,29 +152,30 @@ class Ari extends SimplePlayer
     */
     lastAttackTime += dt;
     this.seeEnemy(
-      radiusVision: tileSize * 5,
+      radiusVision: tileSize * 3,
       notObserved: () {
         //showObserveEnemy = false;
       },
       observed: (enemies) {
-        if (lastAttackTime >= attackCooldown) {
-          // Reset the last attack time
-          lastAttackTime = 0.0;
+        //actionAttack();
 
-          //actionAttack();
+        //actionAttackRange(enemies.firstWhere((element) => element is Goblin));
 
-          //actionAttackRange(enemies.firstWhere((element) => element is Goblin));
-
-          //if class LoveStone1 is added to this player
-          ariExecuteAttack();
-        }
+        //if class LoveStone1 is added to this player
+        ariExecuteAttack(
+            enemies.firstWhere((element) => element is BagMonster));
       },
     );
     super.update(dt);
   }
 
-  void ariExecuteAttack() {
+  void ariExecuteAttack(Enemy closestEnemy) {
     if (gun?.reloading == false) {
+      var angle = BonfireUtil.angleBetweenPoints(
+        gun?.absoluteCenter ?? absoluteCenter,
+        closestEnemy.position,
+      );
+      gun?.changeAngle(angle);
       gun?.execShoot(attack);
     }
   }
