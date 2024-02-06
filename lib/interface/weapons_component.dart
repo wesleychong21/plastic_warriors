@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class WeaponsComponent extends InterfaceComponent {
   double padding = 25;
   double widthBar = 120;
-  double strokeWidth = 18;
+  double c = 18;
 
   double maxLife = 0;
   double life = 0;
