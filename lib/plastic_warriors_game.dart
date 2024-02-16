@@ -19,15 +19,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:plastic_warriors/play_session/play_session01_screen01.dart';
 
-class Game extends StatefulWidget {
+class PlasticWarriorsGame extends StatefulWidget {
   //static bool useJoystick = true;
-  const Game({Key? key}) : super(key: key);
+  const PlasticWarriorsGame({Key? key}) : super(key: key);
 
   @override
   _GameState createState() => _GameState();
 }
 
-class _GameState extends State<Game> {
+class _GameState extends State<PlasticWarriorsGame> {
   @override
   Widget build(BuildContext context) {
     return Play_Session01_Screen01();

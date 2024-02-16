@@ -2,7 +2,7 @@ import 'dart:async' as async;
 import 'dart:math';
 
 import 'package:bonfire/bonfire.dart';
-import 'package:plastic_warriors/game.dart';
+import 'package:plastic_warriors/plastic_warriors_game.dart';
 import 'package:plastic_warriors/settings/settings_screen.dart';
 import 'package:plastic_warriors/utils/custom_sprite_animation_widget.dart';
 import 'package:plastic_warriors/utils/enemy_sprite_sheet.dart';
@@ -111,7 +111,8 @@ class _MenuState extends State<Menu> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Game()),
+                      MaterialPageRoute(
+                          builder: (context) => PlasticWarriorsGame()),
                     );
                   },
                 ),

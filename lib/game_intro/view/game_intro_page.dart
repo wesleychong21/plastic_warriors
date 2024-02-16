@@ -3,7 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:plastic_warriors/constants/constants.dart';
 import 'package:plastic_warriors/game/game.dart';
-import 'package:plastic_warriors/game.dart';
+//import 'package:plastic_warriors/game.dart';
+
 import 'package:plastic_warriors/game_intro/game_intro.dart';
 import 'package:plastic_warriors/gen/assets.gen.dart';
 import 'package:plastic_warriors/l10n/l10n.dart';
@@ -73,7 +74,7 @@ class _IntroPage extends StatelessWidget {
             const SizedBox(height: 32),
             GameElevatedButton(
               label: l10n.gameIntroPagePlayButtonText,
-              //onPressed: () => Navigator.of(context).push(Game.route()),
+              onPressed: () => Navigator.of(context).push(Game.route()),
             ),
             const Spacer(),
             const Row(

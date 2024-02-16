@@ -1,5 +1,5 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:plastic_warriors/game.dart';
+import 'package:plastic_warriors/game/game.dart';
 import 'package:plastic_warriors/utils/dialogs.dart';
 import 'package:flutter/material.dart';
 
