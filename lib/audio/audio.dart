@@ -225,6 +225,14 @@ class AudioController {
     );
   }
 
+  Future<void> _playMainMenuMusic() async {
+    _log.info(() => 'Playing bg_music1.mp3 now.');
+    await _musicPlayer.play(
+      AssetSource('music/bg_music1.mp3'),
+      volume: 0.3,
+    );
+  }
+
   Future<void> _resumeMusic() async {
     _log.info('Resuming music');
     switch (_musicPlayer.state) {
@@ -269,7 +277,8 @@ class AudioController {
   void startMusic() {
     if (_musicPlayer.state != PlayerState.playing) {
       _log.info('starting music');
-      _playFirstSongInPlaylist();
+      //_playFirstSongInPlaylist();
+      _playMainMenuMusic();
     }
   }
 

@@ -23,7 +23,7 @@ class BottomBar extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  l10n.superDash,
+                  l10n.PlasticWarriors,
                   style: theme.textTheme.titleMedium?.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

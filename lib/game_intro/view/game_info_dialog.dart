@@ -43,7 +43,7 @@ class GameInfoDialog extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  l10n.aboutSuperDash,
+                  l10n.aboutPlasticWarriors,
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(height: 24),
@@ -54,7 +54,7 @@ class GameInfoDialog extends StatelessWidget {
                     children: [
                       TextSpan(text: l10n.learn),
                       TextSpan(
-                        text: l10n.howWeBuiltSuperDash,
+                        text: l10n.howWeBuiltPlasticWarriors,
                         style: linkStyle,
                         recognizer: TapGestureRecognizer()
                           ..onTap = () => launchUrlString(Urls.howWeBuilt),
@@ -85,6 +85,7 @@ class GameInfoDialog extends StatelessWidget {
                       ..onTap = () => launchUrlString(Urls.flutterGames),
                   ),
                 ),
+                /*
                 RichText(
                   text: TextSpan(
                     text: l10n.privacyPolicy,
@@ -101,6 +102,7 @@ class GameInfoDialog extends StatelessWidget {
                       ..onTap = () => launchUrlString(Urls.termsOfService),
                   ),
                 ),
+                */
               ],
             ),
           ),

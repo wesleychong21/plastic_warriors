@@ -15,4 +15,7 @@ class Urls {
 
   static const playStoreLink =
       'https://play.google.com/store/apps/details?id=my.bnext.plasticwarrioes';
+
+  static const String music1Link =
+      'https://www.youtube.com/watch?v=pMMHNDxXLIg';
 }
