@@ -9,8 +9,7 @@ import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart' hide Level;
 import 'package:provider/provider.dart';
 
-import '../audio/audio_controller.dart';
-import '../audio/sounds.dart';
+import '../audio/audio.dart';
 import '../game_internals/level_state.dart';
 import '../game_internals/score.dart';
 import '../level_selection/levels.dart';
@@ -18,7 +17,6 @@ import '../player_progress/player_progress.dart';
 import '../style/confetti.dart';
 import '../style/my_button.dart';
 import '../style/palette.dart';
-import 'game_widget.dart';
 
 /// This widget defines the entirety of the screen that the player sees when
 /// they are playing a level.
@@ -95,10 +93,6 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                     ),
                   ),
                   const Spacer(),
-                  Expanded(
-                    // The actual UI of the game.
-                    child: GameWidget(),
-                  ),
                   const Spacer(),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -149,7 +143,7 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
     });
 
     final audioController = context.read<AudioController>();
-    audioController.playSfx(SfxType.congrats);
+    audioController.playSfx(Sfx.congrats);
 
     /// Give the player some time to see the celebration animation.
     await Future<void>.delayed(_celebrationDuration);

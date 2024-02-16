@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import '../audio/audio_controller.dart';
-import '../audio/sounds.dart';
+import '../audio/audio.dart';
 import '../player_progress/player_progress.dart';
 import '../style/my_button.dart';
 import '../style/palette.dart';
@@ -47,7 +46,7 @@ class LevelSelectionScreen extends StatelessWidget {
                           level.number - 1,
                       onTap: () {
                         final audioController = context.read<AudioController>();
-                        audioController.playSfx(SfxType.buttonTap);
+                        audioController.playSfx(Sfx.buttonTap);
 
                         GoRouter.of(context)
                             .go('/play/session/${level.number}');

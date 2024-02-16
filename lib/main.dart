@@ -1,8 +1,19 @@
 import 'dart:developer' as dev;
-import 'package:plastic_warriors/menu.dart';
-import 'package:plastic_warriors/util/sounds.dart';
-import 'package:plastic_warriors/util/localization/my_localizations.dart';
-import 'package:plastic_warriors/util/localization/my_localizations_delegate.dart';
+import 'dart:async';
+
+import 'package:authentication_repository/authentication_repository.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/widgets.dart';
+import 'package:leaderboard_repository/leaderboard_repository.dart';
+import 'package:plastic_warriors/settings/persistence/local_storage_settings_persistence.dart';
+import 'package:plastic_warriors/settings/settings.dart';
+import 'package:plastic_warriors/share/share.dart';
+import 'package:plastic_warriors/bootstrap.dart';
+import 'package:plastic_warriors/app/app.dart';
+import 'package:plastic_warriors/utils/sounds.dart';
+import 'package:plastic_warriors/utils/localization/my_localizations.dart';
+import 'package:plastic_warriors/utils/localization/my_localizations_delegate.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,138 +23,56 @@ import 'package:provider/provider.dart';
 import 'package:flame/flame.dart';
 
 import 'app_lifecycle/app_lifecycle.dart';
-import 'audio/audio_controller.dart';
+import 'audio/audio.dart';
 import 'player_progress/player_progress.dart';
 import 'router.dart';
 import 'settings/settings.dart';
 import 'style/palette.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:plastic_warriors/util/localization/strings_location.dart';
+import 'package:plastic_warriors/utils/localization/strings_location.dart';
+import 'package:plastic_warriors/firebase_options.dart';
+import 'package:plastic_warriors/settings/settings_controller.dart';
 
 double tileSize = 32;
 
 void main() async {
-  // Basic logging setup.
-  Logger.root.level = kDebugMode ? Level.FINE : Level.INFO;
-  Logger.root.onRecord.listen((record) {
-    dev.log(
-      record.message,
-      time: record.time,
-      level: record.level.value,
-      name: record.loggerName,
-    );
-  });
-
   WidgetsFlutterBinding.ensureInitialized();
-  // Put game into full screen mode on mobile devices.
-  if (!kIsWeb) {
-    Flame.device.setPortraitUpOnly;
-    Flame.device.fullScreen();
-  }
-  //await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-  // Lock the game to portrait mode on mobile devices.
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
 
-  //runApp(MyApp());
-  await Sounds.initialize();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-/*
-  runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Normal',
-      ),
-      home: Menu(),
-      supportedLocales: MyLocalizationsDelegate.supportedLocales(),
-      localizationsDelegates: [
-        myLocation,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      localeResolutionCallback: myLocation.resolution,
+  final settings = SettingsController(
+    persistence: LocalStorageSettingsPersistence(),
+  );
+
+  final audio = AudioController()..attachSettings(settings);
+
+  await audio.initialize();
+
+  final share = ShareController(
+    gameUrl: 'https://plastic-warriors-862da.web.app/',
+  );
+
+  final leaderboardRepository = LeaderboardRepository(
+    FirebaseFirestore.instance,
+  );
+
+  unawaited(
+    bootstrap(
+      (firebaseAuth) async {
+        final authenticationRepository = AuthenticationRepository(
+          firebaseAuth: firebaseAuth,
+        );
+
+        return App(
+          audioController: audio,
+          settingsController: settings,
+          shareController: share,
+          authenticationRepository: authenticationRepository,
+          leaderboardRepository: leaderboardRepository,
+        );
+      },
     ),
   );
-  */
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    Sounds.initialize();
-    MyLocalizationsDelegate myLocation = const MyLocalizationsDelegate();
-
-    return AppLifecycleObserver(
-      child: MultiProvider(
-        // This is where you add objects that you want to have available
-        // throughout your game.
-        //
-        // Every widget in the game can access these objects by calling
-        // `context.watch()` or `context.read()`.
-        // See `lib/main_menu/main_menu_screen.dart` for example usage.
-        providers: [
-          Provider(create: (context) => SettingsController()),
-          Provider(create: (context) => Palette()),
-          ChangeNotifierProvider(create: (context) => PlayerProgress()),
-          // Set up audio.
-          ProxyProvider2<AppLifecycleStateNotifier, SettingsController,
-              AudioController>(
-            create: (context) => AudioController(),
-            update: (context, lifecycleNotifier, settings, audio) {
-              audio!.attachDependencies(lifecycleNotifier, settings);
-              return audio;
-            },
-            dispose: (context, audio) => audio.dispose(),
-            // Ensures that music starts immediately.
-            lazy: false,
-          ),
-        ],
-        child: Builder(builder: (context) {
-          final palette = context.watch<Palette>();
-
-          return MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-            title: 'Plastic Warriors',
-            theme: ThemeData.from(
-              colorScheme: ColorScheme.fromSeed(
-                seedColor: palette.darkPen,
-                background: palette.backgroundMain,
-              ),
-              textTheme: TextTheme(
-                bodyMedium: TextStyle(color: palette.ink),
-              ),
-              useMaterial3: true,
-            ).copyWith(
-              // Make buttons more fun.
-              filledButtonTheme: FilledButtonThemeData(
-                style: FilledButton.styleFrom(
-                  textStyle: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-            ),
-            routeInformationProvider: router.routeInformationProvider,
-            routeInformationParser: router.routeInformationParser,
-            routerDelegate: router.routerDelegate,
-            supportedLocales: MyLocalizationsDelegate.supportedLocales(),
-            localizationsDelegates: [
-              myLocation,
-              GlobalCupertinoLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-            ],
-          );
-        }),
-      ),
-    );
-  }
 }

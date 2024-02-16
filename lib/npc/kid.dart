@@ -1,12 +1,12 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/enemies/boss.dart';
-import 'package:plastic_warriors/util/custom_sprite_animation_widget.dart';
-import 'package:plastic_warriors/util/dialogs.dart';
-import 'package:plastic_warriors/util/functions.dart';
-import 'package:plastic_warriors/util/localization/strings_location.dart';
-import 'package:plastic_warriors/util/npc_sprite_sheet.dart';
-import 'package:plastic_warriors/util/player_sprite_sheet.dart';
-import 'package:plastic_warriors/util/sounds.dart';
+import 'package:plastic_warriors/utils/custom_sprite_animation_widget.dart';
+import 'package:plastic_warriors/utils/dialogs.dart';
+import 'package:plastic_warriors/utils/functions.dart';
+import 'package:plastic_warriors/utils/localization/strings_location.dart';
+import 'package:plastic_warriors/utils/npc_sprite_sheet.dart';
+import 'package:plastic_warriors/utils/player_sprite_sheet.dart';
+import 'package:plastic_warriors/utils/sounds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

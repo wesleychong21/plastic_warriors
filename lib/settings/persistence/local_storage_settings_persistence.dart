@@ -3,8 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'settings_persistence.dart';
+import 'package:plastic_warriors/settings/persistence/persistence.dart';
 
 /// An implementation of [SettingsPersistence] that uses
 /// `package:shared_preferences`.
@@ -13,50 +12,38 @@ class LocalStorageSettingsPersistence extends SettingsPersistence {
       SharedPreferences.getInstance();
 
   @override
-  Future<bool> getAudioOn({required bool defaultValue}) async {
+  Future<bool> getMusicOn() async {
     final prefs = await instanceFuture;
-    return prefs.getBool('audioOn') ?? defaultValue;
+    return prefs.getBool('musicOn') ?? true;
   }
 
   @override
-  Future<bool> getMusicOn({required bool defaultValue}) async {
+  Future<bool> getMuted({required bool defaultValue}) async {
     final prefs = await instanceFuture;
-    return prefs.getBool('musicOn') ?? defaultValue;
+    return prefs.getBool('mute') ?? defaultValue;
   }
 
   @override
-  Future<String> getPlayerName() async {
+  Future<bool> getSoundsOn() async {
     final prefs = await instanceFuture;
-    return prefs.getString('playerName') ?? 'Player';
+    return prefs.getBool('soundsOn') ?? true;
   }
 
   @override
-  Future<bool> getSoundsOn({required bool defaultValue}) async {
+  Future<void> saveMusicOn({required bool active}) async {
     final prefs = await instanceFuture;
-    return prefs.getBool('soundsOn') ?? defaultValue;
+    await prefs.setBool('musicOn', active);
   }
 
   @override
-  Future<void> saveAudioOn(bool value) async {
+  Future<void> saveMuted({required bool active}) async {
     final prefs = await instanceFuture;
-    await prefs.setBool('audioOn', value);
+    await prefs.setBool('mute', active);
   }
 
   @override
-  Future<void> saveMusicOn(bool value) async {
+  Future<void> saveSoundsOn({required bool active}) async {
     final prefs = await instanceFuture;
-    await prefs.setBool('musicOn', value);
-  }
-
-  @override
-  Future<void> savePlayerName(String value) async {
-    final prefs = await instanceFuture;
-    await prefs.setString('playerName', value);
-  }
-
-  @override
-  Future<void> saveSoundsOn(bool value) async {
-    final prefs = await instanceFuture;
-    await prefs.setBool('soundsOn', value);
+    await prefs.setBool('soundsOn', active);
   }
 }

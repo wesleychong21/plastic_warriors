@@ -1,9 +1,9 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/main.dart';
-import 'package:plastic_warriors/util/enemy_sprite_sheet.dart';
-import 'package:plastic_warriors/util/functions.dart';
-import 'package:plastic_warriors/util/game_sprite_sheet.dart';
-import 'package:plastic_warriors/util/sounds.dart';
+import 'package:plastic_warriors/utils/enemy_sprite_sheet.dart';
+import 'package:plastic_warriors/utils/functions.dart';
+import 'package:plastic_warriors/utils/game_sprite_sheet.dart';
+import 'package:plastic_warriors/utils/sounds.dart';
 import 'package:flutter/material.dart';
 
 class BagMonsterNPC extends SimpleEnemy

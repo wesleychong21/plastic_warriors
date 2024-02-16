@@ -4,8 +4,8 @@ import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 import 'package:plastic_warriors/player/weapons/bullet_capsule.dart';
 //import 'package:plastic_warriors/util/player_spritesheet.dart';
-import 'package:plastic_warriors/util/player_sprite_sheet.dart';
-import 'package:plastic_warriors/util/sounds.dart';
+import 'package:plastic_warriors/utils/player_sprite_sheet.dart';
+import 'package:plastic_warriors/utils/sounds.dart';
 
 class LoveStone1 extends GameDecoration {
   double dt = 0;

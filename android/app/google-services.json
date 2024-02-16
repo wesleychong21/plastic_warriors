@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "931860057674",
+    "project_id": "plastic-warriors-862da",
+    "storage_bucket": "plastic-warriors-862da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931860057674:android:9782e86ea8d04d1e9f20b3",
+        "android_client_info": {
+          "package_name": "com.example.basic"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQzJZAVVzo5DR4sNqPWl3j-XJY1OZszto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931860057674:android:9561338a1afed0c19f20b3",
+        "android_client_info": {
+          "package_name": "my.bnext.plasticwarriors"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQzJZAVVzo5DR4sNqPWl3j-XJY1OZszto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

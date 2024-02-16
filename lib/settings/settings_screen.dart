@@ -10,7 +10,6 @@ import '../player_progress/player_progress.dart';
 import '../style/my_button.dart';
 import '../style/palette.dart';
 import '../style/responsive_screen.dart';
-import 'custom_name_dialog.dart';
 import 'settings.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -96,7 +95,6 @@ class _NameChangeLine extends StatelessWidget {
 
     return InkResponse(
       highlightShape: BoxShape.rectangle,
-      onTap: () => showCustomNameDialog(context),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Row(
@@ -107,17 +105,6 @@ class _NameChangeLine extends StatelessWidget {
                   fontFamily: 'Permanent Marker',
                   fontSize: 30,
                 )),
-            const Spacer(),
-            ValueListenableBuilder(
-              valueListenable: settings.playerName,
-              builder: (context, name, child) => Text(
-                '‘$name’',
-                style: const TextStyle(
-                  fontFamily: 'Permanent Marker',
-                  fontSize: 30,
-                ),
-              ),
-            ),
           ],
         ),
       ),

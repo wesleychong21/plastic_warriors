@@ -1,7 +1,7 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/player/ari.dart';
-import 'package:plastic_warriors/util/game_sprite_sheet.dart';
-import 'package:plastic_warriors/util/localization/strings_location.dart';
+import 'package:plastic_warriors/utils/game_sprite_sheet.dart';
+import 'package:plastic_warriors/utils/localization/strings_location.dart';
 import 'package:flutter/cupertino.dart';
 
 class Door extends GameDecoration {

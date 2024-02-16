@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flame/flame.dart';
 import 'package:flame_audio/flame_audio.dart';
-import 'package:plastic_warriors/util/sounds.dart';
+import 'package:plastic_warriors/utils/sounds.dart';
 import 'package:plastic_warriors/play_session/play_session01_screen02.dart';
 
 class play_session01_screen04 extends StatefulWidget {

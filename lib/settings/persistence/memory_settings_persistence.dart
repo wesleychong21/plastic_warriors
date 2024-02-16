@@ -2,7 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'settings_persistence.dart';
+import 'package:plastic_warriors/settings/persistence/persistence.dart';
 
 /// An in-memory implementation of [SettingsPersistence].
 /// Useful for testing.
@@ -11,31 +11,25 @@ class MemoryOnlySettingsPersistence implements SettingsPersistence {
 
   bool soundsOn = true;
 
-  bool audioOn = true;
+  bool muted = false;
 
   String playerName = 'Player';
 
   @override
-  Future<bool> getAudioOn({required bool defaultValue}) async => audioOn;
+  Future<bool> getMusicOn() async => musicOn;
 
   @override
-  Future<bool> getMusicOn({required bool defaultValue}) async => musicOn;
+  Future<bool> getMuted({required bool defaultValue}) async => muted;
 
   @override
-  Future<String> getPlayerName() async => playerName;
+  Future<bool> getSoundsOn() async => soundsOn;
 
   @override
-  Future<bool> getSoundsOn({required bool defaultValue}) async => soundsOn;
+  Future<void> saveMusicOn({required bool active}) async => musicOn = active;
 
   @override
-  Future<void> saveAudioOn(bool value) async => audioOn = value;
+  Future<void> saveMuted({required bool active}) async => muted = active;
 
   @override
-  Future<void> saveMusicOn(bool value) async => musicOn = value;
-
-  @override
-  Future<void> savePlayerName(String value) async => playerName = value;
-
-  @override
-  Future<void> saveSoundsOn(bool value) async => soundsOn = value;
+  Future<void> saveSoundsOn({required bool active}) async => soundsOn = active;
 }

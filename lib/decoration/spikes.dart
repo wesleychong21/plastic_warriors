@@ -1,7 +1,7 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/main.dart';
 import 'package:plastic_warriors/player/ari.dart';
-import 'package:plastic_warriors/util/game_sprite_sheet.dart';
+import 'package:plastic_warriors/utils/game_sprite_sheet.dart';
 
 class Spikes extends GameDecoration with Sensor<Ari> {
   final double damage;

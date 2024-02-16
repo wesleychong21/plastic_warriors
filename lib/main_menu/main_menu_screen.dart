@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import '../audio/audio_controller.dart';
-import '../audio/sounds.dart';
+import '../audio/audio.dart';
 import '../settings/settings.dart';
 import '../style/my_button.dart';
 import '../style/palette.dart';
@@ -46,7 +45,7 @@ class MainMenuScreen extends StatelessWidget {
                   children: [
                     MyButton(
                       onPressed: () {
-                        audioController.playSfx(SfxType.buttonTap);
+                        audioController.playSfx(Sfx.buttonTap);
                         GoRouter.of(context).go('/game');
                       },
                       child: const Text('Play'),

@@ -13,7 +13,7 @@ import 'package:plastic_warriors/main.dart';
 import 'package:plastic_warriors/npc/kid.dart';
 import 'package:plastic_warriors/npc/scientist_npc.dart';
 import 'package:plastic_warriors/player/ari.dart';
-import 'package:plastic_warriors/util/sounds.dart';
+import 'package:plastic_warriors/utils/sounds.dart';
 import 'package:plastic_warriors/widgets/game_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

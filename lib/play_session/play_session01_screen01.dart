@@ -13,7 +13,7 @@ import 'package:plastic_warriors/interface/ari_interface.dart';
 import 'package:plastic_warriors/main.dart';
 
 import 'package:plastic_warriors/player/ari.dart';
-import 'package:plastic_warriors/util/sounds.dart';
+import 'package:plastic_warriors/utils/sounds.dart';
 import 'package:plastic_warriors/widgets/game_controller.dart';
 import 'package:plastic_warriors/widgets/scene1_controller.dart';
 import 'package:flutter/material.dart';
