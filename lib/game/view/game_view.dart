@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plastic_warriors/audio/audio.dart';
 import 'package:plastic_warriors/game/game.dart';
 import 'package:plastic_warriors/game_intro/game_intro.dart';
+import 'package:plastic_warriors/game/scenes/scenes.dart';
 import 'package:plastic_warriors/play_session/play_session01_screen01.dart';
 
 class Game extends StatelessWidget {
@@ -30,5 +31,6 @@ class GameView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Play_Session01_Screen01();
+    //return Scene02Battle1();
   }
 }

@@ -235,10 +235,6 @@ class $AssetsMapAnimGen {
   String get spritesheetDashJumpTsx =>
       'assets/map/anim/spritesheet_dash_jump.tsx';
 
-  /// File path: assets/map/anim/spritesheet_dash_run.png
-  AssetGenImage get spritesheetDashRunPng =>
-      const AssetGenImage('assets/map/anim/spritesheet_dash_run.png');
-
   /// File path: assets/map/anim/spritesheet_dash_run.tsx
   String get spritesheetDashRunTsx =>
       'assets/map/anim/spritesheet_dash_run.tsx';
@@ -390,7 +386,6 @@ class $AssetsMapAnimGen {
         spritesheetDashIdleTsx,
         spritesheetDashJumpPng,
         spritesheetDashJumpTsx,
-        spritesheetDashRunPng,
         spritesheetDashRunTsx,
         spritesheetDashSlidePng,
         spritesheetDashSlideTsx,

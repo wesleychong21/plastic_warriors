@@ -33,14 +33,33 @@ import 'package:plastic_warriors/utils/localization/strings_location.dart';
 import 'package:plastic_warriors/firebase_options.dart';
 import 'package:plastic_warriors/settings/settings_controller.dart';
 
+import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
+import 'package:flutter/foundation.dart'
+    show defaultTargetPlatform, kIsWeb, TargetPlatform;
+
 double tileSize = 32;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+// web app
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+      options: FirebaseOptions(
+        apiKey: 'AIzaSyCLuPm-MVv7WdWFsiMNFULq3yavhwjl8M4',
+        appId: '1:931860057674:web:f1527b5801417b309f20b3',
+        messagingSenderId: '931860057674',
+        projectId: 'plastic-warriors-862da',
+        authDomain: 'plastic-warriors-862da.firebaseapp.com',
+        storageBucket: 'plastic-warriors-862da.appspot.com',
+        measurementId: 'G-N6LTCNFDN3',
+      ),
+    );
+  } else {
+    // mobile app
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
 
   final settings = SettingsController(
     persistence: LocalStorageSettingsPersistence(),

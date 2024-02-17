@@ -22,58 +22,61 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class Scene02Battle1 extends BonfireGame {
-  Scene02Battle1(BuildContext context) : super(map: WorldMapByTiled(
-          TiledReader.asset('tiled/map001b.json'),
-          forceTileSize: Vector2(tileSize, tileSize),
-          objectsBuilder: {
-            'boss': (p) => Boss(p.position),
-            'bagMonster': (p) => BagMonster(p.position),
-            'imp': (p) => Imp(p.position),
-          },
-        ), context: context);
+  Scene02Battle1(BuildContext context)
+      : super(
+            map: WorldMapByTiled(
+              TiledReader.asset('tiled/map001b.json'),
+              forceTileSize: Vector2(tileSize, tileSize),
+              objectsBuilder: {
+                'boss': (p) => Boss(p.position),
+                'bagMonster': (p) => BagMonster(p.position),
+                'imp': (p) => Imp(p.position),
+              },
+            ),
+            context: context);
 }
-  @override
-  Widget build(BuildContext context) {
-    var joystick = Joystick(
-      keyboardConfig: KeyboardConfig(
-        directionalKeys: KeyboardDirectionalKeys.arrows(),
-        acceptedKeys: [
-          LogicalKeyboardKey.space,
-          LogicalKeyboardKey.keyZ,
-        ],
-      ),
-      directional: JoystickDirectional(
-        spriteBackgroundDirectional: Sprite.load('joystick_background.png'),
-        spriteKnobDirectional: Sprite.load('joystick_knob.png'),
-        size: 100,
-        isFixed: false,
-      ),
-    );
 
-    return Material(
-      color: Colors.transparent,
-      child: BonfireWidget(
-        joystick: joystick,
-        player: Ari(
-          Vector2(3 * tileSize, 5 * tileSize),
-        ),
-        map: WorldMapByTiled(
-          TiledReader.asset('tiled/map001b.json'),
-          forceTileSize: Vector2(tileSize, tileSize),
-          objectsBuilder: {
-            'boss': (p) => Boss(p.position),
-            'bagMonster': (p) => BagMonster(p.position),
-            'imp': (p) => Imp(p.position),
-          },
-        ),
-        components: [GameController(), Scene1Controller()],
-        interface: AriInterface(),
-        backgroundColor: Colors.grey[900]!,
-        cameraConfig: CameraConfig(
-          speed: 3,
-          zoom: getZoomFromMaxVisibleTile(context, tileSize, 18),
-        ),
+@override
+Widget build(BuildContext context) {
+  var joystick = Joystick(
+    keyboardConfig: KeyboardConfig(
+      directionalKeys: KeyboardDirectionalKeys.arrows(),
+      acceptedKeys: [
+        LogicalKeyboardKey.space,
+        LogicalKeyboardKey.keyZ,
+      ],
+    ),
+    directional: JoystickDirectional(
+      spriteBackgroundDirectional: Sprite.load('joystick_background.png'),
+      spriteKnobDirectional: Sprite.load('joystick_knob.png'),
+      size: 100,
+      isFixed: false,
+    ),
+  );
+
+  return Material(
+    color: Colors.transparent,
+    child: BonfireWidget(
+      joystick: joystick,
+      player: Ari(
+        Vector2(3 * tileSize, 5 * tileSize),
       ),
-    );
-  }
+      map: WorldMapByTiled(
+        TiledReader.asset('tiled/map001b.json'),
+        forceTileSize: Vector2(tileSize, tileSize),
+        objectsBuilder: {
+          'boss': (p) => Boss(p.position),
+          'bagMonster': (p) => BagMonster(p.position),
+          'imp': (p) => Imp(p.position),
+        },
+      ),
+      components: [GameController(), Scene1Controller()],
+      interface: AriInterface(),
+      backgroundColor: Colors.grey[900]!,
+      cameraConfig: CameraConfig(
+        speed: 3,
+        zoom: getZoomFromMaxVisibleTile(context, tileSize, 18),
+      ),
+    ),
+  );
 }

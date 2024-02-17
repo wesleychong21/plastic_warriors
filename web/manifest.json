@@ -1,11 +1,11 @@
 {
-    "name": "basic",
-    "short_name": "basic",
+    "name": "Plastic Warriors",
+    "short_name": "Plastic Warriors",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Plastic Warriors - A game to save the world from plastic pollution",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

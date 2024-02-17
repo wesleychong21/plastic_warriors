@@ -184,7 +184,7 @@ class LeaderboardLoadingWidget extends StatelessWidget {
       dimension: 64,
       child: SpriteAnimationWidget.asset(
         images: Images(prefix: ''),
-        path: Assets.map.anim.spritesheetDashRunPng.path,
+        path: Assets.map.anim.spritesheetDashDeathFaintPng.path,
         data: SpriteAnimationData.sequenced(
           amount: 16,
           stepTime: 0.042,
