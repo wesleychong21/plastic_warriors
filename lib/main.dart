@@ -25,7 +25,6 @@ import 'package:flame/flame.dart';
 import 'app_lifecycle/app_lifecycle.dart';
 import 'audio/audio.dart';
 import 'player_progress/player_progress.dart';
-import 'router.dart';
 import 'settings/settings.dart';
 import 'style/palette.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -70,7 +69,7 @@ void main() async {
   await audio.initialize();
 
   final share = ShareController(
-    gameUrl: 'https://plastic-warriors-862da.web.app/',
+    gameUrl: 'flutt/',
   );
 
   final leaderboardRepository = LeaderboardRepository(

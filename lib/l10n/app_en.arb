@@ -73,8 +73,8 @@
     "@mobileModeUnavailableDescription": {
         "description": "Description shown in the Game Info Page for mobile devices joining from a browser"
     },
-    "PlasticWarriors": "Plastic Warriors",
-    "@PlasticWarriors": {
+    "plasticWarriors": "Plastic Warriors",
+    "@plasticWarriors": {
         "description": "Game name"
     },
     "howItsMade": "How it's made",
