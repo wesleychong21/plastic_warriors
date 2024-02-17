@@ -30,7 +30,29 @@ class GameView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Play_Session01_Screen01();
-    //return Scene02Battle1();
+    //return Play_Session01_Screen01();
+    return Scaffold(
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          GameWidget.controlled(
+            loadingBuilder: (context) => const GameBackground(),
+            backgroundBuilder: (context) => const GameBackground(),
+            gameFactory: () => Scene01Opening(
+              gameBloc: context.read<GameBloc>(),
+              audioController: context.read<AudioController>(),
+            ),
+          ),
+          const Positioned(
+            top: 12,
+            child: ScoreLabel(),
+          ),
+          const Positioned(
+            bottom: 12,
+            child: SafeArea(child: AudioButton()),
+          ),
+        ],
+      ),
+    );
   }
 }
