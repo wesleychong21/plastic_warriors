@@ -18,4 +18,7 @@ class Urls {
 
   static const String music1Link =
       'https://www.youtube.com/watch?v=pMMHNDxXLIg';
+
+  static const String music2Link =
+      'https://www.youtube.com/watch?v=Q6DgYoTAc0c';
 }

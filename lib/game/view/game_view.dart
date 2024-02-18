@@ -35,12 +35,16 @@ class GameView extends StatelessWidget {
       body: Stack(
         alignment: Alignment.center,
         children: [
-          GameWidget.controlled(
-            loadingBuilder: (context) => const GameBackground(),
-            backgroundBuilder: (context) => const GameBackground(),
-            gameFactory: () => Scene01Opening(
-              gameBloc: context.read<GameBloc>(),
-              audioController: context.read<AudioController>(),
+          Center(
+            child: GameWidget(
+              game: Scene01Opening(
+                gameBloc: context.read<GameBloc>(),
+                audioController: context.read<AudioController>(),
+                onGameFinished: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => BattleGameView()));
+                },
+              ),
             ),
           ),
           const Positioned(

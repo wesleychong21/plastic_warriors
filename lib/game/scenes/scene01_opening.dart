@@ -1,53 +1,91 @@
-import 'dart:ui';
 import 'package:flame/game.dart';
 import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
-import 'package:flame/sprite.dart';
-import 'package:flame/text.dart';
-import 'package:flame_tiled/flame_tiled.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
+import 'package:plastic_warriors/game/game.dart';
 
 import 'package:plastic_warriors/audio/audio.dart';
-import 'package:plastic_warriors/game/game.dart';
-import 'package:plastic_warriors/score/score.dart';
 
-class Scene01Opening extends FlameGame {
-  late Sprite _background;
+import 'package:flutter/material.dart';
+import 'package:flame/game.dart' as flame;
+
+class Slide {
+  String imagePath;
+  String text;
+
+  Slide(this.imagePath, this.text);
+}
+
+class Scene01Opening extends FlameGame with TapDetector {
+  List<Slide> slides = [
+    Slide('Scene01_01.webp', 'Welcome to the slideshow!'),
+    Slide('Scene01_02.webp', 'Welcome to the slideshow!'),
+    Slide('Scene01_03.webp', 'Welcome to the slideshow!'),
+    Slide('Scene01_04.webp', 'Welcome to the slideshow!'),
+  ];
+
+  final VoidCallback onGameFinished;
+
+  int currentSlideIndex = 0;
+  late TextComponent textComponent;
+  late SpriteComponent imageComponent;
 
   Scene01Opening(
       {required this.gameBloc,
       required this.audioController,
+      required this.onGameFinished,
       this.customBundle})
       : super();
 
   @override
   Future<void> onLoad() async {
-    //load the assets
-    _background = await Sprite.load('Scene01_01.webp');
+    await super.onLoad();
+
     camera = CameraComponent.withFixedResolution(
       width: _cameraViewport.x,
       height: _cameraViewport.y,
     )..world = world;
 
-    add(SpriteComponent(
-      sprite: _background,
-      size: Vector2(_cameraViewport.x, _cameraViewport.y),
-    ));
-
-    //build the slide show
-    _buildSlideShow();
-
-    return super.onLoad();
+    _loadSlide(); // Load the initial slide
   }
 
-//build method
   @override
-  void update(double dt) {
-    //build a slide show
+  void onTap() {
+    _changeSlide(); // Allow manual changing with a tap
+  }
 
-    super.update(dt);
+  Future<void> _loadSlide() async {
+    imageComponent = SpriteComponent.fromImage(
+      await images.load(slides[currentSlideIndex].imagePath),
+    );
+
+    textComponent = TextComponent(text: slides[currentSlideIndex].text);
+    // Position the text in the bottom center
+    textComponent.anchor = Anchor.bottomCenter;
+
+    add(imageComponent);
+    add(textComponent);
+  }
+
+  void _changeSlide() {
+    imageComponent.removeFromParent();
+    textComponent.removeFromParent();
+
+    currentSlideIndex = currentSlideIndex + 1;
+
+    if (currentSlideIndex > slides.length) {
+      // go to Play_Session01_Screen01
+      // gameBloc.add(GameEvent.start);
+
+      // go to Play_Session01_Screen01
+      //Navigator.of(context).push(GameView1.route());
+      onGameFinished();
+    }
+    _loadSlide();
   }
 
   static final _cameraViewport = Vector2(592, 1024);
@@ -55,9 +93,4 @@ class Scene01Opening extends FlameGame {
   final GameBloc gameBloc;
   final AssetBundle? customBundle;
   final AudioController audioController;
-  final List<VoidCallback> _inputListener = [];
-
-  _buildSlideShow() {
-    //build the slide show
-  }
 }
