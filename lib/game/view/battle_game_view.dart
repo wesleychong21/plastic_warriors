@@ -1,5 +1,5 @@
 import 'package:flame/game.dart';
-
+import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plastic_warriors/audio/audio.dart';
@@ -13,6 +13,12 @@ import 'package:plastic_warriors/widgets/game_controller.dart';
 import 'package:plastic_warriors/widgets/scene1_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:plastic_warriors/enemies/bag_monster.dart';
+import 'package:plastic_warriors/enemies/boss.dart';
+import 'package:plastic_warriors/enemies/bag_monster.dart';
+import 'package:plastic_warriors/enemies/imp.dart';
+import 'package:plastic_warriors/enemies/mini_boss.dart';
+import 'package:plastic_warriors/interface/ari_interface.dart';
 
 class BattleGameView extends StatefulWidget {
   const BattleGameView({Key? key}) : super(key: key);
@@ -41,7 +47,36 @@ class _BattleGameViewState extends State<BattleGameView> {
 
   @override
   Widget build(BuildContext context) {
-    // Return your widget here
-    return Container();
+    double tileSize = 32;
+    var joystick = Joystick(
+      directional: JoystickDirectional(
+        spriteBackgroundDirectional: Sprite.load('joystick_background.png'),
+        spriteKnobDirectional: Sprite.load('joystick_knob.png'),
+        size: 100,
+        isFixed: false,
+      ),
+    );
+    var keyboardConfig = KeyboardConfig(
+      directionalKeys: KeyboardDirectionalKeys.arrows(),
+      acceptedKeys: [
+        LogicalKeyboardKey.space,
+        LogicalKeyboardKey.keyZ,
+      ],
+    );
+    return Scaffold(
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          const Positioned(
+            top: 12,
+            child: ScoreLabel(),
+          ),
+          const Positioned(
+            bottom: 12,
+            child: SafeArea(child: AudioButton()),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flame/game.dart';
 import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
+import 'package:flame/palette.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,12 @@ class Scene01Opening extends FlameGame with TapDetector {
   late TextComponent textComponent;
   late SpriteComponent imageComponent;
 
+  final style1 = TextStyle(
+    color: BasicPalette.white.color,
+    fontSize: 20.0, // Change the font size here
+  );
+  TextPaint? regular;
+
   Scene01Opening(
       {required this.gameBloc,
       required this.audioController,
@@ -44,6 +51,8 @@ class Scene01Opening extends FlameGame with TapDetector {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
+
+    regular = TextPaint(style: style1);
 
     camera = CameraComponent.withFixedResolution(
       width: _cameraViewport.x,
@@ -64,27 +73,27 @@ class Scene01Opening extends FlameGame with TapDetector {
     );
 
     textComponent = TextComponent(text: slides[currentSlideIndex].text);
-    // Position the text in the bottom center
+    textComponent.textRenderer = regular!;
     textComponent.anchor = Anchor.bottomCenter;
 
+    // ...
+
+    // Position the image in the center
+    imageComponent.anchor = Anchor.center;
+    imageComponent.position = size / 2;
     add(imageComponent);
     add(textComponent);
   }
 
   void _changeSlide() {
+    currentSlideIndex = currentSlideIndex + 1;
+
+    if (currentSlideIndex == 3) {
+      onGameFinished();
+    }
     imageComponent.removeFromParent();
     textComponent.removeFromParent();
 
-    currentSlideIndex = currentSlideIndex + 1;
-
-    if (currentSlideIndex > slides.length) {
-      // go to Play_Session01_Screen01
-      // gameBloc.add(GameEvent.start);
-
-      // go to Play_Session01_Screen01
-      //Navigator.of(context).push(GameView1.route());
-      onGameFinished();
-    }
     _loadSlide();
   }
 

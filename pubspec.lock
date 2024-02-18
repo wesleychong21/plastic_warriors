@@ -147,10 +147,10 @@ packages:
     dependency: "direct main"
     description:
       name: bonfire
-      sha256: "9b20334a4de57a6c06d93587caf33679f36300792e30f80b1f7277d90302e418"
+      sha256: b4500156f4eb8459b90bfc0c350cb5cc755b6764a129b2d5ad8d401a9c253b00
       url: "https://pub.dev"
     source: hosted
-    version: "3.4.0"
+    version: "3.5.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -663,10 +663,10 @@ packages:
     dependency: "direct main"
     description:
       name: jenny
-      sha256: "6b1c51c41aa31e32b6966702f72d98e7b7346f268f5b72d2ae54b103fc5fc8e2"
+      sha256: "164fd0cec1a17d076cd8a1c31886ec1b4132f8136e631a6ae30c701570983431"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.1"
+    version: "1.3.0"
   js:
     dependency: transitive
     description:

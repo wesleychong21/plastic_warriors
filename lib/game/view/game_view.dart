@@ -5,7 +5,6 @@ import 'package:plastic_warriors/audio/audio.dart';
 import 'package:plastic_warriors/game/game.dart';
 import 'package:plastic_warriors/game_intro/game_intro.dart';
 import 'package:plastic_warriors/game/scenes/scenes.dart';
-import 'package:plastic_warriors/play_session/play_session01_screen01.dart';
 
 class Game extends StatelessWidget {
   const Game({super.key});
@@ -35,16 +34,16 @@ class GameView extends StatelessWidget {
       body: Stack(
         alignment: Alignment.center,
         children: [
-          Center(
-            child: GameWidget(
-              game: Scene01Opening(
-                gameBloc: context.read<GameBloc>(),
-                audioController: context.read<AudioController>(),
-                onGameFinished: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => BattleGameView()));
-                },
-              ),
+          GameWidget.controlled(
+            loadingBuilder: (context) => const GameBackground(),
+            backgroundBuilder: (context) => const GameBackground(),
+            gameFactory: () => Scene01Opening(
+              gameBloc: context.read<GameBloc>(),
+              audioController: context.read<AudioController>(),
+              onGameFinished: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => BattleGameView()));
+              },
             ),
           ),
           const Positioned(

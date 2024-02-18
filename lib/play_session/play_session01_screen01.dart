@@ -43,13 +43,6 @@ class _GameState extends State<Play_Session01_Screen01> {
   @override
   Widget build(BuildContext context) {
     var joystick = Joystick(
-      keyboardConfig: KeyboardConfig(
-        directionalKeys: KeyboardDirectionalKeys.arrows(),
-        acceptedKeys: [
-          LogicalKeyboardKey.space,
-          LogicalKeyboardKey.keyZ,
-        ],
-      ),
       directional: JoystickDirectional(
         spriteBackgroundDirectional: Sprite.load('joystick_background.png'),
         spriteKnobDirectional: Sprite.load('joystick_knob.png'),
