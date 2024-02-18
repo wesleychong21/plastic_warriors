@@ -48,21 +48,7 @@ class _BattleGameViewState extends State<BattleGameView> {
   @override
   Widget build(BuildContext context) {
     double tileSize = 32;
-    var joystick = Joystick(
-      directional: JoystickDirectional(
-        spriteBackgroundDirectional: Sprite.load('joystick_background.png'),
-        spriteKnobDirectional: Sprite.load('joystick_knob.png'),
-        size: 100,
-        isFixed: false,
-      ),
-    );
-    var keyboardConfig = KeyboardConfig(
-      directionalKeys: KeyboardDirectionalKeys.arrows(),
-      acceptedKeys: [
-        LogicalKeyboardKey.space,
-        LogicalKeyboardKey.keyZ,
-      ],
-    );
+
     return Scaffold(
       body: Stack(
         alignment: Alignment.center,

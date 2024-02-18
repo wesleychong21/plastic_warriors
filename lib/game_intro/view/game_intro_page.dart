@@ -74,7 +74,8 @@ class _IntroPage extends StatelessWidget {
             const SizedBox(height: 32),
             GameElevatedButton(
               label: l10n.gameIntroPagePlayButtonText,
-              onPressed: () => Navigator.of(context).push(Game.route()),
+              onPressed: () =>
+                  Navigator.of(context).push(GameInfoStory1.route()),
             ),
             const Spacer(),
             const Row(
@@ -83,7 +84,7 @@ class _IntroPage extends StatelessWidget {
                 AudioButton(),
                 LeaderboardButton(),
                 InfoButton(),
-                HowToPlayButton(),
+                //HowToPlayButton(),
               ],
             ),
             const SizedBox(height: 32),
