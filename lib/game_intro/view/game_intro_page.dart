@@ -41,9 +41,12 @@ class _GameIntroPageState extends State<GameIntroPage> {
             fit: BoxFit.cover,
           ),
         ),
+        /*
         child: isMobileWeb
             ? _MobileWebNotAvailableIntroPage(onDownload: _onDownload)
             : const _IntroPage(),
+            */
+        child: const _IntroPage(),
       ),
     );
   }
