@@ -1,3 +1,4 @@
+import 'package:app_ui/app_ui.dart';
 import 'package:flame/game.dart';
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ import 'package:plastic_warriors/enemies/bag_monster.dart';
 import 'package:plastic_warriors/enemies/imp.dart';
 import 'package:plastic_warriors/enemies/mini_boss.dart';
 import 'package:plastic_warriors/interface/ari_interface.dart';
+import 'package:plastic_warriors/game/widgets/widgets.dart' as gameWidgets;
 
 class BattleGameView extends StatelessWidget {
   const BattleGameView({Key? key}) : super(key: key);
@@ -31,6 +33,19 @@ class BattleGameView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Play_Session01_Screen01();
+    return PageWithBackground(
+      background: const gameWidgets.GameBackground(),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          SizedBox(
+            height: MediaQuery.sizeOf(context).height,
+            //width: 360,
+            child: Play_Session01_Screen01(),
+          ),
+        ],
+      ),
+    );
   }
 }
