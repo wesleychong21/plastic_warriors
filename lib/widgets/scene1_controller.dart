@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/game/game.dart';
 import 'package:plastic_warriors/player/ari.dart';
@@ -7,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:bonfire/bonfire.dart';
 
 import 'package:plastic_warriors/utils/custom_sprite_animation_widget.dart';
+import 'package:plastic_warriors/utils/localization/my_localizations.dart';
 import 'package:plastic_warriors/utils/localization/strings_location.dart';
 import 'package:plastic_warriors/utils/npc_sprite_sheet.dart';
 import 'package:plastic_warriors/utils/enemy_sprite_sheet.dart';
@@ -59,11 +63,7 @@ class Scene1Controller extends GameComponent {
       gameRef.context,
       [
         Say(
-          text: [
-            TextSpan(
-                text: getString('scene1_talk_monster_1'),
-                style: TextStyle(fontSize: _fontSize))
-          ],
+          text: [TextSpan(text: "Hehe", style: TextStyle(fontSize: _fontSize))],
           person: CustomSpriteAnimationWidget(
             animation: EnemySpriteSheet.bagMonsterTalkAnimation(),
           ),
@@ -72,8 +72,7 @@ class Scene1Controller extends GameComponent {
         Say(
           text: [
             TextSpan(
-                text: getString('scene1_talk_ari_1'),
-                style: TextStyle(fontSize: _fontSize))
+                text: "What is this?", style: TextStyle(fontSize: _fontSize))
           ],
           person: CustomSpriteAnimationWidget(
             animation: PlayerSpriteSheet.idleRight(),
@@ -102,7 +101,7 @@ class Scene1Controller extends GameComponent {
         Say(
           text: [
             TextSpan(
-                text: getString('scene1_talk_drk_1'),
+                text: "Young man! Danger!",
                 style: TextStyle(fontSize: _fontSize))
           ],
           person: CustomSpriteAnimationWidget(
@@ -112,9 +111,7 @@ class Scene1Controller extends GameComponent {
         ),
         Say(
           text: [
-            TextSpan(
-                text: getString('scene1_talk_drk_2'),
-                style: TextStyle(fontSize: _fontSize))
+            TextSpan(text: "Catch this!", style: TextStyle(fontSize: _fontSize))
           ],
           person: CustomSpriteAnimationWidget(
             animation: NpcSpriteSheet.wizardIdleLeft(),

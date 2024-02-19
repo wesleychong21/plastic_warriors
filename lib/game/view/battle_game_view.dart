@@ -20,7 +20,7 @@ import 'package:plastic_warriors/enemies/imp.dart';
 import 'package:plastic_warriors/enemies/mini_boss.dart';
 import 'package:plastic_warriors/interface/ari_interface.dart';
 
-class BattleGameView extends StatefulWidget {
+class BattleGameView extends StatelessWidget {
   const BattleGameView({Key? key}) : super(key: key);
 
   static PageRoute<void> route() {
@@ -29,40 +29,8 @@ class BattleGameView extends StatefulWidget {
     );
   }
 
-  _BattleGameViewState createState() => _BattleGameViewState();
-}
-
-class _BattleGameViewState extends State<BattleGameView> {
-  @override
-  void initState() {
-    Sounds.playScene1Sound();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    Sounds.stopBackgroundSound();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    double tileSize = 32;
-
-    return Scaffold(
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          const Positioned(
-            top: 12,
-            child: ScoreLabel(),
-          ),
-          const Positioned(
-            bottom: 12,
-            child: SafeArea(child: AudioButton()),
-          ),
-        ],
-      ),
-    );
+    return Play_Session01_Screen01();
   }
 }

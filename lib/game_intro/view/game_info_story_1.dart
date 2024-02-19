@@ -8,9 +8,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:plastic_warriors/game/game.dart';
+import 'package:plastic_warriors/game_intro/widgets/widgets.dart';
 import 'package:plastic_warriors/gen/assets.gen.dart';
 import 'package:plastic_warriors/l10n/l10n.dart';
 import 'package:plastic_warriors/leaderboard/bloc/leaderboard_bloc.dart';
+import 'package:plastic_warriors/game/view/view.dart';
 
 class GameInfoStory1 extends StatelessWidget {
   const GameInfoStory1({
@@ -28,14 +30,14 @@ class GameInfoStory1 extends StatelessWidget {
     return PageWithBackground(
       background: const GameBackground(),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(
-            height: MediaQuery.sizeOf(context).height * .15,
+            height: MediaQuery.sizeOf(context).height,
+            //width: 360,
+            child: SlidesWidget(),
           ),
-          const SizedBox(height: 20),
-          Align(),
         ],
       ),
     );
