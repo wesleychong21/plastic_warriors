@@ -1,5 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/main.dart';
+import 'package:plastic_warriors/player/ari.dart';
 import 'package:plastic_warriors/utils/enemy_sprite_sheet.dart';
 import 'package:plastic_warriors/utils/functions.dart';
 import 'package:plastic_warriors/utils/game_sprite_sheet.dart';
@@ -9,6 +10,8 @@ import 'package:flutter/material.dart';
 class BagMonster extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
   final Vector2 initPosition;
   double attack = 25;
+  int coinValue = 10;
+  int xpValue = 1;
 
   BagMonster(this.initPosition)
       : super(
@@ -57,6 +60,12 @@ class BagMonster extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
       ),
     );
     removeFromParent();
+
+    // increase player's coins
+    Ari.instance.increaseCoins(coinValue);
+
+    Ari.instance.increaseExperience(xpValue);
+
     super.die();
   }
 

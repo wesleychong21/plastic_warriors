@@ -23,10 +23,12 @@ import 'package:flutter/services.dart';
 class Scene1Controller extends GameComponent {
   bool showGScene1Story1 = true;
   bool showGScene1Story1B = false;
+  bool showGScene1Story2 = false;
   bool showDrK = false;
   final double _fontSize = 25;
   var positionScientist = Vector2(50, 150);
   late LoveStone1 gun;
+  late Ari ari;
 
   @override
   void update(double dt) {
@@ -50,12 +52,24 @@ class Scene1Controller extends GameComponent {
       _showDialogGScene1Story1B();
       showGScene1Story1B = false;
     }
+
+    if (showGScene1Story2) {
+      _showDialogGScene1Story2();
+      showGScene1Story2 = false;
+    }
+
+    ari = gameRef.player as Ari;
+    //when ari kill first enemy
+    if (ari.xp > 0) {
+      showGScene1Story2 = true;
+    }
+
     super.update(dt);
   }
 
   void _showDialogGScene1Story1() {
     if (gameRef.player != null) {
-      Ari ari = gameRef.player as Ari;
+      ari = gameRef.player as Ari;
       ari.showEmote();
     }
     Sounds.interaction();
@@ -63,21 +77,23 @@ class Scene1Controller extends GameComponent {
       gameRef.context,
       [
         Say(
-          text: [TextSpan(text: "Hehe", style: TextStyle(fontSize: _fontSize))],
-          person: CustomSpriteAnimationWidget(
-            animation: EnemySpriteSheet.bagMonsterTalkAnimation(),
-          ),
-          personSayDirection: PersonSayDirection.RIGHT,
-        ),
-        Say(
           text: [
             TextSpan(
                 text: "What is this?", style: TextStyle(fontSize: _fontSize))
           ],
-          person: CustomSpriteAnimationWidget(
-            animation: PlayerSpriteSheet.idleRight(),
-          ),
+          person: Image.asset('images/Ari-expression1.webp'),
           personSayDirection: PersonSayDirection.LEFT,
+        ),
+        Say(
+          text: [
+            TextSpan(
+                text: "hehehehehehehheheheh",
+                style: TextStyle(fontSize: _fontSize))
+          ],
+          person: CustomSpriteAnimationWidget(
+            animation: EnemySpriteSheet.bagMonsterTalkAnimation(),
+          ),
+          personSayDirection: PersonSayDirection.RIGHT,
         ),
       ],
       onChangeTalk: (index) {
@@ -104,19 +120,22 @@ class Scene1Controller extends GameComponent {
                 text: "Young man! Danger!",
                 style: TextStyle(fontSize: _fontSize))
           ],
-          person: CustomSpriteAnimationWidget(
-            animation: NpcSpriteSheet.wizardIdleLeft(),
-          ),
+          person: Image.asset('images/DrK-expression1.webp'),
           personSayDirection: PersonSayDirection.RIGHT,
         ),
         Say(
           text: [
             TextSpan(text: "Catch this!", style: TextStyle(fontSize: _fontSize))
           ],
-          person: CustomSpriteAnimationWidget(
-            animation: NpcSpriteSheet.wizardIdleLeft(),
-          ),
+          person: Image.asset('images/DrK-heart.webp'),
           personSayDirection: PersonSayDirection.RIGHT,
+        ),
+        Say(
+          text: [
+            TextSpan(text: "Huh?!", style: TextStyle(fontSize: _fontSize))
+          ],
+          person: Image.asset('images/Ari-heart.webp'),
+          personSayDirection: PersonSayDirection.LEFT,
         ),
       ],
       onChangeTalk: (index) {
@@ -141,5 +160,50 @@ class Scene1Controller extends GameComponent {
       //mount the gun to the player
       ari.add(stone1);
     }
+  }
+
+  void _showDialogGScene1Story2() {
+    Sounds.interaction();
+    TalkDialog.show(
+      gameRef.context,
+      [
+        Say(
+          text: [
+            TextSpan(
+                text: "What just happened..?",
+                style: TextStyle(fontSize: _fontSize))
+          ],
+          person: Image.asset('images/Ari-expression1.webp'),
+          personSayDirection: PersonSayDirection.LEFT,
+        ),
+        Say(
+          text: [
+            TextSpan(
+                text: "The stone actually worked!",
+                style: TextStyle(fontSize: _fontSize))
+          ],
+          person: Image.asset('images/girl-expression1.webp'),
+          personSayDirection: PersonSayDirection.RIGHT,
+        ),
+        Say(
+          text: [
+            TextSpan(
+                text: "Please found the greedy stone and destory it!",
+                style: TextStyle(fontSize: _fontSize))
+          ],
+          person: Image.asset('images/girl-stone.webp'),
+          personSayDirection: PersonSayDirection.RIGHT,
+        ),
+      ],
+      onChangeTalk: (index) {
+        Sounds.interaction();
+      },
+      onFinish: () {
+        Sounds.interaction();
+      },
+      logicalKeyboardKeysToNext: [
+        LogicalKeyboardKey.space,
+      ],
+    );
   }
 }

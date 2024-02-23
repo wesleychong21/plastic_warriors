@@ -12,6 +12,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class Ari extends SimplePlayer with Lighting, BlockMovementCollision {
+  static final Ari instance = Ari._privateConstructor();
+
+  Ari._privateConstructor()
+      : super(
+          animation: PlayerSpriteSheet.playerAnimations(),
+          size: Vector2.all(tileSize),
+          position: Vector2.zero(),
+          life: 200,
+          speed: tileSize * 2.5,
+        );
+
   double attack = 25;
   double stamina = 100;
   async.Timer? _timerStamina;
@@ -23,6 +34,12 @@ class Ari extends SimplePlayer with Lighting, BlockMovementCollision {
 
   // Add a cooldown period for attacks (in seconds)
   double attackCooldown = 0.5; //  cooldown
+
+  // add coins
+  int coins = 0;
+
+  // add xp
+  int xp = 0;
 
   Ari(Vector2 position)
       : super(
@@ -217,5 +234,13 @@ class Ari extends SimplePlayer with Lighting, BlockMovementCollision {
         offset: Vector2(18, -6),
       ),
     );
+  }
+
+  void increaseCoins(int amount) {
+    coins += amount;
+  }
+
+  void increaseExperience(int amount) {
+    xp += amount;
   }
 }
