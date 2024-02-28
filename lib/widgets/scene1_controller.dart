@@ -53,15 +53,13 @@ class Scene1Controller extends GameComponent {
       showGScene1Story1B = false;
     }
 
-    if (showGScene1Story2) {
-      _showDialogGScene1Story2();
-      showGScene1Story2 = false;
-    }
-
     ari = gameRef.player as Ari;
     //when ari kill first enemy
     if (ari.xp > 0) {
-      showGScene1Story2 = true;
+      if (!showGScene1Story2) {
+        _showDialogGScene1Story2();
+        showGScene1Story2 = true;
+      }
     }
 
     super.update(dt);
@@ -163,6 +161,10 @@ class Scene1Controller extends GameComponent {
   }
 
   void _showDialogGScene1Story2() {
+    // player stop moving
+    if (gameRef.player != null) {
+      gameRef.player?.stopMove();
+    }
     Sounds.interaction();
     TalkDialog.show(
       gameRef.context,

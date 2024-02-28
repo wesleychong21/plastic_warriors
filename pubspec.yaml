@@ -72,6 +72,8 @@ flutter:
     - assets/images/enemy/imp/
     - assets/images/enemy/mini_boss/
     - assets/images/enemy/boss/
+    - assets/images/enemy/greedy_stone/
+
     - assets/images/player/
     - assets/images/items/
     - assets/images/tiled/

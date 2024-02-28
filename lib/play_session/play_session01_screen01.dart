@@ -7,6 +7,7 @@ import 'package:plastic_warriors/decoration/torch.dart';
 import 'package:plastic_warriors/enemies/bag_monster.dart';
 import 'package:plastic_warriors/enemies/boss.dart';
 import 'package:plastic_warriors/enemies/bag_monster.dart';
+import 'package:plastic_warriors/enemies/greedy_stone.dart';
 import 'package:plastic_warriors/enemies/imp.dart';
 import 'package:plastic_warriors/enemies/mini_boss.dart';
 import 'package:plastic_warriors/interface/ari_interface.dart';
@@ -65,6 +66,7 @@ class _GameState extends State<Play_Session01_Screen01> {
             'boss': (p) => Boss(p.position),
             'bagMonster': (p) => BagMonster(p.position),
             'imp': (p) => Imp(p.position),
+            'greedyStone': (p) => Greedy_Stone(p.position),
           },
         ),
         components: [GameController(), Scene1Controller()],
