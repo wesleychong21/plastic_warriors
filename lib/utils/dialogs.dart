@@ -26,7 +26,7 @@ class Dialogs {
                 ),
                 onPressed: playAgain,
                 child: Text(
-                  getString('play_again_cap'),
+                  "PLAY AGAIN",
                   style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Normal',
@@ -52,7 +52,7 @@ class Dialogs {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Text(
-                  getString('congratulations'),
+                  "CONGRATULATIONS!",
                   style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Normal',
