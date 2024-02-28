@@ -2,7 +2,7 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:plastic_warriors/constants/constants.dart';
-import 'package:plastic_warriors/game/game.dart';
+//import 'package:plastic_warriors/game/game.dart';
 //import 'package:plastic_warriors/game.dart';
 
 import 'package:plastic_warriors/game_intro/game_intro.dart';

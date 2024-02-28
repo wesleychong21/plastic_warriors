@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plastic_warriors/game/game.dart';
+import 'package:plastic_warriors/utils/sounds.dart';
 
 class SlidesWidget extends StatefulWidget {
   @override
@@ -35,6 +36,7 @@ class _SlidesWidgetState extends State<SlidesWidget> {
   }
 
   void _nextSlide() {
+    Sounds.interaction();
     setState(() {
       if (_currentIndex < _imagePaths.length - 1) {
         _currentIndex++;
@@ -62,8 +64,8 @@ class _SlidesWidgetState extends State<SlidesWidget> {
                 ),
                 Positioned(
                   bottom: 32,
-                  left: 0,
-                  right: 0,
+                  left: 10,
+                  right: 10,
                   child: Text(
                     _slideTexts[_currentIndex],
                     style: TextStyle(fontSize: 24),
