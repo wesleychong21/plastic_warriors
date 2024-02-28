@@ -5,15 +5,13 @@ import 'package:plastic_warriors/player/ari.dart';
 
 class AriInterface extends GameInterface {
   //late ComponentKey? key;
-  late Ari _ari;
 
   @override
   Future<void> onLoad() async {
     //key = await ComponentKey.('items/key_silver.png');
     add(MyBarLifeComponent());
-    _ari = gameRef.player as Ari;
 
-    add(XPComponent(_ari));
+    //add(XPComponent(_ari));
 
     //WESLEY TODO: add Weapon UI
 

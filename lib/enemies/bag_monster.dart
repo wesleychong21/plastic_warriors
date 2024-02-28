@@ -62,9 +62,14 @@ class BagMonster extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
     removeFromParent();
 
     // increase player's coins
-    Ari.instance.increaseCoins(coinValue);
+    if (this.gameRef.player != null) {
+      (this.gameRef.player as Ari).increaseCoins(coinValue);
+      (this.gameRef.player as Ari).increaseExperience(xpValue);
+    }
 
-    Ari.instance.increaseExperience(xpValue);
+    //Ari.instance.increaseCoins(coinValue);
+
+    //Ari.instance.increaseExperience(xpValue);
 
     super.die();
   }

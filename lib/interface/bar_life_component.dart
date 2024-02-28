@@ -10,6 +10,9 @@ class MyBarLifeComponent extends InterfaceComponent {
   double maxLife = 0;
   double life = 0;
 
+  int coins = 0;
+  int xp = 0;
+
   MyBarLifeComponent()
       : super(
           id: 1,
@@ -23,6 +26,8 @@ class MyBarLifeComponent extends InterfaceComponent {
     if (this.gameRef.player != null) {
       life = this.gameRef.player!.life;
       maxLife = this.gameRef.player!.maxLife;
+      coins = (this.gameRef.player as Ari).coins;
+      xp = (this.gameRef.player as Ari).xp;
     }
     super.update(t);
   }
@@ -31,6 +36,8 @@ class MyBarLifeComponent extends InterfaceComponent {
   void render(Canvas c) {
     try {
       _drawLife(c);
+      _drawCoins(c);
+      _drawXPs(c);
     } catch (e) {}
     super.render(c);
   }
@@ -66,5 +73,42 @@ class MyBarLifeComponent extends InterfaceComponent {
     } else {
       return Colors.red;
     }
+  }
+
+  //_drawCoins(c)
+  void _drawCoins(Canvas canvas) {
+    final textSpan = TextSpan(
+      text: 'Coins: ' + coins.toString(),
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 14,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+    final textPainter = TextPainter(
+      text: textSpan,
+      textDirection: TextDirection.ltr,
+    );
+    textPainter.layout();
+    final offset = Offset(200, 10);
+    textPainter.paint(canvas, offset);
+  }
+
+  void _drawXPs(Canvas canvas) {
+    final textSpan = TextSpan(
+      text: 'XP: ' + xp.toString(),
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 14,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+    final textPainter = TextPainter(
+      text: textSpan,
+      textDirection: TextDirection.ltr,
+    );
+    textPainter.layout();
+    final offset = Offset(200, 30);
+    textPainter.paint(canvas, offset);
   }
 }
