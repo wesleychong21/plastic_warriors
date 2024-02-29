@@ -13,7 +13,6 @@ import 'package:plastic_warriors/utils/player_sprite_sheet.dart';
 import 'package:plastic_warriors/utils/sounds.dart';
 import 'package:plastic_warriors/enemies/greedy_stone_bullet.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
   final Vector2 initPosition;
@@ -26,6 +25,12 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
   final bool blockShootWithoutBullet;
 
   List<Enemy> childrenEnemy = [];
+
+  // Add a timestamp for the last attack
+  double lastAttackTime = 0;
+
+  // Add a cooldown period for attacks (in seconds)
+  double attackCooldown = 0.5; //  cooldown
 
   Greedy_Stone(
     this.initPosition, {
@@ -59,9 +64,13 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
 
   @override
   void update(double dt) {
+    lastAttackTime += dt;
     this.seePlayer(
       observed: (player) {
-        execAttack(player);
+        if (lastAttackTime > attackCooldown) {
+          execAttack(player);
+          lastAttackTime = 0.0;
+        }
       },
       radiusVision: tileSize * 8,
     );
@@ -139,17 +148,6 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
     return radAngle + ((isFlippedVertically && radAngle != 0) ? pi : 0);
   }
 
-  double _getAnglecapsule(double radAngle) {
-    double angle = radAngle + pi / 2;
-    Direction angleDirection = BonfireUtil.getDirectionFromAngle(angle);
-    if (angleDirection == Direction.down ||
-        angleDirection == Direction.downLeft ||
-        angleDirection == Direction.downRight) {
-      angle += pi;
-    }
-    return angle;
-  }
-
   @override
   void receiveDamage(AttackFromEnum attacker, double damage, dynamic id) {
     this.showDamage(
@@ -195,76 +193,4 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
             ..strokeWidth = 1
             ..style = PaintingStyle.fill);
   }
-
-/*
-  void _showConversation() {
-    Sounds.interaction();
-    TalkDialog.show(
-      gameRef.context,
-      [
-        Say(
-          text: [TextSpan(text: getString('talk_kid_1'))],
-          person: CustomSpriteAnimationWidget(
-            animation: NpcSpriteSheet.kidIdleLeft(),
-          ),
-          personSayDirection: PersonSayDirection.RIGHT,
-        ),
-        Say(
-          text: [TextSpan(text: getString('talk_boss_1'))],
-          person: CustomSpriteAnimationWidget(
-            animation: EnemySpriteSheet.bossIdleRight(),
-          ),
-          personSayDirection: PersonSayDirection.LEFT,
-        ),
-        Say(
-          text: [TextSpan(text: getString('talk_player_3'))],
-          person: CustomSpriteAnimationWidget(
-            animation: PlayerSpriteSheet.idleRight(),
-          ),
-          personSayDirection: PersonSayDirection.LEFT,
-        ),
-        Say(
-          text: [TextSpan(text: getString('talk_boss_2'))],
-          person: CustomSpriteAnimationWidget(
-            animation: EnemySpriteSheet.bossIdleRight(),
-          ),
-          personSayDirection: PersonSayDirection.RIGHT,
-        ),
-      ],
-      onFinish: () {
-        Sounds.interaction();
-        addInitChild();
-        Future.delayed(Duration(milliseconds: 500), () {
-          gameRef.camera.moveToPlayerAnimated(zoom: 1);
-          Sounds.playBackgroundBoosSound();
-        });
-      },
-      onChangeTalk: (index) {
-        Sounds.interaction();
-      },
-      logicalKeyboardKeysToNext: [
-        LogicalKeyboardKey.space,
-      ],
-    );
-  }
-  
-
-  void addInitChild() {
-    addImp(width * -2, 0);
-    addImp(width * -2, width);
-  }
-
-  void addImp(double x, double y) {
-    final p = position.translated(x, y);
-    gameRef.add(
-      AnimatedGameObject(
-        animation: GameSpriteSheet.smokeExplosion(),
-        position: p,
-        size: Vector2.all(tileSize),
-        loop: false,
-      ),
-    );
-    gameRef.add(Imp(p));
-  }
-  */
 }

@@ -26,14 +26,14 @@ class Ari extends SimplePlayer with Lighting, BlockMovementCollision {
   double attack = 25;
   double stamina = 100;
   async.Timer? _timerStamina;
-  LoveStone1? gun;
+  LoveStone1? lovestone;
   bool containKey = false;
   bool showObserveEnemy = false;
   // Add a timestamp for the last attack
   double lastAttackTime = 0;
 
   // Add a cooldown period for attacks (in seconds)
-  double attackCooldown = 0.5; //  cooldown
+  double attackCooldown = 1; //  cooldown
 
   // add coins
   int coins = 0;
@@ -71,7 +71,7 @@ class Ari extends SimplePlayer with Lighting, BlockMovementCollision {
 
   @override
   void onMount() {
-    //add(gun = VacuumWeapon(Vector2(28, 0), color));
+    //add(lovestone = VacuumWeapon(Vector2(28, 0), color));
 
     super.onMount();
   }
@@ -156,8 +156,9 @@ class Ari extends SimplePlayer with Lighting, BlockMovementCollision {
 
         //if class LoveStone1 is added to this player
         if (lastAttackTime > attackCooldown) {
-          ariExecuteAttack(
-              enemies.firstWhere((element) => element is BagMonster));
+          for (var enemy in enemies) {
+            ariExecuteAttack(enemy);
+          }
           lastAttackTime = 0.0;
         }
       },
@@ -166,13 +167,13 @@ class Ari extends SimplePlayer with Lighting, BlockMovementCollision {
   }
 
   void ariExecuteAttack(Enemy closestEnemy) {
-    if (gun?.reloading == false) {
+    if (lovestone?.reloading == false) {
       var angle = BonfireUtil.angleBetweenPoints(
-        gun?.absoluteCenter ?? absoluteCenter,
+        lovestone?.absoluteCenter ?? absoluteCenter,
         closestEnemy.position,
       );
-      gun?.changeAngle(angle);
-      gun?.execShoot(attack);
+      lovestone?.changeAngle(angle);
+      lovestone?.execShoot(attack);
     }
   }
 

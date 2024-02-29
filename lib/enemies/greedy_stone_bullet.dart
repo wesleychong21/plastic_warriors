@@ -1,8 +1,6 @@
 import 'dart:math';
 
 import 'package:bonfire/bonfire.dart';
-import 'package:plastic_warriors/player/ari.dart';
-
 import 'package:plastic_warriors/utils/game_sprite_sheet.dart';
 
 class GreedyStoneBullet extends GameDecoration
@@ -15,12 +13,12 @@ class GreedyStoneBullet extends GameDecoration
             position: p,
             size: Vector2(20.8, 20.8)) {
     this.angle = angle;
-    speed = 100;
+    speed = 300;
     movementOnlyVisible = false;
     addForce(
       ResistanceForce2D(
-        id: 'id',
-        value: Vector2.all(Random().nextDouble() * 3 + 2),
+        id: 3,
+        value: Vector2.all(6),
       ),
     );
   }
@@ -29,8 +27,8 @@ class GreedyStoneBullet extends GameDecoration
   Future<void> onLoad() async {
     await add(
       RectangleHitbox(
-        size: Vector2(5, 6),
-        position: Vector2.all(6),
+        size: Vector2(23, 23),
+        position: Vector2.all(0),
       ),
     );
     moveFromAngle(angle);

@@ -64,7 +64,7 @@ class Dialogs {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 100),
                   child: Text(
-                    getString('thanks'),
+                    'Thanks',
                     style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'Normal',

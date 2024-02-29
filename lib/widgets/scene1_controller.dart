@@ -25,6 +25,7 @@ class Scene1Controller extends GameComponent {
   bool showGScene1Story1B = false;
   bool showGScene1Story2 = false;
   bool showDrK = false;
+  bool showGameWin = false;
   final double _fontSize = 25;
   var positionScientist = Vector2(50, 150);
   late LoveStone1 gun;
@@ -32,6 +33,14 @@ class Scene1Controller extends GameComponent {
 
   @override
   void update(double dt) {
+    if (checkInterval('gameOver', 100, dt)) {
+      if (gameRef.enemies().isEmpty) {
+        if (!showGameWin) {
+          _showDialogGameWin();
+        }
+      }
+    }
+
     if (showGScene1Story1) {
       _showDialogGScene1Story1();
 
@@ -150,11 +159,18 @@ class Scene1Controller extends GameComponent {
     );
   }
 
+  void _showDialogGameWin() {
+    Dialogs.showCongratulations(
+      context,
+    );
+    showGameWin = false;
+  }
+
   void _addLoveStone1() {
     if (gameRef.player != null) {
       Ari ari = gameRef.player as Ari;
       var stone1 = LoveStone1(Vector2(14, -2));
-      ari.gun = stone1;
+      ari.lovestone = stone1;
       //mount the gun to the player
       ari.add(stone1);
     }
