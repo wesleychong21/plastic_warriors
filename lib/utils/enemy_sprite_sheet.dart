@@ -38,6 +38,15 @@ class EnemySpriteSheet {
         ),
       );
 
+  static Future<SpriteAnimation> greedyStoneIdleRight() => SpriteAnimation.load(
+        'enemy/greedy_stone/greedy-stone-animation.png',
+        SpriteAnimationData.sequenced(
+          amount: 6,
+          stepTime: 0.2,
+          textureSize: Vector2(32, 32),
+        ),
+      );
+
   static Future<SpriteAnimation> bossIdleRight() => SpriteAnimation.load(
         'enemy/boss/boss_idle.png',
         SpriteAnimationData.sequenced(
@@ -77,17 +86,10 @@ class EnemySpriteSheet {
 
   static SimpleDirectionAnimation greedyStoneAnimations() =>
       SimpleDirectionAnimation(
-        idleLeft: SpriteAnimation.load(
-          'enemy/greedy_stone/greedy-stone-animation.png',
-          SpriteAnimationData.sequenced(
-            amount: 6,
-            stepTime: 0.2,
-            textureSize: Vector2(32, 32),
-          ),
-        ),
-        idleRight: bossIdleRight(),
-        runLeft: bossIdleRight(),
-        runRight: bossIdleRight(),
+        idleLeft: greedyStoneIdleRight(),
+        idleRight: greedyStoneIdleRight(),
+        runLeft: greedyStoneIdleRight(),
+        runRight: greedyStoneIdleRight(),
       );
 
   static Future<SpriteAnimation> goblinIdleRight() => SpriteAnimation.load(

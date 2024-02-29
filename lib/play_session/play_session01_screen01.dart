@@ -63,7 +63,6 @@ class _GameState extends State<Play_Session01_Screen01> {
           TiledReader.asset('tiled/map001b.json'),
           forceTileSize: Vector2(tileSize, tileSize),
           objectsBuilder: {
-            'boss': (p) => Boss(p.position),
             'bagMonster': (p) => BagMonster(p.position),
             'imp': (p) => Imp(p.position),
             'greedyStone': (p) => Greedy_Stone(p.position),
