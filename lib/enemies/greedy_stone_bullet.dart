@@ -3,18 +3,17 @@ import 'dart:math';
 import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/player/ari.dart';
 
-import 'package:plastic_warriors/utils/player_sprite_sheet.dart';
+import 'package:plastic_warriors/utils/game_sprite_sheet.dart';
 
-class BulletCapsule extends GameDecoration
+class GreedyStoneBullet extends GameDecoration
     with Movement, BlockMovementCollision, HandleForces {
   bool removing = false;
 
-  BulletCapsule(Vector2 p, double angle)
-      : super.withSprite(
-          sprite: PlayerSpriteSheet.bulletCapsule,
-          position: p,
-          size: Vector2.all(16),
-        ) {
+  GreedyStoneBullet(Vector2 p, double angle)
+      : super.withAnimation(
+            animation: GameSpriteSheet.fireBallAttackRight(),
+            position: p,
+            size: Vector2(20.8, 20.8)) {
     this.angle = angle;
     speed = 100;
     movementOnlyVisible = false;
@@ -49,7 +48,7 @@ class BulletCapsule extends GameDecoration
 
   @override
   bool onBlockMovement(Set<Vector2> intersectionPoints, GameComponent other) {
-    if (other is Ari || other is BulletCapsule) {
+    if (other is Enemy || other is GreedyStoneBullet) {
       return false;
     }
     return super.onBlockMovement(intersectionPoints, other);

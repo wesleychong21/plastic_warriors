@@ -1,8 +1,7 @@
 import 'dart:async';
-
+import 'dart:math';
 import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/enemies/imp.dart';
-import 'package:plastic_warriors/enemies/mini_boss.dart';
 import 'package:plastic_warriors/main.dart';
 import 'package:plastic_warriors/utils/custom_sprite_animation_widget.dart';
 import 'package:plastic_warriors/utils/enemy_sprite_sheet.dart';
@@ -12,6 +11,7 @@ import 'package:plastic_warriors/utils/localization/strings_location.dart';
 import 'package:plastic_warriors/utils/npc_sprite_sheet.dart';
 import 'package:plastic_warriors/utils/player_sprite_sheet.dart';
 import 'package:plastic_warriors/utils/sounds.dart';
+import 'package:plastic_warriors/enemies/greedy_stone_bullet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -20,11 +20,19 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
   double attack = 40;
 
   bool addChild = false;
-  bool firstSeePlayer = false;
+  final bool withScreenEffect;
+  final AttackFromEnum attackFrom;
+
+  final bool blockShootWithoutBullet;
+
   List<Enemy> childrenEnemy = [];
 
-  Greedy_Stone(this.initPosition)
-      : super(
+  Greedy_Stone(
+    this.initPosition, {
+    this.withScreenEffect = true,
+    this.blockShootWithoutBullet = false,
+    this.attackFrom = AttackFromEnum.ENEMY,
+  }) : super(
           animation: EnemySpriteSheet.greedyStoneAnimations(),
           position: initPosition,
           size: Vector2(tileSize, tileSize),
@@ -51,37 +59,11 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
 
   @override
   void update(double dt) {
-    if (!firstSeePlayer) {
-      this.seePlayer(
-        observed: (p) {
-          firstSeePlayer = true;
-          gameRef.camera.moveToTargetAnimated(
-            target: this,
-            zoom: 2,
-            onComplete: _showConversation,
-          );
-        },
-        radiusVision: tileSize * 6,
-      );
-    }
-
-    if (life < 150 && childrenEnemy.length == 0) {
-      addChildInMap(dt);
-    }
-
-    if (life < 100 && childrenEnemy.length == 1) {
-      addChildInMap(dt);
-    }
-
-    if (life < 50 && childrenEnemy.length == 2) {
-      addChildInMap(dt);
-    }
-
-    this.seeAndMoveToPlayer(
-      closePlayer: (player) {
+    this.seePlayer(
+      observed: (player) {
         execAttack();
       },
-      radiusVision: tileSize * 4,
+      radiusVision: tileSize * 8,
     );
 
     super.update(dt);
@@ -104,60 +86,8 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
     super.die();
   }
 
-  void addChildInMap(double dt) {
-    if (checkInterval('addChild', 2000, dt)) {
-      Vector2 positionExplosion = Vector2.zero();
-
-      switch (this.directionThePlayerIsIn()) {
-        case Direction.left:
-          positionExplosion = this.position.translated(width * -2, 0);
-          break;
-        case Direction.right:
-          positionExplosion = this.position.translated(width * 2, 0);
-          break;
-        case Direction.up:
-          positionExplosion = this.position.translated(0, height * -2);
-          break;
-        case Direction.down:
-          positionExplosion = this.position.translated(0, height * 2);
-          break;
-        case Direction.upLeft:
-        case Direction.upRight:
-        case Direction.downLeft:
-        case Direction.downRight:
-          break;
-        default:
-      }
-
-      Enemy e = childrenEnemy.length == 2
-          ? MiniBoss(
-              Vector2(
-                positionExplosion.x,
-                positionExplosion.y,
-              ),
-            )
-          : Imp(
-              Vector2(
-                positionExplosion.x,
-                positionExplosion.y,
-              ),
-            );
-
-      gameRef.add(
-        AnimatedGameObject(
-          animation: GameSpriteSheet.smokeExplosion(),
-          position: positionExplosion,
-          size: Vector2(32, 32),
-          loop: false,
-        ),
-      );
-
-      childrenEnemy.add(e);
-      gameRef.add(e);
-    }
-  }
-
   void execAttack() {
+    /*
     this.simpleAttackMelee(
       size: Vector2.all(tileSize * 0.62),
       damage: attack,
@@ -167,6 +97,52 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
         Sounds.attackEnemyMelee();
       },
     );
+    */
+    simpleAttackRangeByAngle(
+      animation: EnemySpriteSheet.greedyStoneBulletAnimation(),
+      size: Vector2.all(24),
+      angle: radAngle,
+      damage: 10,
+      speed: 1000,
+      onDestroy: () {
+        Sounds.explosion();
+      },
+      collision: RectangleHitbox(
+        size: Vector2.all(16),
+        position: Vector2.all(16) / 2,
+      ),
+      marginFromOrigin: -3,
+      attackFrom: attackFrom,
+    );
+
+    gameRef.add(
+      GreedyStoneBullet(
+        absoluteCenter,
+        _getAnglecapsule(radAngle),
+      ),
+    );
+  }
+
+  double radAngle = 0;
+
+  void changeAngle(double radAngle) {
+    this.radAngle = radAngle;
+    //angle = calculeNewAngle(radAngle);
+  }
+
+  double calculeNewAngle(double radAngle) {
+    return radAngle + ((isFlippedVertically && radAngle != 0) ? pi : 0);
+  }
+
+  double _getAnglecapsule(double radAngle) {
+    double angle = radAngle + pi / 2;
+    Direction angleDirection = BonfireUtil.getDirectionFromAngle(angle);
+    if (angleDirection == Direction.down ||
+        angleDirection == Direction.downLeft ||
+        angleDirection == Direction.downRight) {
+      angle += pi;
+    }
+    return angle;
   }
 
   @override
@@ -215,6 +191,7 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
             ..style = PaintingStyle.fill);
   }
 
+/*
   void _showConversation() {
     Sounds.interaction();
     TalkDialog.show(
@@ -265,6 +242,7 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
       ],
     );
   }
+  
 
   void addInitChild() {
     addImp(width * -2, 0);
@@ -283,4 +261,5 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
     );
     gameRef.add(Imp(p));
   }
+  */
 }

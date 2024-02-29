@@ -9,7 +9,7 @@ import 'package:plastic_warriors/utils/sounds.dart';
 
 class LoveStone1 extends GameDecoration {
   double dt = 0;
-  final double timeToReload = 3;
+  // final double timeToReload = 3;
   final Color flash = const Color(0xFF73eff7).withOpacity(0.5);
   final bool withScreenEffect;
   final AttackFromEnum attackFrom;
@@ -17,7 +17,7 @@ class LoveStone1 extends GameDecoration {
   final bool blockShootWithoutBullet;
   SpriteAnimation? _normalAnimation;
   SpriteAnimation? _reloadAnimation;
-  int _countBullet = 10;
+  // int _countBullet = 10;
   bool reloading = false;
   double currentTimeReload = 0;
   LoveStone1(
@@ -35,14 +35,6 @@ class LoveStone1 extends GameDecoration {
   void update(double dt) {
     this.dt = dt;
 
-    if (reloading) {
-      currentTimeReload += dt;
-      if (currentTimeReload >= timeToReload) {
-        reloading = false;
-        _countBullet = 10;
-        setAnimation(_normalAnimation);
-      }
-    }
     super.update(dt);
   }
 
@@ -55,7 +47,7 @@ class LoveStone1 extends GameDecoration {
   }
 
   void execShoot(double damage) {
-    if (_countBullet <= 0 && blockShootWithoutBullet) {
+    if (blockShootWithoutBullet) {
       return;
     }
     playSpriteAnimationOnce(
@@ -66,7 +58,7 @@ class LoveStone1 extends GameDecoration {
       size: Vector2.all(24),
       angle: radAngle,
       damage: damage,
-      speed: 300,
+      speed: 2000,
       onDestroy: () {
         Sounds.explosion();
       },
@@ -84,12 +76,6 @@ class LoveStone1 extends GameDecoration {
         _getAnglecapsule(radAngle),
       ),
     );
-    _countBullet--;
-    if (_countBullet == 0) {
-      currentTimeReload = 0;
-      reloading = true;
-      setAnimation(_reloadAnimation);
-    }
   }
 
   double radAngle = 0;
@@ -119,10 +105,4 @@ class LoveStone1 extends GameDecoration {
       PlayerSpriteSheet.gunReload(),
     );
   }
-
-  void addBullet(int count) {
-    _countBullet = count;
-  }
-
-  int get countBullet => _countBullet;
 }
