@@ -61,7 +61,7 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
   void update(double dt) {
     this.seePlayer(
       observed: (player) {
-        execAttack();
+        execAttack(player);
       },
       radiusVision: tileSize * 8,
     );
@@ -86,7 +86,7 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
     super.die();
   }
 
-  void execAttack() {
+  void execAttack(Player player) {
     /*
     this.simpleAttackMelee(
       size: Vector2.all(tileSize * 0.62),
@@ -98,12 +98,17 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
       },
     );
     */
+
+    Vector2 direction =
+        player.position - this.position; // this refers to the GreedyStone
+    double angle = direction.angleTo(Vector2(0, -1));
+
     simpleAttackRangeByAngle(
       animation: EnemySpriteSheet.greedyStoneBulletAnimation(),
-      size: Vector2.all(24),
-      angle: radAngle,
+      size: Vector2.all(23),
+      angle: angle,
       damage: 10,
-      speed: 1000,
+      speed: 300,
       onDestroy: () {
         Sounds.explosion();
       },
@@ -118,7 +123,7 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
     gameRef.add(
       GreedyStoneBullet(
         absoluteCenter,
-        _getAnglecapsule(radAngle),
+        angle,
       ),
     );
   }

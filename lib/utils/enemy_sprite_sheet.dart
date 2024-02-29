@@ -115,7 +115,7 @@ class EnemySpriteSheet {
 
   static Future<SpriteAnimation> greedyStoneBulletAnimation() =>
       SpriteAnimation.load(
-        'enemy/greedy_stone/greedy-stone-animation.png',
+        'enemy/fireball_right.png',
         SpriteAnimationData.sequenced(
           amount: 3,
           stepTime: 0.1,

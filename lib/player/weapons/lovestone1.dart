@@ -40,7 +40,7 @@ class LoveStone1 extends GameDecoration {
 
   @override
   Future<void> onLoad() async {
-    _reloadAnimation = await PlayerSpriteSheet.gunReload();
+    //_reloadAnimation = await PlayerSpriteSheet.gunReload();
     _normalAnimation = await PlayerSpriteSheet.lovestone1();
     anchor = Anchor.center;
     return super.onLoad();
@@ -58,7 +58,7 @@ class LoveStone1 extends GameDecoration {
       size: Vector2.all(24),
       angle: radAngle,
       damage: damage,
-      speed: 2000,
+      speed: 300,
       onDestroy: () {
         Sounds.explosion();
       },
