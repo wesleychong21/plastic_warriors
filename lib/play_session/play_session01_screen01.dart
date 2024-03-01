@@ -64,7 +64,6 @@ class _GameState extends State<Play_Session01_Screen01> {
           forceTileSize: Vector2(tileSize, tileSize),
           objectsBuilder: {
             'bagMonster': (p) => BagMonster(p.position),
-            'imp': (p) => Imp(p.position),
             'greedyStone': (p) => Greedy_Stone(p.position),
           },
         ),
@@ -73,7 +72,7 @@ class _GameState extends State<Play_Session01_Screen01> {
         backgroundColor: Colors.grey[900]!,
         cameraConfig: CameraConfig(
           speed: 3,
-          zoom: getZoomFromMaxVisibleTile(context, tileSize, 18),
+          zoom: getZoomFromMaxVisibleTile(context, tileSize, 19),
         ),
       ),
     );

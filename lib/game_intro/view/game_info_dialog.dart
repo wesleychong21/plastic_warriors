@@ -59,32 +59,10 @@ class GameInfoDialog extends StatelessWidget {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () => launchUrlString(Urls.howWeBuilt),
                       ),
-                      TextSpan(
-                        text: l10n.inFlutterAndGrabThe,
-                      ),
-                      TextSpan(
-                        text: l10n.openSourceCode,
-                        style: linkStyle,
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () => launchUrlString(Urls.githubRepo),
-                      ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 24),
-                Text(
-                  l10n.otherLinks,
-                  style: bodyStyle,
-                ),
-                const SizedBox(height: 16),
-                RichText(
-                  text: TextSpan(
-                    text: l10n.flutterGames,
-                    style: linkStyle,
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => launchUrlString(Urls.flutterGames),
-                  ),
-                ),
+
                 /*
                 RichText(
                   text: TextSpan(

@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/game/game.dart';
+import 'package:plastic_warriors/game_intro/view/game_win_dialog.dart';
 import 'package:plastic_warriors/player/ari.dart';
 import 'package:plastic_warriors/player/weapons/lovestone1.dart';
 import 'package:plastic_warriors/utils/dialogs.dart';
@@ -37,6 +38,7 @@ class Scene1Controller extends GameComponent {
       if (gameRef.enemies().isEmpty) {
         if (!showGameWin) {
           _showDialogGameWin();
+          gameRef.pauseEngine();
         }
       }
     }
@@ -160,9 +162,7 @@ class Scene1Controller extends GameComponent {
   }
 
   void _showDialogGameWin() {
-    Dialogs.showCongratulations(
-      context,
-    );
+    Navigator.of(context).push(GameWinDialog.route());
     showGameWin = false;
   }
 

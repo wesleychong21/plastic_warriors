@@ -89,7 +89,7 @@
     "@learn": {
         "description": "Text shown in the game info popup"
     },
-    "howWeBuiltPlasticWarriors": "how we built Plastic Warriors",
+    "howWeBuiltPlasticWarriors": "About Plastic Warriors Story",
     "@howWeBuiltPlasticWarriors": {
         "description": "Text shown in the game info popup"
     },

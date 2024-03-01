@@ -14,7 +14,7 @@ class GreedyStoneBullet extends GameDecoration
             size: Vector2(20.8, 20.8)) {
     this.angle = angle;
 
-    speed = 1000;
+    speed = 300;
     movementOnlyVisible = false;
     addForce(
       ResistanceForce2D(
@@ -38,12 +38,11 @@ class GreedyStoneBullet extends GameDecoration
 
   @override
   void update(double dt) {
-    /*
     if (!removing && isStopped()) {
       removing = true;
-      //_removeCapsule();
+      _removeCapsule();
     }
-    */
+
     super.update(dt);
   }
 
