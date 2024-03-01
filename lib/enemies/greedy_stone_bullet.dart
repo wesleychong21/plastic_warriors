@@ -13,12 +13,13 @@ class GreedyStoneBullet extends GameDecoration
             position: p,
             size: Vector2(20.8, 20.8)) {
     this.angle = angle;
-    speed = 300;
+
+    speed = 1000;
     movementOnlyVisible = false;
     addForce(
       ResistanceForce2D(
-        id: 3,
-        value: Vector2.all(6),
+        id: 'id',
+        value: Vector2.all(23),
       ),
     );
   }
@@ -37,16 +38,18 @@ class GreedyStoneBullet extends GameDecoration
 
   @override
   void update(double dt) {
+    /*
     if (!removing && isStopped()) {
       removing = true;
-      _removeCapsule();
+      //_removeCapsule();
     }
+    */
     super.update(dt);
   }
 
   @override
   bool onBlockMovement(Set<Vector2> intersectionPoints, GameComponent other) {
-    if (other is Enemy || other is GreedyStoneBullet) {
+    if (other is GreedyStoneBullet) {
       return false;
     }
     return super.onBlockMovement(intersectionPoints, other);

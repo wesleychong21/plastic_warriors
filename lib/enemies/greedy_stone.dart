@@ -116,14 +116,14 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
       animation: EnemySpriteSheet.greedyStoneBulletAnimation(),
       size: Vector2.all(23),
       angle: angle,
-      damage: 10,
+      damage: 20,
       speed: 300,
       onDestroy: () {
         Sounds.explosion();
       },
       collision: RectangleHitbox(
-        size: Vector2.all(16),
-        position: Vector2.all(16) / 2,
+        size: Vector2.all(23),
+        position: Vector2.all(23) / 2,
       ),
       marginFromOrigin: -3,
       attackFrom: attackFrom,

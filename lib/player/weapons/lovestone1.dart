@@ -99,10 +99,4 @@ class LoveStone1 extends GameDecoration {
     }
     return angle;
   }
-
-  void reload() {
-    playSpriteAnimationOnce(
-      PlayerSpriteSheet.gunReload(),
-    );
-  }
 }

@@ -16,7 +16,7 @@ class BulletCapsule extends GameDecoration
           size: Vector2.all(16),
         ) {
     this.angle = angle;
-    speed = 100;
+    speed = 200;
     movementOnlyVisible = false;
     addForce(
       ResistanceForce2D(

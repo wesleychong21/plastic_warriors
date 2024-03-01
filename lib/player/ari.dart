@@ -1,4 +1,5 @@
 import 'dart:async' as async;
+import 'dart:io';
 
 import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/enemies/bag_monster.dart';
@@ -156,9 +157,8 @@ class Ari extends SimplePlayer with Lighting, BlockMovementCollision {
 
         //if class LoveStone1 is added to this player
         if (lastAttackTime > attackCooldown) {
-          for (var enemy in enemies) {
-            ariExecuteAttack(enemy);
-          }
+          var enemy = enemies[0];
+          ariExecuteAttack(enemy);
           lastAttackTime = 0.0;
         }
       },
