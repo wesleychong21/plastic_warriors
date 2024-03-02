@@ -28,7 +28,7 @@ class LoveStone1 extends GameDecoration {
   }) : super.withAnimation(
           animation: PlayerSpriteSheet.lovestone1(),
           position: position,
-          size: Vector2.all(16),
+          size: Vector2.all(8),
         );
 
   @override

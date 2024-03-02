@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:bonfire/bonfire.dart';
+import 'package:plastic_warriors/enemies/bag_monster.dart';
 import 'package:plastic_warriors/enemies/imp.dart';
+import 'package:plastic_warriors/enemies/mini_boss.dart';
 import 'package:plastic_warriors/main.dart';
 import 'package:plastic_warriors/utils/custom_sprite_animation_widget.dart';
 import 'package:plastic_warriors/utils/enemy_sprite_sheet.dart';
@@ -18,7 +20,9 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
   final Vector2 initPosition;
   double attack = 40;
 
-  bool addChild = false;
+  bool addChild = true;
+
+  bool firstSeePlayer = false;
   final bool withScreenEffect;
   final AttackFromEnum attackFrom;
 
@@ -64,16 +68,21 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
 
   @override
   void update(double dt) {
-    lastAttackTime += dt;
-    this.seePlayer(
-      observed: (player) {
-        if (lastAttackTime > attackCooldown) {
-          execAttack(player);
-          lastAttackTime = 0.0;
-        }
-      },
-      radiusVision: tileSize * 8,
-    );
+    if (life < 200 && childrenEnemy.length == 0) {
+      addChildInMap(dt);
+    }
+
+    if (life < 150 && childrenEnemy.length == 0) {
+      addChildInMap(dt);
+    }
+
+    if (life < 100 && childrenEnemy.length == 1) {
+      addChildInMap(dt);
+    }
+
+    if (life < 50 && childrenEnemy.length == 2) {
+      addChildInMap(dt);
+    }
 
     super.update(dt);
   }
@@ -125,7 +134,7 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
         size: Vector2.all(23),
         position: Vector2.all(23) / 2,
       ),
-      marginFromOrigin: -3,
+      marginFromOrigin: 10,
       attackFrom: attackFrom,
     );
 
@@ -192,5 +201,58 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
             ..color = Colors.orange
             ..strokeWidth = 1
             ..style = PaintingStyle.fill);
+  }
+
+  void addChildInMap(double dt) {
+    if (checkInterval('addChild', 2000, dt)) {
+      Vector2 positionExplosion = Vector2.zero();
+
+      switch (this.directionThePlayerIsIn()) {
+        case Direction.left:
+          positionExplosion = this.position.translated(width * -2, 0);
+          break;
+        case Direction.right:
+          positionExplosion = this.position.translated(width * 2, 0);
+          break;
+        case Direction.up:
+          positionExplosion = this.position.translated(0, height * -2);
+          break;
+        case Direction.down:
+          positionExplosion = this.position.translated(0, height * 2);
+          break;
+        case Direction.upLeft:
+        case Direction.upRight:
+        case Direction.downLeft:
+        case Direction.downRight:
+          break;
+        default:
+      }
+
+      Enemy e = childrenEnemy.length == 2
+          ? BagMonster(
+              Vector2(
+                positionExplosion.x,
+                positionExplosion.y,
+              ),
+            )
+          : MiniBoss(
+              Vector2(
+                positionExplosion.x,
+                positionExplosion.y,
+              ),
+            );
+
+      gameRef.add(
+        AnimatedGameObject(
+          animation: GameSpriteSheet.smokeExplosion(),
+          position: positionExplosion,
+          size: Vector2(32, 32),
+          loop: false,
+        ),
+      );
+
+      childrenEnemy.add(e);
+      gameRef.add(e);
+    }
   }
 }

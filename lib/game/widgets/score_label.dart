@@ -31,10 +31,6 @@ class ScoreLabel extends StatelessWidget {
           padding: const EdgeInsets.all(10),
           child: Row(
             children: [
-              Assets.images.trophy.image(
-                width: 40,
-                height: 40,
-              ),
               const SizedBox(width: 10),
               Text(
                 l10n.gameScoreLabel(score),

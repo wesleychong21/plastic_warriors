@@ -65,14 +65,15 @@ class _GameState extends State<Play_Session01_Screen01> {
           objectsBuilder: {
             'bagMonster': (p) => BagMonster(p.position),
             'greedyStone': (p) => Greedy_Stone(p.position),
+            'potionLife': (p) => PotionLife(p.position, 100),
           },
         ),
         components: [GameController(), Scene1Controller()],
         interface: AriInterface(),
         backgroundColor: Colors.grey[900]!,
         cameraConfig: CameraConfig(
-          speed: 3,
-          zoom: getZoomFromMaxVisibleTile(context, tileSize, 19),
+          speed: 2,
+          zoom: getZoomFromMaxVisibleTile(context, tileSize, 21),
         ),
       ),
     );

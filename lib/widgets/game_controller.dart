@@ -24,7 +24,7 @@ class GameController extends GameComponent {
       context,
       () {
         Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => Game()),
+          MaterialPageRoute(builder: (context) => BattleGameView()),
           (Route<dynamic> route) => false,
         );
       },

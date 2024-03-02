@@ -51,7 +51,9 @@ class Sounds {
 
   static void playScene1Sound() async {
     await FlameAudio.bgm.stop();
-    FlameAudio.bgm.play('scene1_bg.mp3', volume: 0.2);
+    // stop all sound
+
+    FlameAudio.bgm.play('scene1_bg.mp3', volume: 0.1);
   }
 
   static void pauseBackgroundSound() {

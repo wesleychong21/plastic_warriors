@@ -26,13 +26,6 @@ enum Sfx {
 }
 
 const sfx = {
-  Sfx.jump: 'sfx/Dash_Jump.mp3',
-  Sfx.run: 'sfx/Dash_Footstep_Run.mp3',
-  Sfx.doubleJump: 'sfx/Phoenix_DOUBLEJump.wav',
-  Sfx.phoenixJump: 'sfx/Phoenix_Jump.wav',
-  Sfx.acornPickup: 'sfx/Dash_AcornPickup.mp3',
-  Sfx.eggPickup: 'sfx/Dash_EggPickup.mp3',
-  Sfx.featherPowerup: 'sfx/Dash_FeatherPowerup.mp3',
   Sfx.buttonTap: 'audio/button_tap.mp3',
   Sfx.congrats: 'audio/congrats.mp3',
 };

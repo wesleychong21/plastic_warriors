@@ -75,9 +75,6 @@ class $AssetsImagesGen {
   AssetGenImage get tapToJumpSpacebar =>
       const AssetGenImage('assets/images/tap_to_jump_spacebar.png');
 
-  /// File path: assets/images/trophy.png
-  AssetGenImage get trophy => const AssetGenImage('assets/images/trophy.png');
-
   /// List of all assets
   List<AssetGenImage> get values => [
         autoRunInstruction,
@@ -95,8 +92,7 @@ class $AssetsImagesGen {
         portalInstruction,
         powerfulWingsInstruction,
         tapToJumpInstruction,
-        tapToJumpSpacebar,
-        trophy
+        tapToJumpSpacebar
       ];
 }
 
@@ -146,33 +142,9 @@ class $AssetsSfxGen {
   /// File path: assets/sfx/Dash_AcornPickup.mp3
   String get dashAcornPickup => 'assets/sfx/Dash_AcornPickup.mp3';
 
-  /// File path: assets/sfx/Dash_EggPickup.mp3
-  String get dashEggPickup => 'assets/sfx/Dash_EggPickup.mp3';
-
-  /// File path: assets/sfx/Dash_FeatherPowerup.mp3
-  String get dashFeatherPowerup => 'assets/sfx/Dash_FeatherPowerup.mp3';
-
-  /// File path: assets/sfx/Dash_Footstep_Run.mp3
-  String get dashFootstepRun => 'assets/sfx/Dash_Footstep_Run.mp3';
-
-  /// File path: assets/sfx/Dash_Jump.mp3
-  String get dashJump => 'assets/sfx/Dash_Jump.mp3';
-
-  /// File path: assets/sfx/Phoenix_DOUBLEJump.wav
-  String get phoenixDOUBLEJump => 'assets/sfx/Phoenix_DOUBLEJump.wav';
-
-  /// File path: assets/sfx/Phoenix_Jump.wav
-  String get phoenixJump => 'assets/sfx/Phoenix_Jump.wav';
-
   /// List of all assets
   List<String> get values => [
         dashAcornPickup,
-        dashEggPickup,
-        dashFeatherPowerup,
-        dashFootstepRun,
-        dashJump,
-        phoenixDOUBLEJump,
-        phoenixJump
       ];
 }
 

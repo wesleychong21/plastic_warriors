@@ -2,6 +2,7 @@ import 'dart:async' as async;
 import 'dart:io';
 
 import 'package:bonfire/bonfire.dart';
+import 'package:plastic_warriors/decoration/potion_life.dart';
 import 'package:plastic_warriors/enemies/bag_monster.dart';
 import 'package:plastic_warriors/main.dart';
 import 'package:plastic_warriors/utils/functions.dart';
@@ -12,7 +13,8 @@ import 'package:plastic_warriors/utils/sounds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class Ari extends SimplePlayer with Lighting, BlockMovementCollision {
+class Ari extends SimplePlayer
+    with Lighting, BlockMovementCollision, Sensor<PotionLife> {
   static final Ari instance = Ari._privateConstructor();
 
   Ari._privateConstructor()
@@ -72,8 +74,6 @@ class Ari extends SimplePlayer with Lighting, BlockMovementCollision {
 
   @override
   void onMount() {
-    //add(lovestone = VacuumWeapon(Vector2(28, 0), color));
-
     super.onMount();
   }
 
@@ -164,6 +164,11 @@ class Ari extends SimplePlayer with Lighting, BlockMovementCollision {
       },
     );
     super.update(dt);
+  }
+
+  @override
+  onContact(PotionLife potion) {
+    this.addLife(100);
   }
 
   void ariExecuteAttack(Enemy closestEnemy) {

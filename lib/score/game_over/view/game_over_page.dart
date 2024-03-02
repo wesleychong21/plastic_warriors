@@ -118,7 +118,6 @@ class _ScoreWidget extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Assets.images.trophy.image(width: 40, height: 40),
           const SizedBox(width: 8),
           RichText(
             text: TextSpan(

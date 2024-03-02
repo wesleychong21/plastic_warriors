@@ -21,8 +21,9 @@ import 'package:plastic_warriors/enemies/imp.dart';
 import 'package:plastic_warriors/enemies/mini_boss.dart';
 import 'package:plastic_warriors/interface/ari_interface.dart';
 import 'package:plastic_warriors/game/widgets/widgets.dart' as gameWidgets;
+import 'package:provider/provider.dart';
 
-class BattleGameView extends StatelessWidget {
+class BattleGameView extends StatefulWidget {
   const BattleGameView({Key? key}) : super(key: key);
 
   static PageRoute<void> route() {
@@ -31,6 +32,11 @@ class BattleGameView extends StatelessWidget {
     );
   }
 
+  @override
+  _BattleGameViewState createState() => _BattleGameViewState();
+}
+
+class _BattleGameViewState extends State<BattleGameView> {
   @override
   Widget build(BuildContext context) {
     return PageWithBackground(
@@ -47,5 +53,12 @@ class BattleGameView extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    // Dispose of your controllers and any other cleanup code here
+    Sounds.stopBackgroundSound();
+    super.dispose();
   }
 }

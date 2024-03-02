@@ -15,7 +15,7 @@ class MiniBoss extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
       : super(
           animation: EnemySpriteSheet.miniBossAnimations(),
           position: initPosition,
-          size: Vector2(tileSize * 0.68, tileSize * 0.93),
+          size: Vector2(tileSize, tileSize),
           speed: tileSize * 1.5,
           life: 150,
         );

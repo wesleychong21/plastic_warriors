@@ -82,6 +82,7 @@ class Scene1Controller extends GameComponent {
       ari.showEmote();
     }
     Sounds.interaction();
+    gameRef.pauseEngine();
     TalkDialog.show(
       gameRef.context,
       [
@@ -110,6 +111,7 @@ class Scene1Controller extends GameComponent {
       },
       onFinish: () {
         Sounds.interaction();
+        gameRef.resumeEngine();
         showDrK = true;
       },
       logicalKeyboardKeysToNext: [
@@ -120,6 +122,7 @@ class Scene1Controller extends GameComponent {
 
   void _showDialogGScene1Story1B() {
     Sounds.interaction();
+    gameRef.pauseEngine();
     TalkDialog.show(
       gameRef.context,
       [
@@ -152,7 +155,7 @@ class Scene1Controller extends GameComponent {
       },
       onFinish: () {
         Sounds.interaction();
-
+        gameRef.resumeEngine();
         _addLoveStone1();
       },
       logicalKeyboardKeysToNext: [
@@ -182,6 +185,7 @@ class Scene1Controller extends GameComponent {
       gameRef.player?.stopMove();
     }
     Sounds.interaction();
+    gameRef.pauseEngine();
     TalkDialog.show(
       gameRef.context,
       [
@@ -218,6 +222,7 @@ class Scene1Controller extends GameComponent {
       },
       onFinish: () {
         Sounds.interaction();
+        gameRef.resumeEngine();
       },
       logicalKeyboardKeysToNext: [
         LogicalKeyboardKey.space,
