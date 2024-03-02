@@ -209,5 +209,9 @@
     "downloadAppLabel": "Download the app",
     "@downloadAppLabel": {
         "description": "Button lable for the app download"
+    },
+    "kahyanName": "Zace Leong Kah Yan (Project Manager)",
+    "@kahyanName": {
+        "description": "Text for info dialog"
     }
 }

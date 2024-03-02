@@ -24,7 +24,7 @@ class GameInfoDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final bodyStyle = AppTextStyles.bodyLarge;
-    const highlightColor = Color(0xFF9CECCD);
+    const highlightColor = Color.fromARGB(255, 199, 233, 220);
     final linkStyle = AppTextStyles.bodyLarge.copyWith(
       color: highlightColor,
       decoration: TextDecoration.underline,
@@ -42,11 +42,6 @@ class GameInfoDialog extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 32),
             child: Column(
               children: [
-                Text(
-                  l10n.aboutPlasticWarriors,
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-                const SizedBox(height: 24),
                 RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
@@ -62,25 +57,56 @@ class GameInfoDialog extends StatelessWidget {
                     ],
                   ),
                 ),
-
-                /*
+                const SizedBox(height: 24),
+                Text(
+                  "Team",
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                const SizedBox(height: 24),
                 RichText(
+                  textAlign: TextAlign.center,
                   text: TextSpan(
-                    text: l10n.privacyPolicy,
-                    style: linkStyle,
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => launchUrlString(Urls.privacyPolicy),
+                    style: bodyStyle,
+                    children: [
+                      TextSpan(
+                        text: "Wesley Chong (Game Producer & Lead Developer)",
+                        style: linkStyle,
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () => launchUrlString(Urls.wesleyLink),
+                      ),
+                    ],
                   ),
                 ),
+                const SizedBox(height: 24),
                 RichText(
+                  textAlign: TextAlign.center,
                   text: TextSpan(
-                    text: l10n.termsOfService,
-                    style: linkStyle,
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => launchUrlString(Urls.termsOfService),
+                    style: bodyStyle,
+                    children: [
+                      TextSpan(
+                        text: "Zace Leong Kah Yan (Project Manager)",
+                        style: linkStyle,
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () => launchUrlString(Urls.kahyanLink),
+                      ),
+                    ],
                   ),
                 ),
-                */
+                const SizedBox(height: 24),
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    style: bodyStyle,
+                    children: [
+                      TextSpan(
+                        text: "Tan Eng Hao Louis (Developer - Google wallet)",
+                        style: linkStyle,
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () => launchUrlString(Urls.louistanLink),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
