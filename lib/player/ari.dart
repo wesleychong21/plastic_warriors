@@ -13,8 +13,7 @@ import 'package:plastic_warriors/utils/sounds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class Ari extends SimplePlayer
-    with Lighting, BlockMovementCollision, Sensor<PotionLife> {
+class Ari extends SimplePlayer with Lighting, BlockMovementCollision {
   static final Ari instance = Ari._privateConstructor();
 
   Ari._privateConstructor()
@@ -164,11 +163,6 @@ class Ari extends SimplePlayer
       },
     );
     super.update(dt);
-  }
-
-  @override
-  onContact(PotionLife potion) {
-    this.addLife(100);
   }
 
   void ariExecuteAttack(Enemy closestEnemy) {
