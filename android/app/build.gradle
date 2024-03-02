@@ -23,7 +23,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "my.bnext.plasticwarrioes"
+    namespace "my.bnext.plasticwarriors"
     compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
