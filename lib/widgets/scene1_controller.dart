@@ -90,7 +90,7 @@ class Scene1Controller extends GameComponent {
             TextSpan(
                 text: "What is this?", style: TextStyle(fontSize: _fontSize))
           ],
-          person: Image.asset('images/Ari-expression1.webp'),
+          person: Image.asset('assets/images/Ari-expression1.webp'),
           personSayDirection: PersonSayDirection.LEFT,
         ),
         Say(
@@ -129,21 +129,21 @@ class Scene1Controller extends GameComponent {
                 text: "Young man! Danger!",
                 style: TextStyle(fontSize: _fontSize))
           ],
-          person: Image.asset('images/DrK-expression1.webp'),
+          person: Image.asset('assets/images/DrK-expression1.webp'),
           personSayDirection: PersonSayDirection.RIGHT,
         ),
         Say(
           text: [
             TextSpan(text: "Catch this!", style: TextStyle(fontSize: _fontSize))
           ],
-          person: Image.asset('images/DrK-heart.webp'),
+          person: Image.asset('assets/images/DrK-heart.webp'),
           personSayDirection: PersonSayDirection.RIGHT,
         ),
         Say(
           text: [
             TextSpan(text: "Huh?!", style: TextStyle(fontSize: _fontSize))
           ],
-          person: Image.asset('images/Ari-heart.webp'),
+          person: Image.asset('assets/images/Ari-heart.webp'),
           personSayDirection: PersonSayDirection.LEFT,
         ),
       ],
@@ -191,7 +191,7 @@ class Scene1Controller extends GameComponent {
                 text: "What just happened..?",
                 style: TextStyle(fontSize: _fontSize))
           ],
-          person: Image.asset('images/Ari-expression1.webp'),
+          person: Image.asset('assets/images/Ari-expression1.webp'),
           personSayDirection: PersonSayDirection.LEFT,
         ),
         Say(
@@ -200,7 +200,7 @@ class Scene1Controller extends GameComponent {
                 text: "The stone actually worked!",
                 style: TextStyle(fontSize: _fontSize))
           ],
-          person: Image.asset('images/girl-expression1.webp'),
+          person: Image.asset('assets/images/girl-expression1.webp'),
           personSayDirection: PersonSayDirection.RIGHT,
         ),
         Say(
@@ -209,7 +209,7 @@ class Scene1Controller extends GameComponent {
                 text: "Please found the greedy stone and destory it!",
                 style: TextStyle(fontSize: _fontSize))
           ],
-          person: Image.asset('images/girl-stone.webp'),
+          person: Image.asset('assets/images/girl-stone.webp'),
           personSayDirection: PersonSayDirection.RIGHT,
         ),
       ],

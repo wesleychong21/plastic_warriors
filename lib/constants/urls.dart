@@ -14,7 +14,7 @@ class Urls {
       'https://apps.apple.com/app/super-dash-flutter-game/id6473050393';
 
   static const playStoreLink =
-      'https://play.google.com/store/apps/details?id=my.bnext.plasticwarrioes';
+      'https://play.google.com/store/apps/details?id=my.bnext.plasticwarriors';
 
   static const String music1Link =
       'https://www.youtube.com/watch?v=pMMHNDxXLIg';
