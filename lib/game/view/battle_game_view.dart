@@ -8,6 +8,7 @@ import 'package:plastic_warriors/game/game.dart';
 import 'package:plastic_warriors/game_intro/game_intro.dart';
 import 'package:plastic_warriors/game/scenes/scenes.dart';
 import 'package:plastic_warriors/play_session/play_session01_screen01.dart';
+import 'package:plastic_warriors/play_session/play_session01_screen02.dart';
 import 'package:plastic_warriors/player/ari.dart';
 import 'package:plastic_warriors/utils/sounds.dart';
 import 'package:plastic_warriors/widgets/game_controller.dart';
@@ -24,11 +25,13 @@ import 'package:plastic_warriors/game/widgets/widgets.dart' as gameWidgets;
 import 'package:provider/provider.dart';
 
 class BattleGameView extends StatefulWidget {
-  const BattleGameView({Key? key}) : super(key: key);
+  final int level;
 
-  static PageRoute<void> route() {
+  BattleGameView({required this.level});
+
+  static PageRoute<void> route(int level) {
     return PageRouteBuilder(
-      pageBuilder: (_, __, ___) => const BattleGameView(),
+      pageBuilder: (_, __, ___) => BattleGameView(level: level),
     );
   }
 
@@ -39,6 +42,8 @@ class BattleGameView extends StatefulWidget {
 class _BattleGameViewState extends State<BattleGameView> {
   @override
   Widget build(BuildContext context) {
+    var level = 1;
+
     return PageWithBackground(
       background: const gameWidgets.GameBackground(),
       child: Column(
@@ -48,7 +53,9 @@ class _BattleGameViewState extends State<BattleGameView> {
           SizedBox(
             height: MediaQuery.sizeOf(context).height,
             //width: 360,
-            child: Play_Session01_Screen01(),
+            child: level == 1
+                ? Play_Session01_Screen01()
+                : Play_Session01_Screen02(),
           ),
         ],
       ),

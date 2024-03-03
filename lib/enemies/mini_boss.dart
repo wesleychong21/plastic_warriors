@@ -98,7 +98,7 @@ class MiniBoss extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
 
   void execAttack() {
     this.simpleAttackMelee(
-      size: Vector2.all(tileSize * 0.62),
+      size: Vector2.all(tileSize),
       damage: attack / 3,
       interval: 300,
       animationRight: EnemySpriteSheet.enemyAttackEffectRight(),

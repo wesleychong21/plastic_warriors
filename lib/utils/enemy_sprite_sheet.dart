@@ -227,7 +227,7 @@ class EnemySpriteSheet {
         SpriteAnimationData.sequenced(
           amount: 4,
           stepTime: 0.1,
-          textureSize: Vector2(16, 24),
+          textureSize: Vector2(32, 32),
         ),
       );
 
@@ -238,7 +238,7 @@ class EnemySpriteSheet {
           SpriteAnimationData.sequenced(
             amount: 4,
             stepTime: 0.1,
-            textureSize: Vector2(16, 24),
+            textureSize: Vector2.all(32),
           ),
         ),
         idleRight: SpriteAnimation.load(
@@ -246,7 +246,7 @@ class EnemySpriteSheet {
           SpriteAnimationData.sequenced(
             amount: 4,
             stepTime: 0.1,
-            textureSize: Vector2(16, 24),
+            textureSize: Vector2.all(32),
           ),
         ),
         runLeft: SpriteAnimation.load(
@@ -254,7 +254,7 @@ class EnemySpriteSheet {
           SpriteAnimationData.sequenced(
             amount: 4,
             stepTime: 0.1,
-            textureSize: Vector2(16, 24),
+            textureSize: Vector2.all(32),
           ),
         ),
         runRight: SpriteAnimation.load(
@@ -262,7 +262,7 @@ class EnemySpriteSheet {
           SpriteAnimationData.sequenced(
             amount: 4,
             stepTime: 0.1,
-            textureSize: Vector2(16, 24),
+            textureSize: Vector2.all(32),
           ),
         ),
       );

@@ -4,19 +4,22 @@ import 'package:plastic_warriors/decoration/key.dart';
 import 'package:plastic_warriors/decoration/potion_life.dart';
 import 'package:plastic_warriors/decoration/spikes.dart';
 import 'package:plastic_warriors/decoration/torch.dart';
+import 'package:plastic_warriors/enemies/bag_monster.dart';
 import 'package:plastic_warriors/enemies/boss.dart';
 import 'package:plastic_warriors/enemies/bag_monster.dart';
+import 'package:plastic_warriors/enemies/greedy_stone.dart';
 import 'package:plastic_warriors/enemies/imp.dart';
 import 'package:plastic_warriors/enemies/mini_boss.dart';
 import 'package:plastic_warriors/interface/ari_interface.dart';
 import 'package:plastic_warriors/main.dart';
-import 'package:plastic_warriors/npc/kid.dart';
-import 'package:plastic_warriors/npc/scientist_npc.dart';
+
 import 'package:plastic_warriors/player/ari.dart';
 import 'package:plastic_warriors/utils/sounds.dart';
 import 'package:plastic_warriors/widgets/game_controller.dart';
+import 'package:plastic_warriors/widgets/scene1_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:plastic_warriors/widgets/scene2_controller.dart';
 
 class Play_Session01_Screen02 extends StatefulWidget {
   //static bool useJoystick = true;
@@ -42,13 +45,6 @@ class _GameState extends State<Play_Session01_Screen02> {
   @override
   Widget build(BuildContext context) {
     var joystick = Joystick(
-      keyboardConfig: KeyboardConfig(
-        directionalKeys: KeyboardDirectionalKeys.arrows(),
-        acceptedKeys: [
-          LogicalKeyboardKey.space,
-          LogicalKeyboardKey.keyZ,
-        ],
-      ),
       directional: JoystickDirectional(
         spriteBackgroundDirectional: Sprite.load('joystick_background.png'),
         spriteKnobDirectional: Sprite.load('joystick_knob.png'),
@@ -62,25 +58,23 @@ class _GameState extends State<Play_Session01_Screen02> {
       child: BonfireWidget(
         joystick: joystick,
         player: Ari(
-          Vector2(2 * tileSize, 3 * tileSize),
+          Vector2(3 * tileSize, 5 * tileSize),
         ),
         map: WorldMapByTiled(
-          TiledReader.asset('tiled/001.json'),
+          TiledReader.asset('tiled/map001b.json'),
           forceTileSize: Vector2(tileSize, tileSize),
           objectsBuilder: {
-            'scientist': (p) => ScientistNPC(p.position),
-            'boss': (p) => Boss(p.position),
-            'monsterBag': (p) => BagMonster(p.position),
-            'imp': (p) => Imp(p.position),
+            'bagMonster': (p) => BagMonster(p.position),
+            'greedyStone': (p) => Greedy_Stone(p.position),
+            'potionLife': (p) => PotionLife(p.position, 100),
           },
         ),
-        components: [GameController()],
+        components: [GameController(), Scene2Controller()],
         interface: AriInterface(),
-        lightingColorGame: Colors.black.withOpacity(0.6),
         backgroundColor: Colors.grey[900]!,
         cameraConfig: CameraConfig(
-          speed: 3,
-          zoom: getZoomFromMaxVisibleTile(context, tileSize, 18),
+          speed: 2,
+          zoom: getZoomFromMaxVisibleTile(context, tileSize, 22),
         ),
       ),
     );

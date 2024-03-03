@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/game/game.dart';
+import 'package:plastic_warriors/game_intro/view/game_intro_page.dart';
 import 'package:plastic_warriors/game_intro/view/game_win_dialog.dart';
 import 'package:plastic_warriors/player/ari.dart';
 import 'package:plastic_warriors/player/weapons/lovestone1.dart';
@@ -21,7 +22,7 @@ import 'package:plastic_warriors/utils/sounds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class Scene1Controller extends GameComponent {
+class Scene2Controller extends GameComponent {
   bool showGScene1Story1 = true;
   bool showGScene1Story1B = false;
   bool showGScene1Story2 = false;
@@ -167,7 +168,9 @@ class Scene1Controller extends GameComponent {
   void _showDialogGameWin() {
     Navigator.of(context).push(GameWinDialog.route()).then((value) {
       // This code will be executed when the dialog is closed
-      Navigator.of(context).push(BattleGameView.route(2));
+      //go to game intro page
+
+      return GameIntroPage();
     });
     showGameWin = true;
   }

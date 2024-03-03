@@ -29,7 +29,6 @@ class GameView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //return Play_Session01_Screen01();
     return Scaffold(
       body: Stack(
         alignment: Alignment.center,
@@ -41,8 +40,8 @@ class GameView extends StatelessWidget {
               gameBloc: context.read<GameBloc>(),
               audioController: context.read<AudioController>(),
               onGameFinished: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) => BattleGameView()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => BattleGameView(level: 1)));
               },
             ),
           ),

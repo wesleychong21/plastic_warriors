@@ -44,7 +44,7 @@ class _SlidesWidgetState extends State<SlidesWidget> {
         // Navigate to another page when slides are complete
         // go to BattleGameView
         // Navigator.pushReplacementNamed(context, '/battle_game_view');
-        Navigator.of(context).push(BattleGameView.route());
+        Navigator.of(context).push(BattleGameView.route(1));
       }
     });
   }
