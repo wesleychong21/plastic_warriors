@@ -62,7 +62,7 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
 
   @override
   void render(Canvas canvas) {
-    drawBarSummonEnemy(canvas);
+    //drawBarSummonEnemy(canvas);
     super.render(canvas);
   }
 
@@ -168,39 +168,6 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
       ),
     );
     super.receiveDamage(attacker, damage, id);
-  }
-
-  void drawBarSummonEnemy(Canvas canvas) {
-    double yPosition = 0;
-    double widthBar = (width - 10) / 3;
-    if (childrenEnemy.length < 1)
-      canvas.drawLine(
-          Offset(0, yPosition),
-          Offset(widthBar, yPosition),
-          Paint()
-            ..color = Colors.orange
-            ..strokeWidth = 1
-            ..style = PaintingStyle.fill);
-
-    double lastX = widthBar + 5;
-    if (childrenEnemy.length < 2)
-      canvas.drawLine(
-          Offset(lastX, yPosition),
-          Offset(lastX + widthBar, yPosition),
-          Paint()
-            ..color = Colors.orange
-            ..strokeWidth = 1
-            ..style = PaintingStyle.fill);
-
-    lastX = lastX + widthBar + 5;
-    if (childrenEnemy.length < 3)
-      canvas.drawLine(
-          Offset(lastX, yPosition),
-          Offset(lastX + widthBar, yPosition),
-          Paint()
-            ..color = Colors.orange
-            ..strokeWidth = 1
-            ..style = PaintingStyle.fill);
   }
 
   void addChildInMap(double dt) {

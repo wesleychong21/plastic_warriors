@@ -40,6 +40,11 @@ class Scene1Controller extends GameComponent {
         if (!showLastDialog) {
           _showLastDialog();
         }
+
+        if (showLastDialog) {
+          gameRef.pauseEngine();
+          _showDialogGameWin();
+        }
       }
     }
 
@@ -165,10 +170,13 @@ class Scene1Controller extends GameComponent {
   }
 
   void _showDialogGameWin() {
+    /*
     Navigator.of(context).push(GameWinDialog.route()).then((value) {
       // This code will be executed when the dialog is closed
       Navigator.of(context).push(BattleGameView.route(2));
     });
+    */
+    Navigator.of(context).push(GameWinDialog.route());
     showGameWin = true;
   }
 
@@ -246,8 +254,7 @@ class Scene1Controller extends GameComponent {
         Say(
           text: [
             TextSpan(
-                text:
-                    "Indeed, Lina, but now we must act quickly. Ari, I’m Dr. K, and we desperately need your help.",
+                text: "Ari, I’m Dr. K, and we desperately need your help.",
                 style: TextStyle(fontSize: _fontSize))
           ],
           person: Image.asset('assets/images/DrK-expression1.webp'),
@@ -279,9 +286,7 @@ class Scene1Controller extends GameComponent {
       onFinish: () {
         Sounds.interaction();
         gameRef.resumeEngine();
-        if (!showGameWin) {
-          _showDialogGameWin();
-        }
+        showLastDialog = true;
       },
       logicalKeyboardKeysToNext: [
         LogicalKeyboardKey.space,

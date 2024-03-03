@@ -5,6 +5,7 @@ import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/game/game.dart';
 import 'package:plastic_warriors/game_intro/view/game_intro_page.dart';
 import 'package:plastic_warriors/game_intro/view/game_win_dialog.dart';
+import 'package:plastic_warriors/game_intro/view/game_win_dialog2.dart';
 import 'package:plastic_warriors/player/ari.dart';
 import 'package:plastic_warriors/player/weapons/lovestone1.dart';
 import 'package:plastic_warriors/utils/dialogs.dart';
@@ -52,27 +53,7 @@ class Scene2Controller extends GameComponent {
       showGScene1Story1 = false;
     }
 
-    if (showDrK) {
-      ScientistNPC scientist = ScientistNPC(
-          positionScientist); // replace x, y with the desired coordinates
-      gameRef.add(scientist);
-      showDrK = false;
-      showGScene1Story1B = true;
-    }
-
-    if (showGScene1Story1B) {
-      _showDialogGScene1Story1B();
-      showGScene1Story1B = false;
-    }
-
     ari = gameRef.player as Ari;
-    //when ari kill first enemy
-    if (ari.xp > 0) {
-      if (!showGScene1Story2) {
-        _showDialogGScene1Story2();
-        showGScene1Story2 = true;
-      }
-    }
 
     super.update(dt);
   }
@@ -90,7 +71,8 @@ class Scene2Controller extends GameComponent {
         Say(
           text: [
             TextSpan(
-                text: "What is this?", style: TextStyle(fontSize: _fontSize))
+                text: "Dr. K, why does the Stone of Love react to me?",
+                style: TextStyle(fontSize: _fontSize))
           ],
           person: Image.asset('assets/images/Ari-expression1.webp'),
           personSayDirection: PersonSayDirection.LEFT,
@@ -98,13 +80,70 @@ class Scene2Controller extends GameComponent {
         Say(
           text: [
             TextSpan(
-                text: "hehehehehehehheheheh",
+                text:
+                    "It's because you share a special connection with the Stone of Love; there might even be deeper reasons we've yet to discover. But right now, only you can unlock its full potential, which is why we need you.",
                 style: TextStyle(fontSize: _fontSize))
           ],
-          person: CustomSpriteAnimationWidget(
-            animation: EnemySpriteSheet.bagMonsterTalkAnimation(),
-          ),
+          person: Image.asset('assets/images/DrK-expression1.webp'),
           personSayDirection: PersonSayDirection.RIGHT,
+        ),
+        Say(
+          text: [
+            TextSpan(
+                text: "Then, where do these monsters come from?",
+                style: TextStyle(fontSize: _fontSize))
+          ],
+          person: Image.asset('assets/images/Ari-expression1.webp'),
+          personSayDirection: PersonSayDirection.LEFT,
+        ),
+        Say(
+          text: [
+            TextSpan(
+                text:
+                    "The Stone of Greed are devices placed on our planet by aliens. They turn the plastic waste into living entities to create chaos, but we're still unsure of their purpose.",
+                style: TextStyle(fontSize: _fontSize))
+          ],
+          person: Image.asset('assets/images/DrK-expression1.webp'),
+          personSayDirection: PersonSayDirection.RIGHT,
+        ),
+        Say(
+          text: [
+            TextSpan(
+                text:
+                    "These monsters are formed from plastic waste manipulated by the Stone of Greed.",
+                style: TextStyle(fontSize: _fontSize))
+          ],
+          person: Image.asset('assets/images/DrK-expression1.webp'),
+          personSayDirection: PersonSayDirection.RIGHT,
+        ),
+        Say(
+          text: [
+            TextSpan(
+                text:
+                    "Our mission is to find and destroy the Stone of Greed in this area to restore the ecological balance.",
+                style: TextStyle(fontSize: _fontSize))
+          ],
+          person: Image.asset('assets/images/girl-expression1.webp'),
+          personSayDirection: PersonSayDirection.RIGHT,
+        ),
+        Say(
+          text: [
+            TextSpan(
+                text:
+                    "The Stone of Greed is hidden in places that can cause the greatest environmental damage. I'm certain it's located at the very depths.",
+                style: TextStyle(fontSize: _fontSize))
+          ],
+          person: Image.asset('assets/images/DrK-expression1.webp'),
+          personSayDirection: PersonSayDirection.RIGHT,
+        ),
+        Say(
+          text: [
+            TextSpan(
+                text: "Got it. Let's get moving!",
+                style: TextStyle(fontSize: _fontSize))
+          ],
+          person: Image.asset('assets/images/Ari-expression1.webp'),
+          personSayDirection: PersonSayDirection.LEFT,
         ),
       ],
       onChangeTalk: (index) {
@@ -121,119 +160,14 @@ class Scene2Controller extends GameComponent {
     );
   }
 
-  void _showDialogGScene1Story1B() {
-    Sounds.interaction();
-    gameRef.pauseEngine();
-    TalkDialog.show(
-      gameRef.context,
-      [
-        Say(
-          text: [
-            TextSpan(
-                text: "Young man! Danger!",
-                style: TextStyle(fontSize: _fontSize))
-          ],
-          person: Image.asset('assets/images/DrK-expression1.webp'),
-          personSayDirection: PersonSayDirection.RIGHT,
-        ),
-        Say(
-          text: [
-            TextSpan(text: "Catch this!", style: TextStyle(fontSize: _fontSize))
-          ],
-          person: Image.asset('assets/images/DrK-heart.webp'),
-          personSayDirection: PersonSayDirection.RIGHT,
-        ),
-        Say(
-          text: [
-            TextSpan(text: "Huh?!", style: TextStyle(fontSize: _fontSize))
-          ],
-          person: Image.asset('assets/images/Ari-heart.webp'),
-          personSayDirection: PersonSayDirection.LEFT,
-        ),
-      ],
-      onChangeTalk: (index) {
-        Sounds.interaction();
-      },
-      onFinish: () {
-        Sounds.interaction();
-        gameRef.resumeEngine();
-        _addLoveStone1();
-      },
-      logicalKeyboardKeysToNext: [
-        LogicalKeyboardKey.space,
-      ],
-    );
-  }
-
   void _showDialogGameWin() {
-    Navigator.of(context).push(GameWinDialog.route()).then((value) {
+    Navigator.of(context).push(GameWinDialog2.route()).then((value) {
       // This code will be executed when the dialog is closed
       //go to game intro page
 
       return GameIntroPage();
     });
     showGameWin = true;
-  }
-
-  void _addLoveStone1() {
-    if (gameRef.player != null) {
-      Ari ari = gameRef.player as Ari;
-      var stone1 = LoveStone1(Vector2(14, -2));
-      ari.lovestone = stone1;
-      //mount the gun to the player
-      ari.add(stone1);
-    }
-  }
-
-  void _showDialogGScene1Story2() {
-    // player stop moving
-    if (gameRef.player != null) {
-      gameRef.player?.stopMove();
-    }
-    Sounds.interaction();
-    gameRef.pauseEngine();
-    TalkDialog.show(
-      gameRef.context,
-      [
-        Say(
-          text: [
-            TextSpan(
-                text: "What just happened..?",
-                style: TextStyle(fontSize: _fontSize))
-          ],
-          person: Image.asset('assets/images/Ari-expression1.webp'),
-          personSayDirection: PersonSayDirection.LEFT,
-        ),
-        Say(
-          text: [
-            TextSpan(
-                text: "The stone actually worked!",
-                style: TextStyle(fontSize: _fontSize))
-          ],
-          person: Image.asset('assets/images/girl-expression1.webp'),
-          personSayDirection: PersonSayDirection.RIGHT,
-        ),
-        Say(
-          text: [
-            TextSpan(
-                text: "Please found the greedy stone and destory it!",
-                style: TextStyle(fontSize: _fontSize))
-          ],
-          person: Image.asset('assets/images/girl-stone.webp'),
-          personSayDirection: PersonSayDirection.RIGHT,
-        ),
-      ],
-      onChangeTalk: (index) {
-        Sounds.interaction();
-      },
-      onFinish: () {
-        Sounds.interaction();
-        gameRef.resumeEngine();
-      },
-      logicalKeyboardKeysToNext: [
-        LogicalKeyboardKey.space,
-      ],
-    );
   }
 
   void _showLastDialog() {
@@ -250,30 +184,21 @@ class Scene2Controller extends GameComponent {
           text: [
             TextSpan(
                 text:
-                    "Indeed, Lina, but now we must act quickly. Ari, I’m Dr. K, and we desperately need your help.",
+                    "Look, Ari, you're learning how to use the Stone of Love. Every time you use it, you're helping to restore the balance of our world.",
                 style: TextStyle(fontSize: _fontSize))
           ],
           person: Image.asset('assets/images/DrK-expression1.webp'),
           personSayDirection: PersonSayDirection.RIGHT,
-        ),
-        Say(
-          text: [
-            TextSpan(
-                text: "Help? What’s all this about?",
-                style: TextStyle(fontSize: _fontSize))
-          ],
-          person: Image.asset('assets/images/ari-expression1.webp'),
-          personSayDirection: PersonSayDirection.LEFT,
         ),
         Say(
           text: [
             TextSpan(
                 text:
-                    "There’s no time for a full explanation. Come, we have to head to the next site before it’s too late.",
+                    "Right, we'll turn these plastic monsters back to their original form, then find that Stone of Greed and bring peace to this place.",
                 style: TextStyle(fontSize: _fontSize))
           ],
-          person: Image.asset('assets/images/DrK-expression1.webp'),
-          personSayDirection: PersonSayDirection.RIGHT,
+          person: Image.asset('assets/images/ari-expression1.webp'),
+          personSayDirection: PersonSayDirection.LEFT,
         ),
       ],
       onChangeTalk: (index) {

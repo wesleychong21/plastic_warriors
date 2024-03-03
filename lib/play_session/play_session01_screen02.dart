@@ -12,6 +12,8 @@ import 'package:plastic_warriors/enemies/imp.dart';
 import 'package:plastic_warriors/enemies/mini_boss.dart';
 import 'package:plastic_warriors/interface/ari_interface.dart';
 import 'package:plastic_warriors/main.dart';
+import 'package:plastic_warriors/npc/lina_npc.dart';
+import 'package:plastic_warriors/npc/scientist_npc.dart';
 
 import 'package:plastic_warriors/player/ari.dart';
 import 'package:plastic_warriors/utils/sounds.dart';
@@ -61,12 +63,14 @@ class _GameState extends State<Play_Session01_Screen02> {
           Vector2(3 * tileSize, 5 * tileSize),
         ),
         map: WorldMapByTiled(
-          TiledReader.asset('tiled/map001b.json'),
+          TiledReader.asset('tiled/map002.json'),
           forceTileSize: Vector2(tileSize, tileSize),
           objectsBuilder: {
             'bagMonster': (p) => BagMonster(p.position),
             'greedyStone': (p) => Greedy_Stone(p.position),
-            'potionLife': (p) => PotionLife(p.position, 100),
+            'miniBoss': (p) => MiniBoss(p.position),
+            'lina': (p) => LinaNPC(p.position),
+            'drK': (p) => ScientistNPC(p.position),
           },
         ),
         components: [GameController(), Scene2Controller()],
