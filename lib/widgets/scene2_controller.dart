@@ -42,18 +42,27 @@ class Scene2Controller extends GameComponent {
         if (!showLastDialog) {
           _showLastDialog();
         }
+
+        if (showLastDialog) {
+          gameRef.pauseEngine();
+          _showDialogGameWin();
+        }
       }
     }
 
     if (showGScene1Story1) {
       _showDialogGScene1Story1();
 
-      // _showDialogGScene1Story1B();
-
       showGScene1Story1 = false;
     }
 
-    ari = gameRef.player as Ari;
+    if (gameRef.player != null) {
+      ari = gameRef.player as Ari;
+      var stone1 = LoveStone1(Vector2(14, -2));
+      ari.lovestone = stone1;
+      //mount the gun to the player
+      ari.add(stone1);
+    }
 
     super.update(dt);
   }
@@ -61,7 +70,6 @@ class Scene2Controller extends GameComponent {
   void _showDialogGScene1Story1() {
     if (gameRef.player != null) {
       ari = gameRef.player as Ari;
-      ari.showEmote();
     }
     Sounds.interaction();
     gameRef.pauseEngine();
@@ -162,9 +170,6 @@ class Scene2Controller extends GameComponent {
 
   void _showDialogGameWin() {
     Navigator.of(context).push(GameWinDialog2.route()).then((value) {
-      // This code will be executed when the dialog is closed
-      //go to game intro page
-
       return GameIntroPage();
     });
     showGameWin = true;
@@ -206,10 +211,8 @@ class Scene2Controller extends GameComponent {
       },
       onFinish: () {
         Sounds.interaction();
+        showLastDialog = true;
         gameRef.resumeEngine();
-        if (!showGameWin) {
-          _showDialogGameWin();
-        }
       },
       logicalKeyboardKeysToNext: [
         LogicalKeyboardKey.space,

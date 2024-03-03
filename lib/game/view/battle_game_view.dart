@@ -42,8 +42,7 @@ class BattleGameView extends StatefulWidget {
 class _BattleGameViewState extends State<BattleGameView> {
   @override
   Widget build(BuildContext context) {
-    var level = 1;
-
+    int level = widget.level;
     return PageWithBackground(
       background: const gameWidgets.GameBackground(),
       child: Column(

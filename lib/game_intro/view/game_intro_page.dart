@@ -2,6 +2,7 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:plastic_warriors/constants/constants.dart';
+import 'package:plastic_warriors/game/game.dart';
 //import 'package:plastic_warriors/game/game.dart';
 //import 'package:plastic_warriors/game.dart';
 
@@ -78,6 +79,7 @@ class _IntroPage extends StatelessWidget {
             GameElevatedButton(
               label: l10n.gameIntroPagePlayButtonText,
               onPressed: () =>
+                  //  Navigator.of(context).push(BattleGameView.route(2)),
                   Navigator.of(context).push(GameInfoStory1.route()),
             ),
             const Spacer(),

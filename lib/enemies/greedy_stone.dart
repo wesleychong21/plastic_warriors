@@ -5,6 +5,7 @@ import 'package:plastic_warriors/enemies/bag_monster.dart';
 import 'package:plastic_warriors/enemies/imp.dart';
 import 'package:plastic_warriors/enemies/mini_boss.dart';
 import 'package:plastic_warriors/main.dart';
+import 'package:plastic_warriors/player/ari.dart';
 import 'package:plastic_warriors/utils/custom_sprite_animation_widget.dart';
 import 'package:plastic_warriors/utils/enemy_sprite_sheet.dart';
 import 'package:plastic_warriors/utils/functions.dart';
@@ -19,6 +20,8 @@ import 'package:flutter/material.dart';
 class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
   final Vector2 initPosition;
   double attack = 40;
+  int coinValue = 50;
+  int xpValue = 5;
 
   bool addChild = true;
 
@@ -76,11 +79,11 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
       addChildInMap(dt);
     }
 
-    if (life < 100 && childrenEnemy.length == 1) {
+    if (life < 100 && childrenEnemy.length <= 1) {
       addChildInMap(dt);
     }
 
-    if (life < 50 && childrenEnemy.length == 2) {
+    if (life < 50 && childrenEnemy.length <= 2) {
       addChildInMap(dt);
     }
 
@@ -100,6 +103,17 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
     childrenEnemy.forEach((e) {
       if (!e.isDead) e.die();
     });
+    /*
+    if (!gameRef.enemies().isEmpty) {
+      gameRef.enemies().forEach((enemy1) {
+        if (!enemy1.isDead) enemy1.die();
+      });
+    }
+    */
+    if (this.gameRef.player != null) {
+      (this.gameRef.player as Ari).increaseCoins(coinValue);
+      (this.gameRef.player as Ari).increaseExperience(xpValue);
+    }
     removeFromParent();
     super.die();
   }
@@ -171,55 +185,59 @@ class Greedy_Stone extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
   }
 
   void addChildInMap(double dt) {
-    if (checkInterval('addChild', 2000, dt)) {
-      Vector2 positionExplosion = Vector2.zero();
+    try {
+      if (checkInterval('addChild', 2000, dt)) {
+        Vector2 positionExplosion = Vector2.zero();
 
-      switch (this.directionThePlayerIsIn()) {
-        case Direction.left:
-          positionExplosion = this.position.translated(width * -2, 0);
-          break;
-        case Direction.right:
-          positionExplosion = this.position.translated(width * 2, 0);
-          break;
-        case Direction.up:
-          positionExplosion = this.position.translated(0, height * -2);
-          break;
-        case Direction.down:
-          positionExplosion = this.position.translated(0, height * 2);
-          break;
-        case Direction.upLeft:
-        case Direction.upRight:
-        case Direction.downLeft:
-        case Direction.downRight:
-          break;
-        default:
+        switch (this.directionThePlayerIsIn()) {
+          case Direction.left:
+            positionExplosion = this.position.translated(width * -2, 0);
+            break;
+          case Direction.right:
+            positionExplosion = this.position.translated(width * 2, 0);
+            break;
+          case Direction.up:
+            positionExplosion = this.position.translated(0, height * -2);
+            break;
+          case Direction.down:
+            positionExplosion = this.position.translated(0, height * 2);
+            break;
+          case Direction.upLeft:
+          case Direction.upRight:
+          case Direction.downLeft:
+          case Direction.downRight:
+            break;
+          default:
+        }
+
+        Enemy e = childrenEnemy.length == 2
+            ? BagMonster(
+                Vector2(
+                  positionExplosion.x,
+                  positionExplosion.y,
+                ),
+              )
+            : MiniBoss(
+                Vector2(
+                  positionExplosion.x,
+                  positionExplosion.y,
+                ),
+              );
+
+        gameRef.add(
+          AnimatedGameObject(
+            animation: GameSpriteSheet.smokeExplosion(),
+            position: positionExplosion,
+            size: Vector2(32, 32),
+            loop: false,
+          ),
+        );
+
+        childrenEnemy.add(e);
+        gameRef.add(e);
       }
-
-      Enemy e = childrenEnemy.length == 2
-          ? BagMonster(
-              Vector2(
-                positionExplosion.x,
-                positionExplosion.y,
-              ),
-            )
-          : MiniBoss(
-              Vector2(
-                positionExplosion.x,
-                positionExplosion.y,
-              ),
-            );
-
-      gameRef.add(
-        AnimatedGameObject(
-          animation: GameSpriteSheet.smokeExplosion(),
-          position: positionExplosion,
-          size: Vector2(32, 32),
-          loop: false,
-        ),
-      );
-
-      childrenEnemy.add(e);
-      gameRef.add(e);
-    }
+    } catch (e) {
+      print(e);
+    } finally {}
   }
 }

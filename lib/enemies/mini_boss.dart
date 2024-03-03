@@ -1,5 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:plastic_warriors/main.dart';
+import 'package:plastic_warriors/player/ari.dart';
 import 'package:plastic_warriors/utils/enemy_sprite_sheet.dart';
 import 'package:plastic_warriors/utils/functions.dart';
 import 'package:plastic_warriors/utils/game_sprite_sheet.dart';
@@ -10,6 +11,8 @@ class MiniBoss extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
   final Vector2 initPosition;
   double attack = 50;
   bool _seePlayerClose = false;
+  int coinValue = 15;
+  int xpValue = 2;
 
   MiniBoss(this.initPosition)
       : super(
@@ -67,6 +70,11 @@ class MiniBoss extends SimpleEnemy with BlockMovementCollision, UseLifeBar {
         loop: false,
       ),
     );
+    // increase player's coins
+    if (this.gameRef.player != null) {
+      (this.gameRef.player as Ari).increaseCoins(coinValue);
+      (this.gameRef.player as Ari).increaseExperience(xpValue);
+    }
     removeFromParent();
     super.die();
   }
