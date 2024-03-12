@@ -86,9 +86,10 @@ class Ari extends SimplePlayer with Lighting, BlockMovementCollision {
           this.position.x,
           this.position.y,
         ),
-        size: Vector2.all(30),
+        size: Vector2.all(32),
       ),
     );
+
     super.die();
   }
 

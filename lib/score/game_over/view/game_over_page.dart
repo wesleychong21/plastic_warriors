@@ -11,17 +11,13 @@ import 'package:plastic_warriors/score/score.dart';
 import 'package:plastic_warriors/utils/utils.dart';
 
 class GameOverPage extends StatelessWidget {
-  const GameOverPage({super.key});
+  GameOverPage({required this.scoreState});
+
+  final ScoreState scoreState;
 
   static Page<void> page() {
-    return const MaterialPage(
-      child: GameOverPage(),
-    );
-  }
-
-  static PageRoute<void> route() {
-    return PageRouteBuilder(
-      pageBuilder: (_, __, ___) => GameOverPage(),
+    return MaterialPage(
+      child: GameOverPage(scoreState: ScoreState()),
     );
   }
 

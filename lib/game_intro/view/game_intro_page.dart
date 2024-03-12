@@ -87,7 +87,7 @@ class _IntroPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 //AudioButton(),
-                LeaderboardButton(),
+                //LeaderboardButton(),
                 InfoButton(),
                 //HowToPlayButton(),
               ],

@@ -13,7 +13,7 @@ class Dialogs {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Image.asset(
-                'assets/images/game_over.png',
+                'assets/images/game_over.webp',
                 height: 100,
               ),
               SizedBox(
