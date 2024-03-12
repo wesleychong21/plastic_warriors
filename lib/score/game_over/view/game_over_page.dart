@@ -19,6 +19,12 @@ class GameOverPage extends StatelessWidget {
     );
   }
 
+  static PageRoute<void> route() {
+    return PageRouteBuilder(
+      pageBuilder: (_, __, ___) => GameOverPage(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;

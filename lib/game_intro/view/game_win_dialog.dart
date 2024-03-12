@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:plastic_warriors/constants/constants.dart';
 import 'package:plastic_warriors/game/view/battle_game_view.dart';
 import 'package:plastic_warriors/gen/assets.gen.dart';
@@ -45,14 +46,11 @@ class GameWinDialog extends StatelessWidget {
                   style: bodyStyle,
                 ),
                 const SizedBox(height: 24),
-                TextButton.icon(
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    iconColor: Colors.white,
+                InkWell(
+                  onTap: () => launchUrlString(Urls.card1Link),
+                  child: SvgPicture.asset(
+                    'assets/images/enSG_add_to_google_wallet_add-wallet-badge.svg',
                   ),
-                  onPressed: () => launchUrlString(Urls.card1Link),
-                  icon: Icon(Icons.card_giftcard),
-                  label: Text("Get My Card"),
                 ),
                 const SizedBox(height: 24),
                 TextButton.icon(

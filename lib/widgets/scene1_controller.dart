@@ -170,13 +170,9 @@ class Scene1Controller extends GameComponent {
   }
 
   void _showDialogGameWin() {
-    /*
-    Navigator.of(context).push(GameWinDialog.route()).then((value) {
-      // This code will be executed when the dialog is closed
+    Navigator.of(context).push(GameWinDialog.route()).then((_) {
       Navigator.of(context).push(BattleGameView.route(2));
     });
-    */
-    Navigator.of(context).push(GameWinDialog.route());
     showGameWin = true;
   }
 

@@ -13,23 +13,11 @@ class GameController extends GameComponent {
         if (!showGameOver) {
           showGameOver = true;
           //_showDialogGameOver();
-          MaterialPageRoute(builder: (context) => GameOverPage());
+          //MaterialPageRoute(builder: (context) => GameOverPage());
+          Navigator.of(context).push(GameOverPage.route());
         }
       }
     }
     super.update(dt);
-  }
-
-  void _showDialogGameOver() {
-    showGameOver = true;
-    Dialogs.showGameOver(
-      context,
-      () {
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => BattleGameView(level: 1)),
-          (Route<dynamic> route) => false,
-        );
-      },
-    );
   }
 }
