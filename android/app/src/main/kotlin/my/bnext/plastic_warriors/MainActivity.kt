@@ -1,4 +1,4 @@
-package com.example.darkness_dungeon
+package my.bnext.plastic_warriors
 
 import io.flutter.embedding.android.FlutterActivity
 

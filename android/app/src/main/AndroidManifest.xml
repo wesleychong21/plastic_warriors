@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.darkness_dungeon">
+    package="my.bnext.plastic_warriors">
    <application
-        android:label="Darkness Dungeon"
+        android:label="Plastic Warriors"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
